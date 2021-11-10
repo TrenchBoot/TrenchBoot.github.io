@@ -3545,8 +3545,8 @@ mark {
     --cd-color-border-s: 0%;
     --cd-color-border-l: 92%;
     --font-primary: 'Source Sans Pro', sans-serif;
-    --schedule-rows-number: 15;
-    --schedule-rows-height: 100px
+    --schedule-rows-number: 16;
+    --schedule-rows-height: 75px
 }
 
 body {
