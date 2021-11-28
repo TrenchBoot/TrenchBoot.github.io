@@ -1,0 +1,66 @@
+# Project information
+site_name: TrenchBoot
+site_url: https://trenchboot.org
+site_author: TrenchBoot Developers
+# Repository
+repo_name: TrenchBoot/TrenchBoot.github.io
+repo_url: https://github.com/TrenchBoot/TrenchBoot.github.io
+edit_uri: ""
+# Copyright
+copyright: Copyright &copy; 2018 - 2021 TrenchBoot Developers 
+
+nav:
+    - Home:
+      - index.md
+    - Events:
+      - events.md
+      - incoming_events.md
+    - Code:
+      - https://github.com/TrenchBoot
+    - Documentation:
+      - https://github.com/TrenchBoot/documentation
+    - FAQ:
+      - FAQ.md
+    - Community:
+      - https://groups.google.com/g/trenchboot-devel
+
+use_directory_urls: false
+
+theme:
+    name: material
+    logo: img/logo.jpg
+    favicon: img/favicon.ico
+    language: en
+    palette:
+      scheme: slate
+      primary: grey
+    font:
+      text: Source Sans Pro
+      code: Roboto Mono
+    features:
+      - navigation.instant
+      - navigation.tabs
+      - navigation.tabs.sticky
+      - header.autohide
+
+extra:
+  social:
+    - icon: material/github
+      link: https://github.com/TrenchBoot
+    - icon: material/home
+      link: https://trenchboot.org
+
+extra_css:
+  - assets/style.css
+
+plugins:
+  - search
+  - awesome-pages
+  - include-markdown
+  - git-revision-date-localized
+
+markdown_extensions:
+  - extra
+  - toc:
+      permalink: true
+  - markdown_include.include
