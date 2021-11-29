@@ -18,13 +18,16 @@ nav:
     - Code:
       - https://github.com/TrenchBoot
     - Documentation:
-      - https://github.com/TrenchBoot/documentation
+      - ... | documentation/*.md
+      - ... | blueprints/*.md
+    - Steering Committee:
+      - ... | steering-committee/*.md
     - FAQ:
       - FAQ.md
     - Community:
       - https://groups.google.com/g/trenchboot-devel
 
-use_directory_urls: false
+use_directory_urls: true
 
 theme:
     name: material
@@ -41,6 +44,7 @@ theme:
       - navigation.instant
       - navigation.tabs
       - navigation.tabs.sticky
+      - navigation.indexes
       - header.autohide
 
 extra:
@@ -56,6 +60,7 @@ extra_css:
 plugins:
   - search
   - awesome-pages
+  - pagenav-generator
   - include-markdown
   - git-revision-date-localized
 
@@ -64,3 +69,4 @@ markdown_extensions:
   - toc:
       permalink: true
   - markdown_include.include
+  - attr_list

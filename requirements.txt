@@ -2,6 +2,5 @@ mkdocs-bootstrap4
 mkdocs-awesome-pages-plugin
 mkdocs-include-markdown-plugin
 mkdocs-git-revision-date-localized-plugin
-mkdocs-minify-plugin
-markdown-blockdiag
+git+https://github.com/Andre601/mkdocs-pagenav-generator
 markdown-include
