@@ -1,3 +1,4 @@
+mkdocs-material
 mkdocs-bootstrap4
 mkdocs-awesome-pages-plugin
 mkdocs-include-markdown-plugin

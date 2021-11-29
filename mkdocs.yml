@@ -31,7 +31,7 @@ use_directory_urls: true
 
 theme:
     name: material
-    logo: img/logo.jpg
+    logo: img/logo.svg
     favicon: img/favicon.ico
     language: en
     palette:
