@@ -56,6 +56,15 @@ h4 {
 }
 .md-typeset h1 {
   color: #ffffff;
+  font-weight: bold;
+}
+.md-typeset h2 {
+  color: #ffffff;
+  font-weight: bold;
+}
+.md-typeset h3 {
+  color: #ffffff;
+  font-weight: bold;
 }
 .md-typeset__table th {
   border-bottom: 2px solid rgb(0, 238, 32);
