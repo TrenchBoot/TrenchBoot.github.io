@@ -3,8 +3,8 @@ site_name: TrenchBoot
 site_url: https://trenchboot.org
 site_author: TrenchBoot Developers
 # Repository
-repo_name: TrenchBoot/TrenchBoot.github.io
-repo_url: https://github.com/TrenchBoot/TrenchBoot.github.io
+repo_name: TrenchBoot Issues
+repo_url: https://github.com/TrenchBoot/trenchboot-issues
 edit_uri: ""
 # Copyright
 copyright: Copyright &copy; 2018 - 2021 TrenchBoot Developers 
@@ -14,9 +14,9 @@ nav:
       - index.md
     - Events:
       - events.md
-      - incoming_events.md
+      - upcoming_events.md
     - Code:
-      - https://github.com/TrenchBoot
+      - code.md
     - Documentation:
       - ... | documentation/*.md
       - ... | blueprints/*.md
@@ -25,7 +25,7 @@ nav:
     - FAQ:
       - FAQ.md
     - Community:
-      - https://groups.google.com/g/trenchboot-devel
+      - community.md
 
 use_directory_urls: true
 
