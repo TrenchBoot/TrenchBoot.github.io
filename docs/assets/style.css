@@ -3,11 +3,10 @@
 
 /* use image for color theme */
 body,
-.md-header,
 .md-tabs {
-  background-image: url("shoe-print.jpg");
-  background-size: cover;
-  background-attachment: fixed;
+/*  background-image: url("shoe-print.jpg");*/
+/*  background-size: cover;*/
+/*  background-attachment: fixed;*/
   font-size: 1em;
   font-size: var(--text-base-size, 1em);
   font-weight: bold;
@@ -15,6 +14,10 @@ body,
   font-family: var(--font-primary, sans-serif);
   color: #ffffff;
   color: var(--color-contrast-high, #ffffff)
+}
+
+.md-header {
+  background-color: var(--md-primary-fg-color--dark);
 }
 
 h1,
