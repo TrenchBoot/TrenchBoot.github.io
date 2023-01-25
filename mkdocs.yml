@@ -20,6 +20,7 @@ nav:
     - Documentation:
       - ... | documentation/*.md
       - ... | blueprints/*.md
+      - ... | meeting-minutes/*.md
     - Steering Committee:
       - ... | steering-committee/*.md
     - FAQ:
