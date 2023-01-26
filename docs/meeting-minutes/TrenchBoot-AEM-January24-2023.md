@@ -53,10 +53,12 @@ Possible solution for S3:
 
 - boot into Xen
 - search for SRT table and look for SL module
-- take measurement of Xen at the end of reinitialization by calling DRTM (right
-  before jump to Dom0) so that the measurement will be stable
+- take measurement of Xen at the end of boot and by delaying the dynamic launch
+  until after we're done making boot-time modifications to Xen's .text/etc. so
+  that the measurement will be stable. This doesn't cope with livepatching yet,
+  but livepatching support can be omitted in v1 implementation.
 - Currently it is not possible to take a meaningful measurement of Dom0 after
   coming back from S3. It is still valid to measure Dom0 on initial boot to
-  ensure that the correct dom0 kernel is used to start the system. For Dom0 do
-  external inspection of LKRG (future), for now Dom0 is not that relevant to be
-  measured according to Daniel and Andrew
+  ensure that the correct dom0 kernel is used to start the system. Also dom0
+  measurement will be largely meaningless, so it can be excluded from v1
+  implementation
