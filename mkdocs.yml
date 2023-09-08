@@ -68,3 +68,4 @@ markdown_extensions:
       permalink: true
   - markdown_include.include
   - attr_list
+  - admonition
