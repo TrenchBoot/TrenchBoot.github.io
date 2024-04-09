@@ -1,19 +1,25 @@
 # Hardware test matrix
 
-Devices and configurations TrenchBoot has been tested on.
+Devices and configurations on which TrenchBoot is known to work (availability
+years can be approximate):
 
-| Tested devices                                                               | TPM family | Result | Notes |
-|:----------------------------------------------------------------------------:|:----------:|:------:|:-----:|
-| Intel Tiger Lake client                                                      |  TPM 2.0   |  PASS  | UEFI firmware |
-| Intel Kaby Lake server                                                       |  TPM 2.0   |  PASS  | UEFI firmware |
-| Intel Skylake sever                                                          |  TPM 2.0   |  PASS  | UEFI firmware |
-| Dell OptiPlex 9010                                                           |  TPM 1.2   |  PASS  | coreboot SeaBIOS firmware |
-| PC Engines APU2 platform series <br>(AMD family 16h models 30h-3fh embedded) |  TPM 2.0   |  PASS  | coreboot firmware |
-| PC Engines APU2 platform series <br>(AMD family 16h models 30h-3fh embedded) |  TPM 1.2   |  PASS  | coreboot firmware |
-| Asus KGPE-D16 <br>(AMD Opteron family 15h models 00h-0fh server)             |  TPM 1.2   |  PASS  | stock BIOS |
-| Asus KGPE-D16 <br>(AMD Opteron family 15h models 00h-0fh server)             |  TPM 2.0   |  FAIL  | coreboot firmware TPM issue |
-| Supermicro M11SDV-8CT <br>(AMD EPYC 3000 Snowy Owl server)                   |  TPM 2.0   |  PASS  | CSM legacy boot |
-| Supermicro M11SDV-8CT <br>(AMD EPYC 3000 Snowy Owl server)                   |  TPM 2.0   |  FAIL  | UEFI boot |
+| Tested devices                                                               | TPM family | Available  | Notes |
+|:----------------------------------------------------------------------------:|:----------:|:----------:|:-----:|
+| Intel Tiger Lake client                                                      |  TPM 2.0   | 2020-2023  | UEFI firmware |
+| Intel Kaby Lake server                                                       |  TPM 2.0   | 2016-2020  | UEFI firmware |
+| Intel Skylake server                                                         |  TPM 2.0   | 2015-2019  | UEFI firmware |
+| Dell OptiPlex 9010                                                           |  TPM 1.2   | 2012-2017  | coreboot SeaBIOS firmware |
+| PC Engines APU2 platform series <br>(AMD family 16h models 30h-3fh embedded) |  TPM 2.0   | 2016-2023  | coreboot firmware |
+| PC Engines APU2 platform series <br>(AMD family 16h models 30h-3fh embedded) |  TPM 1.2   | 2016-2023  | coreboot firmware |
+| Asus KGPE-D16 <br>(AMD Opteron family 15h models 00h-0fh server)             |  TPM 1.2   | 2005-2015  | stock BIOS |
+| Supermicro M11SDV-8CT <br>(AMD EPYC 3000 Snowy Owl server)                   |  TPM 2.0   | 2019-today | CSM legacy boot |
+
+Devices and configurations on which TrenchBoot is known to not work:
+
+| Tested devices                                                               | TPM family | Notes |
+|:----------------------------------------------------------------------------:|:----------:|:-----:|
+| Asus KGPE-D16 <br>(AMD Opteron family 15h models 00h-0fh server)             |  TPM 2.0   | coreboot firmware TPM issue |
+| Supermicro M11SDV-8CT <br>(AMD EPYC 3000 Snowy Owl server)                   |  TPM 2.0   | UEFI boot |
 
 Hardware quirks and workarounds.
 
