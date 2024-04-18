@@ -13,6 +13,7 @@ years can be approximate):
 | PC Engines APU2 platform series <br>(AMD family 16h models 30h-3fh embedded) |  TPM 1.2   | 2016-2023  | coreboot firmware |
 | Asus KGPE-D16 <br>(AMD Opteron family 15h models 00h-0fh server)             |  TPM 1.2   | 2005-2015  | stock BIOS |
 | Supermicro M11SDV-8CT <br>(AMD EPYC 3000 Snowy Owl server)                   |  TPM 2.0   | 2019-today | CSM legacy boot |
+| HP Thin Client t630                                                          |  TPM 2.0   | 2016-2020  | CSM legacy boot <br>BIOS updates in 2024 |
 
 Devices and configurations on which TrenchBoot is known to not work:
 
@@ -30,5 +31,7 @@ Hardware quirks and workarounds.
 | Asus KGPE-D16 <br>(AMD Opteron family 15h models 00h-0fh server)             | IOMMU has no extended features: can't use `INVALIDATE_IOMMU_ALL` in SKL. |
 | Supermicro M11SDV-8CT <br>(AMD EPYC 3000 Snowy Owl server)                   | Problematic USB controller for Qubes OS ([resets the system][qubesos-m11-reset]). |
 | (continued)                                                                  | Works without `sys-usb` VM or if USB controller is disabled. |
+| HP Thin Client t630                                                          | Starting Qubes OS installation in legacy mode requires extra steps ([see][qubesos-t630-install]). |
 
 [qubesos-m11-reset]: https://github.com/QubesOS/qubes-issues/issues/8322#issuecomment-1904423204
+[qubesos-t630-install]: https://github.com/TrenchBoot/TrenchBoot.github.io/pull/30#discussion_r1570519887
