@@ -22,16 +22,21 @@ Devices and configurations on which TrenchBoot is known to not work:
 | Asus KGPE-D16 <br>(AMD Opteron family 15h models 00h-0fh server)             |  TPM 2.0   | coreboot firmware TPM issue |
 | Supermicro M11SDV-8CT <br>(AMD EPYC 3000 Snowy Owl server)                   |  TPM 2.0   | UEFI boot |
 
-Hardware quirks and workarounds.
+## Hardware quirks and workarounds
 
-| Device                                                                       | Notes |
-|:----------------------------------------------------------------------------:|:-----:|
-| Dell OptiPlex 9010                                                           | 1. Installer has issues rebooting without `reboot=pci` kernel option. |
-| (continued)                                                                  | 2. Xen sometimes has issues rebooting, boot cycle is the workaround. |
-| Asus KGPE-D16 <br>(AMD Opteron family 15h models 00h-0fh server)             | IOMMU has no extended features: can't use `INVALIDATE_IOMMU_ALL` in SKL. |
-| Supermicro M11SDV-8CT <br>(AMD EPYC 3000 Snowy Owl server)                   | Problematic USB controller for Qubes OS ([resets the system][qubesos-m11-reset]). |
-| (continued)                                                                  | Works without `sys-usb` VM or if USB controller is disabled. |
-| HP Thin Client t630                                                          | Starting Qubes OS installation in legacy mode requires extra steps ([see][qubesos-t630-install]). |
+These are difficulties/things of note one has to face when using these platforms
+today.  They were probably more usable years ago, but something has changed in
+software that nobody tested on these devices and now experience isn't very
+smooth.
+
+| Device                                                                      | Notes |
+|:---------------------------------------------------------------------------:|:-----:|
+| Asus KGPE-D16<br>(AMD Opteron family 15h models 00h-0fh server)             | IOMMU has no extended features: can't use `INVALIDATE_IOMMU_ALL` in SKL. |
+| Dell OptiPlex 9010                                                          | 1. Installer has issues rebooting without `reboot=pci` kernel option. |
+| (continued)                                                                 | 2. Xen sometimes has issues rebooting, boot cycle is the workaround. |
+| HP Thin Client t630                                                         | Starting Qubes OS installation in legacy mode requires extra steps ([see][qubesos-t630-install]). |
+| Supermicro M11SDV-8CT<br>(AMD EPYC 3000 Snowy Owl server)                   | Problematic USB controller for Qubes OS ([resets the system][qubesos-m11-reset]). |
+| (continued)                                                                 | Works without `sys-usb` VM or if USB controller is disabled. |
 
 [qubesos-m11-reset]: https://github.com/QubesOS/qubes-issues/issues/8322#issuecomment-1904423204
 [qubesos-t630-install]: https://github.com/TrenchBoot/TrenchBoot.github.io/pull/30#discussion_r1570519887
