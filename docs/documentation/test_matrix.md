@@ -40,11 +40,13 @@ Devices and configurations on which TrenchBoot is known to not work:
 
 | Tested device                                                               | TPM family | Notes |
 |:---------------------------------------------------------------------------:|:----------:|:-----:|
-| Asus KGPE-D16<br>(AMD Opteron family 15h models 00h-0fh server)             |  TPM 2.0   | coreboot firmware TPM issue |
-| Supermicro M11SDV-8CT<br>(AMD EPYC 3000 Snowy Owl server)                   |  TPM 2.0   | UEFI boot |
+| [Asus KGPE-D16][kgpe]<br>(AMD Opteron family 15h models 00h-0fh server)     |  TPM 2.0   | coreboot firmware TPM issue |
+| [Supermicro M11SDV-8CT][m11]<br>(AMD EPYC 3000 Snowy Owl server)            |  TPM 2.0   | UEFI boot |
 
 [ci]: https://gitlab.com/trenchboot1/3mdeb/meta-trenchboot/-/pipelines
 [testing-trenchboot]: https://github.com/3mdeb/testing-trenchboot
+[kgpe]: https://github.com/TrenchBoot/trenchboot-issues/issues/27
+[m11]: https://github.com/TrenchBoot/trenchboot-issues/issues/28
 
 ## Hardware quirks and workarounds
 
