@@ -4,21 +4,40 @@
 
 These results are based on the use of TrenchBoot in combination with [AEM][aem]
 on the specified hardware running [Qubes OS][qubesos].  The tests were carried
-out either manually or automatically via [openQA][openqa].
+out either automatically via [openQA][openqa] using [this test][aem-test] or
+manually by [installing][aem-install] and [verifying][aem-verify] AEM with
+TrenchBoot.  The procedure is very similar in both cases:
+
+1. Installation of ACMs on Intel platforms or SKL on AMD platforms.
+2. Installation of TrenchBoot's versions of AEM, Xen and GRUB2 (necessary until
+   all of the changes are upstreamed).
+3. AEM setup procedure which is detailed in its [README][aem-readme].
+4. Reboot so that AEM has a chance to seal the secrets taking values of DRTM
+   PCRs into account.
+5. Reboot once again to verify that AEM has successfully unsealed the secrets
+   and PCR values are correct with respect to TPM event log.
+6. An extra manual step in both cases (openQA only prints event log) is to
+   check that hashes from the log correspond to on-disk files.
 
 Devices and configurations on which TrenchBoot is known to work (availability
-years can be approximate):
+years can be approximate; automatic tests don't override manual tests):
 
-| Tested device                                                               | TPM family | Available  | Notes |
-|:---------------------------------------------------------------------------:|:----------:|:----------:|:-----:|
-| Asus KGPE-D16<br>(AMD Opteron family 15h models 00h-0fh server)             |  TPM 1.2   | 2005-2015  | stock BIOS |
-| Dell OptiPlex 9010                                                          |  TPM 1.2   | 2012-2017  | coreboot SeaBIOS firmware |
-| HP Thin Client t630                                                         |  TPM 2.0   | 2016-2020  | CSM legacy boot<br>BIOS updates in 2024 |
-| Supermicro M11SDV-8CT<br>(AMD EPYC 3000 Snowy Owl server)                   |  TPM 2.0   | 2019-today | CSM legacy boot |
+| Tested device                                                                                 | TPM family | Available  | Notes |
+|:---------------------------------------------------------------------------------------------:|:----------:|:----------:|:-----:|
+| Asus KGPE-D16<br>(AMD Opteron family 15h models 00h-0fh server)<br>(v0.4 by [@SergiiDmytruk]) |  TPM 1.2   | 2005-2015  | stock BIOS |
+| Dell OptiPlex 9010<br>(v0.3 by openQA)                                                        |  TPM 1.2   | 2012-2017  | coreboot SeaBIOS firmware |
+| HP Thin Client t630<br>(v0.4 by [@krystian-hebel])                                            |  TPM 2.0   | 2016-2020  | CSM legacy boot<br>BIOS updates in 2024 |
+| Supermicro M11SDV-8CT<br>(AMD EPYC 3000 Snowy Owl server)<br>(v0.4 by openQA)                 |  TPM 2.0   | 2019-today | CSM legacy boot |
 
 [aem]: https://github.com/TrenchBoot/qubes-antievilmaid
 [qubesos]: https://www.qubes-os.org/
 [openqa]: https://open.qa/
+[aem-test]: https://github.com/TrenchBoot/openqa-tests-qubesos/blob/3mdeb-lab/tests/aem_hw.pm
+[aem-install]: https://blog.3mdeb.com/2023/2023-09-27-aem_phase2/#installation-procedure
+[aem-verify]: https://blog.3mdeb.com/2024/2024-01-12-aem_phase3/#testing
+[aem-readme]: https://github.com/QubesOS/qubes-antievilmaid/blob/main/README
+[@SergiiDmytruk]: https://github.com/SergiiDmytruk
+[@krystian-hebel]: https://github.com/krystian-hebel
 
 ## Legacy (before 2022) test results
 
