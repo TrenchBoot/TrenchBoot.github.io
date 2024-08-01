@@ -14,9 +14,9 @@ actions were not subverted is derived.
 
 ## Where to Start
 
-* [General Architecture](documentation/Architecture.md) - A top level overview of TrenchBoot
-* [Use Case Definition](documentation/UseCases.md) - A collection of example use cases
-* [Developers Guide](documentation/DevelopersGuide.md) - A developers guide that explains the internals of TrenchBoot
+* [General Architecture](theory/Architecture.md) - A top level overview of TrenchBoot
+* [Use Case Definition](theory/UseCases.md) - A collection of example use cases
+* [Developers Guide](dev-docs/DevelopersGuide.md) - A developers guide that explains the internals of TrenchBoot
 
 ## Contributors
 
