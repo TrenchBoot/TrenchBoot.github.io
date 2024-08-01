@@ -40,7 +40,7 @@ nav:
           - blueprints/index.md
           - blueprints/TXT_Grub_Late_Launch.md
           - blueprints/AMD_Grub_Late_Launch.md
-          - blueprints/AMD_Landing_Zone.md
+          - blueprints/AMD_Secure_Kernel_Loader.md
           - blueprints/Linux_Late_Launch.md
           - blueprints/Measured_Secure_Boot.md
         - References:
