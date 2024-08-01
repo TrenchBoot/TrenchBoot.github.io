@@ -11,23 +11,24 @@ SKINIT instruction.
 The AMD SKINIT instruction is a means to initiate a "late launch" that
 establishes a Dynamic Root of Trust Measurement (DRTM). The instruction call
 requires the system to be in a specific state as enumerated below,
- * SVM check, either the `EFER.SVME` bit is set to 1 or the feature flag `CPUID
-   Fn8000_0001_ECX[SKINIT]` is set to 1
- * The CPU must be in protected mode
- * All microcode needs to be unloaded
+
+* SVM check, either the `EFER.SVME` bit is set to 1 or the feature flag `CPUID
+  Fn8000_0001_ECX[SKINIT]` is set to 1
+* The CPU must be in protected mode
 
 ## Approach
 
 Grub will be extended with the following capabilities,
- * An SKINIT relocator that will,
-  1. set protected mode
-  2. enable APIC
-  3. verify no machine check in progress
-  4. clear machine check regs
-  5. SKINIT as final instruction
- * A late launch loader that will,
-  1. load kernel starting at 0x100000, compatibility with a Linux Secure Loader
-  2. verify SVM is supported
-  3. disable all TPM localities
-  4. evict microcode
-  5. send INIT IPI to all APs
+
+* Extend the late launch loader,
+    1. determine CPU type and select SKINIT or SENTER path
+    2. load kernel (with modules, if applicable) as usual
+    3. verify SVM is supported
+    4. load Secure Kernel Loader and check if it is valid
+    5. allocate and fill Secure Launch Resource Table
+    6. send INIT IPI to all APs
+    7. disable all TPM localities
+* An SKINIT relocator that will,
+    1. set protected mode
+    2. set registers as required by SKINIT
+    3. execute SKINIT as final instruction
