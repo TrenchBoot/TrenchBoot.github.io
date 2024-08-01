@@ -7,7 +7,7 @@ repo_name: TrenchBoot Issues
 repo_url: https://github.com/TrenchBoot/trenchboot-issues
 edit_uri: ""
 # Copyright
-copyright: Copyright &copy; 2018 - 2021 TrenchBoot Developers 
+copyright: Copyright &copy; 2018 - 2024 TrenchBoot Developers
 
 nav:
     - Home: index.md
@@ -15,13 +15,29 @@ nav:
       - events.md
       - upcoming_events.md
     - Specifications:
-      - ... | specifications/*.md
+      - specifications/index.md
+      - specifications/Secure_Launch.md
     - Code: code.md
     - Documentation:
-      - ... | documentation/*.md
-      - ... | blueprints/*.md
+      - Documentation:
+        - documentation/index.md
+        - documentation/Architecture.md
+        - documentation/CONTRIBUTING.md
+        - documentation/DevelopersGuide.md
+        - documentation/Glossary.md
+        - documentation/Late_Launch_Overview.md
+        - documentation/test_matrix.md
+        - documentation/UseCases.md
+      - Blueprints:
+        - blueprints/index.md
+        - blueprints/AMD_Grub_Late_Launch.md
+        - blueprints/AMD_Landing_Zone.md
+        - blueprints/Linux_Late_Launch.md
+        - blueprints/Measured_Secure_Boot.md
+        - blueprints/TXT_Grub_Late_Launch.md
     - Steering Committee:
-      - ... | steering-committee/*.md
+      - steering-committee/index.md
+      - steering-committee/Community-Meeting-June17-2021.md
     - FAQ: FAQ.md
     - Community: community.md
 
