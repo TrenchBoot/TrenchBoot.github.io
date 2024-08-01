@@ -17,28 +17,37 @@ nav:
     - Specifications:
       - specifications/index.md
       - specifications/Secure_Launch.md
-    - Code: code.md
     - Documentation:
-      - Documentation:
-        - documentation/index.md
-        - documentation/Architecture.md
-        - documentation/CONTRIBUTING.md
-        - documentation/DevelopersGuide.md
-        - documentation/Glossary.md
-        - documentation/Late_Launch_Overview.md
-        - documentation/test_matrix.md
-        - documentation/UseCases.md
-      - Blueprints:
-        - blueprints/index.md
-        - blueprints/AMD_Grub_Late_Launch.md
-        - blueprints/AMD_Landing_Zone.md
-        - blueprints/Linux_Late_Launch.md
-        - blueprints/Measured_Secure_Boot.md
-        - blueprints/TXT_Grub_Late_Launch.md
+      - Getting started:
+        - user-docs/index.md
+        # - requirements
+        # - installing - Linux
+        # - installing - Qubes AEM
+        # - troubleshooting
+        - user-docs/test_matrix.md
+      - For developers:
+        - dev-docs/index.md
+        - dev-docs/CONTRIBUTING.md
+        - dev-docs/code.md
+        - dev-docs/Late_Launch_Overview.md
+        - dev-docs/DevelopersGuide.md
+      - Theory:
+        - theory/index.md
+        - theory/UseCases.md
+        - theory/Architecture.md
+        - theory/Glossary.md
+        - Blueprints:
+          - blueprints/index.md
+          - blueprints/TXT_Grub_Late_Launch.md
+          - blueprints/AMD_Grub_Late_Launch.md
+          - blueprints/AMD_Landing_Zone.md
+          - blueprints/Linux_Late_Launch.md
+          - blueprints/Measured_Secure_Boot.md
+        # - references
     - Steering Committee:
       - steering-committee/index.md
       - steering-committee/Community-Meeting-June17-2021.md
-    - FAQ: FAQ.md
+    - TrenchBoot FAQ: FAQ.md
     - Community: community.md
 
 use_directory_urls: true
