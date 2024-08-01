@@ -12,7 +12,7 @@ the launch integrity of the system. The last phase is the Runtime phase and is
 where the target runtime, hypervisor, operating system, etc, is
 given control over the system.
 
-![Architecture Execution Flow](/img/Architectural_Flow.png)
+![Architecture Execution Flow](../img/Architectural_Flow.png)
 
 
 # TrenchBoot Security Engine
@@ -24,7 +24,7 @@ a security policy, and executing appropriate enforcement actions. The components
 that enable this and their relationship can be seen in the top level diagram
 below.
 
-![Architecture Execution Flow](/img/Arch_Flow.png)
+![Architecture Execution Flow](../img/Arch_Flow.png)
 
 ## Evidence
 
