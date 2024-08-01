@@ -43,7 +43,19 @@ nav:
           - blueprints/AMD_Landing_Zone.md
           - blueprints/Linux_Late_Launch.md
           - blueprints/Measured_Secure_Boot.md
-        # - references
+        - References:
+          - references/README.md
+          # TODO: make these open in new tab.
+          # https://github.com/squidfunk/mkdocs-material/issues/889#issuecomment-582297142
+          # works but throws a warning about file not found in the documentation
+          # files. Another option is JS that adds target="_blank" attribute to
+          # all links to PDF.
+          - AMD64 Architecture Programmers Manual Volume 2 Ch15.27:
+              references/AMD64-Architecture-Programmers-Manual_Volume-2_Ch15.27.pdf
+          - Intel TXT Preliminary Architecture Specification:
+              references/intel-txt-preliminary-architecture.pdf
+          - Intel TXT Software Development Guide:
+              references/intel-txt-software-development-guide.pdf
     - Steering Committee:
       - steering-committee/index.md
       - steering-committee/Community-Meeting-June17-2021.md
