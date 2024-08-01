@@ -14,7 +14,7 @@ the boot capabilities and BITs that will be supported will result in different
 launchable images. The diagram below provides a simple visual depiction of this
 setup.
 
-![Top level software architecture](/img/SoftwareArch.png)
+![Top level software architecture](../img/SoftwareArch.png)
 
 As a result of the build process, one or more kernel images may be generated.
 By convention these kernels will be labeled as such:

@@ -4,7 +4,7 @@ hide:
   - toc
 ---
 
-![](/img/logo.svg){ class="center" }
+![](img/logo.svg){ class="center" }
 
 TrenchBoot is a framework that allows individuals and projects to build
 security engines to perform launch integrity actions for their systems. The
@@ -20,8 +20,8 @@ actions were not subverted is derived.
 
 ## Contributors
 
-![Apertus Solutions](/assets/apertus_logo.svg){: style="width:400px;" class="center" }
+![Apertus Solutions](assets/apertus_logo.svg){: style="width:400px;" class="center" }
 
-![Oracle](/assets/oracle_logo.svg){: style="width:400px;" class="center" }
+![Oracle](assets/oracle_logo.svg){: style="width:400px;" class="center" }
 
-![3mdeb Embedded System Consulting](/assets/3mdeb_logo.svg){: style="width:400px;" class="center"  }
+![3mdeb Embedded System Consulting](assets/3mdeb_logo.svg){: style="width:400px;" class="center"  }
