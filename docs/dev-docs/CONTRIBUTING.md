@@ -15,14 +15,14 @@ The functionality being developed under TrenchBoot are cross-cutting
 capabilities that span multiple open source projects.  The role of TrenchBoot
 is to function as both a development as well as a cross-project integration
 project. As such it maintains a set of repository clones of upstream
-project(s) that TrenchBoot conducts development within. 
+project(s) that TrenchBoot conducts development within.
 
 ### Upstream Repository
 
-For each upstream repository within TrenchBoot will have at least one maintainer.
-The maintainer(s) will have merge permissions and responsible for maintaining
-adherence to upstream practices. When necessary, they are responsible for
-maintaining out-of-tree capabilities developed by TrenchBoot.
+For each upstream repository within TrenchBoot will have at least one
+maintainer. The maintainer(s) will have merge permissions and responsible for
+maintaining adherence to upstream practices. When necessary, they are
+responsible for maintaining out-of-tree capabilities developed by TrenchBoot.
 
 #### Upstream Focus
 
@@ -102,6 +102,7 @@ Contributions targeting upstream project repositories will follow the upstream
 project's coding style rules.
 
 ## License
+
 [![License: CC BY 4.0](https://i.creativecommons.org/l/by/4.0/88x31.png)
 ](https://creativecommons.org/licenses/by/4.0/) This work is licensed under a
 [Creative Commons Attribution 4.0 International
@@ -116,5 +117,6 @@ TrenchBoot is maintained by:
  - Daniel P. Smith <dpsmith@apertussolutions.com>
 
 # References
+
 This document was adapted from the this open-source [contribution
 template](https://gist.github.com/briandk/3d2e8b3ec8daf5a27a62/)
