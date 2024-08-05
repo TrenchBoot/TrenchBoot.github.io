@@ -25,9 +25,14 @@ years can be approximate; automatic tests don't override manual tests):
 | Tested device                                                                                 | TPM family | Available  | Notes |
 |:---------------------------------------------------------------------------------------------:|:----------:|:----------:|:-----:|
 | Asus KGPE-D16<br>(AMD Opteron family 15h models 00h-0fh server)<br>(v0.4 by [@SergiiDmytruk]) |  TPM 1.2   | 2005-2015  | stock BIOS |
-| Dell OptiPlex 9010<br>(v0.3 by openQA)                                                        |  TPM 1.2   | 2012-2017  | coreboot SeaBIOS firmware |
+| Dell OptiPlex 9010<br>(v0.3 by openQA)                                                        |  TPM 1.2   | 2012-2017  | coreboot SeaBIOS firmware, bad 1st entry in event log |
 | HP Thin Client t630<br>(v0.4 by [@krystian-hebel])                                            |  TPM 2.0   | 2016-2020  | CSM legacy boot<br>BIOS updates in 2024 |
-| Supermicro M11SDV-8CT<br>(AMD EPYC 3000 Snowy Owl server)<br>(v0.4 by openQA)                 |  TPM 2.0   | 2019-today | CSM legacy boot |
+
+Devices and configurations on which TrenchBoot is known to not work:
+
+| Tested device                                                                                 | TPM family | Available  | Notes |
+|:---------------------------------------------------------------------------------------------:|:----------:|:----------:|:-----:|
+| Supermicro M11SDV-8CT<br>(AMD EPYC 3000 Snowy Owl server)<br>(v0.4 by openQA)                 |  TPM 2.0   | 2019-today | CSM legacy boot,<br>unexpected PCR values |
 
 [aem]: https://github.com/TrenchBoot/qubes-antievilmaid
 [qubesos]: https://www.qubes-os.org/
@@ -79,6 +84,7 @@ smooth.
 | Asus KGPE-D16<br>(AMD Opteron family 15h models 00h-0fh server)             | IOMMU has no extended features: can't use `INVALIDATE_IOMMU_ALL` in SKL. |
 | Dell OptiPlex 9010                                                          | 1. Installer has issues rebooting without `reboot=pci` kernel option. |
 | (continued)                                                                 | 2. Xen sometimes has issues rebooting, boot cycle is the workaround. |
+| (continued)                                                                 | 3. First entry in DRTM TPM event log contains the result of PCR extend operation instead of its input due to ACM bug. |
 | HP Thin Client t630                                                         | Starting Qubes OS installation in legacy mode requires extra steps ([see][qubesos-t630-install]). |
 | Supermicro M11SDV-8CT<br>(AMD EPYC 3000 Snowy Owl server)                   | Problematic USB controller for Qubes OS ([resets the system][qubesos-m11-reset]). |
 | (continued)                                                                 | Works without `sys-usb` VM or if USB controller is disabled. |

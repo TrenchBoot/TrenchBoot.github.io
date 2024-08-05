@@ -20,7 +20,7 @@ nav:
     - Documentation:
       - Getting started:
         - user-docs/index.md
-        # - requirements
+        - user-docs/requirements.md
         # - installing - Linux
         # - installing - Qubes AEM
         # - troubleshooting
