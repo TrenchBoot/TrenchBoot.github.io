@@ -22,7 +22,7 @@ nav:
         - user-docs/index.md
         - user-docs/requirements.md
         # - installing - Linux
-        # - installing - Qubes AEM
+        - user-docs/install_aem.md
         # - troubleshooting
         - user-docs/test_matrix.md
       - For developers:
