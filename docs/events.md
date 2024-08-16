@@ -4,6 +4,20 @@ Events that TrenchBoot appeared on.
 
 ## Worldwide conferences
 
+* Xen Project Summit 2024
+    * [Slides](https://static.sched.com/hosted_files/xenprojectsummit2024/59/trenchboot_in_xen.pdf)
+* FOSDEM 2024
+    * [Video](https://video.fosdem.org/2024/aw1126/fosdem-2024-3724-trenchboot-project-status-update.av1.webm)
+    * [Slides DRTM status](https://fosdem.org/2024/events/attachments/fosdem-2024-3724-trenchboot-project-status-update/slides/22916/DRTM-presentation-FOSDEM_Crm6zWi.pdf)
+    * [Slides AEM status](https://fosdem.org/2024/events/attachments/fosdem-2024-3724-trenchboot-project-status-update/slides/22916/TrenchBoot_AEM_Project_Status_P8H1V5D.pdf)
+* Xen Developer & Design Summit 2023
+    * [Slides](https://static.sched.com/hosted_files/xen2023/e6/Paving%20the%20Path%20for%20TrenchBoot%20DRTM%20in%20Xen%20Hypervisor.pdf)
+* Qubes OS Summit 2022
+    * [Video](https://www.youtube.com/watch?v=A9GrlQsQc7Q?start=8152)
+    * [Slides](https://shop.3mdeb.com/wp-content/uploads/2022/09/Qubes-OS-on-modern-Alder-Lake-desktop.pdf)
+* Linux Plumbers Conference 2022
+    * [Slides](https://lpc.events/event/16/contributions/1262/attachments/940/1888/TrenchBoot%20-%20LPC%202022%20-%20Final.pdf)
+    * [Video](https://www.youtube.com/watch?v=FFh3fWvVv0o)
 * Open Source Firmware Conference 2020
     * Video: [TrenchBoot DRTM features for AMD platforms](https://vimeo.com/488140434)
     * [Slides](slides/TrenchBoot_DRTM_features_for_AMD_platforms.pdf)
