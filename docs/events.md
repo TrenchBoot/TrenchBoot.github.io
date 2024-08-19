@@ -20,6 +20,8 @@ Events that TrenchBoot appeared on.
 * Linux Plumbers Conference 2022
     * Video: [TrenchBoot Update](https://www.youtube.com/watch?v=FFh3fWvVv0o)
     * [Slides](slides/TrenchBoot%20-%20LPC%202022%20-%20Final.pdf)
+* FOSDEM 2021
+    * Video: [Secure Upgrades with DRTM](https://video.fosdem.org/2021/D.firmware/firmware_suwd.webm)
 * Open Source Firmware Conference 2020
     * Video: [TrenchBoot DRTM features for AMD platforms](https://vimeo.com/488140434)
     * [Slides](slides/TrenchBoot_DRTM_features_for_AMD_platforms.pdf)
