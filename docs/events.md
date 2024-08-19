@@ -16,10 +16,12 @@ Events that TrenchBoot appeared on.
     * [Slides](slides/Paving_the_Path_for_TrenchBoot_DRTM_in_Xen_Hypervisor.pdf)
 * Qubes OS Summit 2022
     * Video: [TrenchBoot - The only AEM-way to boot Qubes OS](https://www.youtube.com/watch?v=A9GrlQsQc7Q&t=17440s)
-    * [Slides]()
+    * [Slides](slides/TrenchBoot-the-only-AEM-way-to-boot-Qubes-OS_2022.pdf)
 * Linux Plumbers Conference 2022
     * Video: [TrenchBoot Update](https://www.youtube.com/watch?v=FFh3fWvVv0o)
     * [Slides](slides/TrenchBoot%20-%20LPC%202022%20-%20Final.pdf)
+* FOSDEM 2021
+    * Video: [Secure Upgrades with DRTM](https://video.fosdem.org/2021/D.firmware/firmware_suwd.webm)
 * Open Source Firmware Conference 2020
     * Video: [TrenchBoot DRTM features for AMD platforms](https://vimeo.com/488140434)
     * [Slides](slides/TrenchBoot_DRTM_features_for_AMD_platforms.pdf)
@@ -29,6 +31,10 @@ Events that TrenchBoot appeared on.
 * Xen Project Developer and Design Summit 2020
     * Video: [Xen system boot attestation with DRTM and TPM2](https://www.youtube.com/watch?v=SwByVrw7-08)
     * [Slides](slides/Xen-system-boot-attestation-with-DRTM-and-TPM2.pdf)
+* FOSDEM 2020
+    * Video : [Improving the Security of Edge Computing Services](https://video.fosdem.org/2020/K.4.601/firmware_itsoecs.mp4)
+    * [Slides (part1)](slides/improving_the_security_of_edge_computing_services_fosdem_2020_part1.pdf)
+    * [Slides (part2)](slides/fosdem_trenchboot_2020_part2.pdf)
 * Platform Security Summit 2019
     * Video: [Less-Insecure Network Edge Virtualization with Low Size, Weight and Power]()
     * [Slides](slides/Less_Insecure_Network_Edge_Virtualization_with_Low_Size_Weight_and_Power.pdf)
