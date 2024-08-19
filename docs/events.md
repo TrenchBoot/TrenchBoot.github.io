@@ -16,7 +16,7 @@ Events that TrenchBoot appeared on.
     * [Slides](slides/Paving_the_Path_for_TrenchBoot_DRTM_in_Xen_Hypervisor.pdf)
 * Qubes OS Summit 2022
     * Video: [TrenchBoot - The only AEM-way to boot Qubes OS](https://www.youtube.com/watch?v=A9GrlQsQc7Q&t=17440s)
-    * [Slides]()
+    * [Slides](slides/TrenchBoot-the-only-AEM-way-to-boot-Qubes-OS_2022.pdf)
 * Linux Plumbers Conference 2022
     * Video: [TrenchBoot Update](https://www.youtube.com/watch?v=FFh3fWvVv0o)
     * [Slides](slides/TrenchBoot%20-%20LPC%202022%20-%20Final.pdf)
