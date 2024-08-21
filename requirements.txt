@@ -1,7 +1,7 @@
 cryptography==43.0.0
-markdown-include==0.8.1
+mkdocs-awesome-pages-plugin==2.9.3
 mkdocs-bootstrap4==0.1.5
 mkdocs-git-revision-date-localized-plugin==1.2.7
-mkdocs-include-markdown-plugin==6.2.2
 mkdocs-material==9.5.32
 mkdocs-pagenav-generator @ git+https://github.com/Andre601/mkdocs-pagenav-generator@acb5b1561695e8f69d67fda029779f40e4b0beef
+mkdocs-redirects==1.2.1
