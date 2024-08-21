@@ -1,3 +1,4 @@
+---
 # Project information
 site_name: TrenchBoot
 site_url: https://trenchboot.org
@@ -10,8 +11,8 @@ edit_uri: ""
 copyright: Copyright &copy; 2018 - 2024 TrenchBoot Developers
 
 nav:
-    - Home: index.md
-    - Events:
+  - Home: index.md
+  - Events:
       - events.md
       - upcoming_events.md
     - Specifications:
@@ -65,22 +66,22 @@ nav:
 use_directory_urls: true
 
 theme:
-    name: material
-    logo: img/logo.svg
-    favicon: img/favicon.ico
-    language: en
-    palette:
-      scheme: slate
-      primary: grey
-    font:
-      text: Source Sans Pro
-      code: Roboto Mono
-    features:
-      - navigation.instant
-      - navigation.tabs
-      - navigation.tabs.sticky
-      - navigation.indexes
-      - header.autohide
+  name: material
+  logo: img/logo.svg
+  favicon: img/favicon.ico
+  language: en
+  palette:
+    scheme: slate
+    primary: grey
+  font:
+    text: Source Sans Pro
+    code: Roboto Mono
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.indexes
+    - header.autohide
 
 extra:
   social:
