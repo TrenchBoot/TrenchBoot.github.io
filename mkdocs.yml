@@ -95,6 +95,9 @@ extra_css:
 
 plugins:
   - search
+  - mkdocs-video
+  - redirects
+  - exclude
   - awesome-pages
   - pagenav-generator
   - include-markdown
