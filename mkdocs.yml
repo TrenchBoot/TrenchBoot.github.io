@@ -97,14 +97,13 @@ extra_css:
 
 plugins:
   - search
+  - redirects
   - awesome-pages
   - pagenav-generator
-  - include-markdown
   - git-revision-date-localized
 
 markdown_extensions:
   - extra
   - toc:
       permalink: true
-  - markdown_include.include
   - attr_list
