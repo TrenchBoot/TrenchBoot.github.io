@@ -5,3 +5,4 @@ mkdocs-git-revision-date-localized-plugin==1.2.7
 mkdocs-material==9.5.32
 mkdocs-pagenav-generator @ git+https://github.com/Andre601/mkdocs-pagenav-generator@acb5b1561695e8f69d67fda029779f40e4b0beef
 mkdocs-redirects==1.2.1
+pre-commit==3.8.0
