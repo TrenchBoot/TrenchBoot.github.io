@@ -1,12 +1,10 @@
-TrenchBoot Use Cases
-====================
+# TrenchBoot Use Cases
 
 TrenchBoot is meant to be a universal framework to enable building integrity in
 the launch process of systems. To relate to real world usage, it is good to
 have a set of use cases that explain a subset of situations where TrenchBoot is
 applicable and how it would work in those situations. Below are a series of use
 cases that are actively being investigated and/or worked on.
-
 
 ## Crowd Sourcing Integrity
 

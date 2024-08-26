@@ -1,5 +1,4 @@
-AMD Secure Kernel Loader
-========================
+# AMD Secure Kernel Loader
 
 ## Purpose
 
@@ -86,7 +85,7 @@ reserved and that SKL knows about its location.
 There are 3 configurable options, specified as command line parameters for
 `make`. All of them are disabled by default, they can be enabled by running
 `make <opt>=<val>`, where `<opt>` is one of the flags listed below. Note that
-between builds with different sets of options you *must* run `make clean`.
+between builds with different sets of options you _must_ run `make clean`.
 
 * `LTO` - link time optimizations. Generally reduces the size of resulting
   binary and execution time, but the exact difference is hard to predict.
