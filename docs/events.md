@@ -38,7 +38,6 @@ Events that TrenchBoot appeared on.
     - [Slides (part1)](slides/improving_the_security_of_edge_computing_services_fosdem_2020_part1.pdf)
     - [Slides (part2)](slides/fosdem_trenchboot_2020_part2.pdf)
 * Platform Security Summit 2019
-    - Video: [Less-Insecure Network Edge Virtualization with Low Size, Weight and Power]()
     - [Slides](slides/Less_Insecure_Network_Edge_Virtualization_with_Low_Size_Weight_and_Power.pdf)
 * Xen Project Developer and Design Summit 2019
     - Video: [How TrenchBoot is Enabling Measured Launch for Open-Source Platform Security](https://www.youtube.com/watch?v=f0LZFSq4Ack)
