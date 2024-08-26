@@ -1,5 +1,4 @@
-Glossary
-========
+# Glossary
 
 Provided are definitions of terms used throughout TrenchBoot's documents and
 designs to encourage a common vocabulary and understanding.
@@ -31,9 +30,11 @@ A software component (e.g., an OS or a hypervisor) that gets started by DCE.
 Known as MLE in case of Intel TXT.
 
 ## Explicit Trust
+
 When a trustor has explicitly established a degree of trust with a trustee.
 
 ## Implicit Trust
+
 When a trustor has relied upon a trustee to establish a degree of trust with
 another trustee.
 
@@ -64,6 +65,7 @@ Handler and for passing relevant information across the DLE to be available for
 use by the DCE and the DLME.
 
 ## Static Launch
+
 A system launch that is a one time execution with the execution code at a fixed
 location in memory. This is related to static RTM (S-RTM, S-CRTM, SRTM).
 
@@ -74,24 +76,30 @@ A user-provided binary which acts as a DCE for AMD SKINIT.
 A region of memory into which Secure Loader is loaded.
 
 ## Transitive Trust
+
 An operation conducted by a trustor that consists of one or more mechanisms
 used to assess one or more facts about a trustee before allowing the trustee to
 be included within the trustor's trust boundary and delegated the authority to
 act as a trustor.
 
 ## Trust
+
 Assured reliance on the properties, ability, strength, or truth of an entity.
 
 ## Trust Anchor
+
 The result of a Root of Trust mechanism that is a fact being relied upon to assert
 correctness, e.g. trustworthiness.
 
 ## Trust Boundary
+
 A demarcation that identifies a subset of entities as those that a trustor has
 explicitly or implicitly established as trustworthy.
 
 ## Trustee
+
 An entity that is trusted by another entity.
 
 ## Trustor
+
 An entity that establishes a degree of trust of another entity.

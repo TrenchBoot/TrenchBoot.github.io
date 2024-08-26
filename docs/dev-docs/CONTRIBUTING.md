@@ -81,17 +81,17 @@ Report issues, e.g. bugs, feature requests, etc., using Github's
 
 - A quick summary and/or background
 - For bug reports include:
-  - Steps to reproduce for bugs
-    - Be specific!
-    - Give sample code if you can.
-  - What you expected would happen
-  - What actually happens
-  - Notes (possibly including why you think this might be happening, or stuff
+    + Steps to reproduce for bugs
+        - Be specific!
+        - Give sample code if you can.
+    + What you expected would happen
+    + What actually happens
+    + Notes (possibly including why you think this might be happening, or stuff
     you tried that didn't work)
 - For feature requests include:
-  - An outline of how the feature would work
-  - Any dependecies the feature would require
-  - The benefit the feature will provide
+    + An outline of how the feature would work
+    + Any dependencies the feature would require
+    + The benefit the feature will provide
 
 ### Coding Style
 
@@ -114,7 +114,7 @@ that's a concern.
 ## Contacting Maintainers
 
 TrenchBoot is maintained by:
- - Daniel P. Smith <dpsmith@apertussolutions.com>
+- Daniel P. Smith <dpsmith@apertussolutions.com>
 
 # References
 

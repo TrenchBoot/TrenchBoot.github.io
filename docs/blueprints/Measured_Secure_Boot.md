@@ -1,5 +1,4 @@
-Measured Secure Boot
-====================
+# Measured Secure Boot
 
 ## Purpose
 
@@ -23,7 +22,7 @@ is composed of two main parts, pre-launch and post-launch execution paths. Below
 is a top-level execution flow for tboot from boot loader/manager to the trusted
 kernel that will be given control.
 
-```
+```text
                         |--          tboot             --|
 boot ldr/mngr --load--> pre-launch --SENTER--> post-launch --launch--> trusted kernel
 ```
@@ -56,6 +55,7 @@ Late Launch instructions. The Linux kernel will be extend to function as a
 post-launch kernel that will run the TSE. Details for each of these are
 documented in their own respective blueprints. Finally, below is the execution
 flow for MSB for comparison with tboot's execution flow above.
-```
+
+```shell
 grub --SENTER/SKINIT--> Linux/TSE --kexec--> trusted kernel
 ```
