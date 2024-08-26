@@ -9,7 +9,7 @@ ci:
   autoupdate_commit_msg: 'pre-commit: autoupdate hooks'
   autofix_prs: false
   # docker is not supported on pre-commit.ci
-  skip: [shellcheck]
+  skip: [lychee-docker]
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
