@@ -32,22 +32,22 @@ This is a high-level overview of tasks performed by Secure Kernel
 Loader:
 
 1. set GDT and segment registers (only CS and SS are valid after
-   SKINIT)
+    SKINIT)
 1. set up pagetables and enable Long Mode (optional, see `BITS` in
-   [Build options](#build-options))
+    [Build options](#build-options))
 1. initialize TPM interface
 1. initialize TPM event log
-   - log what was done by SKINIT
+    - log what was done by SKINIT
 1. extend PCR18 with the hash of SLRT (Secure Launch Resource Table)
-   passed by the bootloader to the SKL
-   - log that event
+    passed by the bootloader to the SKL
+    - log that event
 1. obtain information about the kernel from SLRT provided by a
-   bootloader, most notably:
-   - kernel location
-   - kernel size
-   - entry point
+    bootloader, most notably:
+    - kernel location
+    - kernel size
+    - entry point
 1. extend PCR17 with the hash of the kernel
-   - log that event
+    - log that event
 1. set CPU registers according to the kernel boot protocol
 1. jump to the entry point of kernel
 
