@@ -4,7 +4,7 @@ Glossary
 Provided are definitions of terms used throughout TrenchBoot's documents and
 designs to encourage a common vocabulary and understanding.
 
-## Dynamic Launch
+## Dynamic Launch (DL)
 A system launch that can be done repeatedly with the execution code able to
 reside at different locations in memory. This is sometimes referred to as a
 "Late Launch".
@@ -16,7 +16,7 @@ When a trustor has explicitly established a degree of trust with a trustee.
 When a trustor has relied upon a trustee to establish a degree of trust with
 another trustee.
 
-## Root of Trust
+## Root of Trust (RoT)
 An idempotent mechanism whereby the result is used to assert a fact about the
 entity it acted upon.
 
@@ -46,4 +46,3 @@ An entity that is trusted by another entity.
 
 ## Trustor
 An entity that establishes a degree of trust of another entity.
-
