@@ -42,6 +42,7 @@ nav:
           - blueprints/AMD_Grub_Late_Launch.md
           - blueprints/AMD_Secure_Kernel_Loader.md
           - blueprints/Linux_Late_Launch.md
+          - blueprints/Xen_Late_Launch.md
           - blueprints/Measured_Secure_Boot.md
         - References:
           - references/README.md
