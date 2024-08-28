@@ -38,6 +38,7 @@ nav:
         - theory/Glossary.md
         - Blueprints:
           - blueprints/index.md
+          - blueprints/SLRT.md
           - blueprints/TXT_Grub_Late_Launch.md
           - blueprints/AMD_Grub_Late_Launch.md
           - blueprints/AMD_Secure_Kernel_Loader.md
