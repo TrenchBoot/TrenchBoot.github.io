@@ -23,7 +23,7 @@ nav:
         - user-docs/requirements.md
         # - installing - Linux
         - user-docs/install_aem.md
-        # - troubleshooting
+        - user-docs/troubleshooting.md
         - user-docs/test_matrix.md
       - For developers:
         - dev-docs/index.md
