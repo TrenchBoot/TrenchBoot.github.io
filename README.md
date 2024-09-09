@@ -56,3 +56,14 @@ files.
     WARNING -  A reference to 'specifications/no_such_file.md' is included in the
             'nav' configuration, which is not found in the documentation files.
     ```
+
+## Contributing
+
+Prepare and enable virtual environment as described in
+[Local preview](#local-preview) and after that install pre-commit hooks.
+
+```shell
+$ pre-commit install
+pre-commit installed at .git/hooks/pre-commit
+pre-commit installed at .git/hooks/commit-msg
+```
