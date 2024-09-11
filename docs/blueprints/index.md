@@ -70,13 +70,13 @@ Components to which upstreaming doesn't apply were left out from the table.
 
 | Component | Upstream                        | Qubes OS
 | :-------: | :------:                        | :------:
-| GRUB2     | [Sent][grub]                    | [Yes][grub-qos]
+| GRUB2     | [Sent][grub-up]                 | [Yes][grub-qos]
 | SKL       | Part of Trenchboot              | No
-| Linux     | [In Progress][linux]            | N/A
+| Linux     | [In Progress][linux-up]         | N/A
 | Xen       | [Partially In Progress][xen-ap] | [In Progress][xen-qos]
 
-[grub]: https://lists.gnu.org/archive/html/grub-devel/2024-08/msg00088.html
+[grub-up]: https://lists.gnu.org/archive/html/grub-devel/2024-08/msg00088.html
 [grub-qos]: https://github.com/QubesOS/qubes-grub2/pull/13
-[linux]: https://lore.kernel.org/lkml/20240826223835.3928819-1-ross.philipson@oracle.com/
+[linux-up]: https://lore.kernel.org/lkml/20240826223835.3928819-1-ross.philipson@oracle.com/
 [xen-qos]: https://github.com/QubesOS/qubes-vmm-xen/pull/160
 [xen-ap]: https://lists.xenproject.org/archives/html/xen-devel/2023-11/msg01085.html
