@@ -1,19 +1,28 @@
  
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600");
 
+:root {
+  --text-base-size: 1em;
+  --font-primary: sans-serif;
+  --color-contrast-high: grey;
+  --color-contrast-higher: white;
+}
+
 /* use image for color theme */
 body,
 .md-tabs {
 /*  background-image: url("shoe-print.jpg");*/
 /*  background-size: cover;*/
 /*  background-attachment: fixed;*/
-  font-size: 1em;
-  font-size: var(--text-base-size, 1em);
+  font-size: var(--text-base-size);
   font-weight: bold;
   font-family: source sans pro, sans-serif;
-  font-family: var(--font-primary, sans-serif);
-  color: #ffffff;
-  color: var(--color-contrast-high, #ffffff)
+  font-family: var(--font-primary);
+  color: var(--color-contrast-high);
+}
+
+.md-tabs {
+  color: var(--color-contrast-higher);
 }
 
 .md-header {
@@ -98,7 +107,7 @@ h4 {
 .md-sidebar label,
 .md-nav__item--nested > .md-nav__link,
 .md-sidebar a {
-  color: gray;
+  color: grey;
 }
 .md-nav__link:hover {
   color: rgb(0, 238, 32);
@@ -118,7 +127,7 @@ h4 {
   transition: color 0.5s;
 }
 a.headerlink {
-  color: gray;
+  color: grey;
 }
 
 p {
