@@ -186,18 +186,18 @@ a. _**Attribution.**_
    A. retain the following if it is supplied by the Licensor with the Licensed
    Material:
 
-   i. identification of the creator(s) of the Licensed Material and any others
-   designated to receive attribution, in any reasonable manner requested by the
-   Licensor (including by pseudonym if designated);
+      i. identification of the creator(s) of the Licensed Material and any others
+      designated to receive attribution, in any reasonable manner requested by the
+      Licensor (including by pseudonym if designated);
 
-   ii. a copyright notice;
+      ii. a copyright notice;
 
-   iii. a notice that refers to this Public License;
+      iii. a notice that refers to this Public License;
 
-   iv. a notice that refers to the disclaimer of warranties;
+      iv. a notice that refers to the disclaimer of warranties;
 
-   v. a URI or hyperlink to the Licensed Material to the extent reasonably
-   practicable;
+      v. a URI or hyperlink to the Licensed Material to the extent reasonably
+      practicable;
 
    B. indicate if You modified the Licensed Material and retain an indication of
    any previous modifications; and
@@ -331,4 +331,4 @@ authority.
 > understandings, or agreements concerning use of licensed material. For the
 > avoidance of doubt, this paragraph does not form part of the public licenses.
 >
-> > Creative Commons may be contacted at creativecommons.org
+> Creative Commons may be contacted at creativecommons.org
