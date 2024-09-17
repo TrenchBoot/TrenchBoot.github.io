@@ -75,7 +75,7 @@ Devices and configurations on which TrenchBoot is known to not work:
 ## Hardware quirks and workarounds
 
 These are difficulties/things of note one has to face when using these platforms
-today.  They were probably more usable years ago, but something has changed in
+today. They were probably more usable years ago, but something has changed in
 software that nobody tested on these devices and now experience isn't very
 smooth.
 

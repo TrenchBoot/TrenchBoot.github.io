@@ -1,5 +1,4 @@
-General Architecture
-====================
+# General Architecture
 
 The general execution flow for TrenchBoot is broken into three phases,
 Bootstrap, Intermediate, and Runtime. The Bootstrap phase primarily consists of
@@ -12,7 +11,6 @@ where the target runtime, hypervisor, operating system, etc, is given control
 over the system.
 
 ![Architecture Execution Flow](../img/Architectural_Flow.png)
-
 
 # TrenchBoot Security Engine
 
