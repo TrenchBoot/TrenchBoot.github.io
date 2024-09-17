@@ -1,5 +1,4 @@
-Building and installing GRUB
-============================
+# Building and installing GRUB
 
 At the time of writing (August 2024) EFI and legacy changes are on different
 branches in the same repository and neither builds on top of the other in
@@ -9,7 +8,7 @@ between branches to build both versions or use shallow clones as shown below.
 If your system isn't setup for development, you might want to use
 [trenchboot-sdk] Docker container.  It can be run like this to perform a build:
 
-```
+```shell
 docker run --rm -it -v "$PWD:$PWD" -w "$PWD" \
            -e HOME="$PWD/home" \
            --user "$(id -u):$(id -g)" \
@@ -132,7 +131,7 @@ There is a new GRUB command, which instructs GRUB to initiate a Secure Launch
 when booting an OS, called `slaunch`.  This is an example of a GRUB menuentry
 that would be used to do a Secure Launch of the Linux kernel:
 
-```
+```text
 menuentry 'Linux with Secure Launch 6.8.0-rc3-master-v8' --unrestricted {
         load_video
         insmod gzio
@@ -160,7 +159,7 @@ There are a number of ways to validate that a successful Secure Launch was
 done.  Using serial logging or `dmesg`, search for the string "TXT" after
 booting:
 
-```
+```shell
 [root@my-system ~]# dmesg | grep TXT
 [    0.000094] slaunch: Intel TXT setup complete
 [    2.617782] slaunch: TXT AP startup vector address updated
@@ -170,7 +169,7 @@ That indicates a successful Secure Launch boot.  Another way is to display the
 Secure Launch TPM event log.  This can be done as follows after booting (note
 only the tail end of the log is shown here for brevity, the rest is snippped):
 
-```
+```shell
 [root@my-system ~]# cat /sys/kernel/security/slaunch/eventlog | hexdump -C
 ...
 [snip]
@@ -202,12 +201,13 @@ only the tail end of the log is shown here for brevity, the rest is snippped):
 *
 00008000
 ```
+
 The final measurements starting with the description "Measured..." are put in
 the log by the Secure Launch kernel code if everything went fine.  During a
 poweroff, restart or a kexec of another kernel, the following log lines will
 indicate that TXT was properly disabled and SMX mode was left:
 
-```
+```text
 [  696.907094] slaunch: TXT clear secrets bit and unlock memory complete.
 [  696.914827] slaunch: TXT SEXIT complete.
 ```
@@ -215,7 +215,7 @@ indicate that TXT was properly disabled and SMX mode was left:
 If `tpm2_eventlog` is installed, it can be used parse the log into a readable
 form:
 
-```
+```shell
 [root@my-system ~]# tpm2_eventlog /sys/kernel/security/slaunch/eventlog
 ...
 ```
