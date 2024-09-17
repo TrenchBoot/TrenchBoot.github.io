@@ -1,5 +1,4 @@
-AMD Grub Late Launcher
-======================
+# AMD Grub Late Launcher
 
 ## Purpose
 

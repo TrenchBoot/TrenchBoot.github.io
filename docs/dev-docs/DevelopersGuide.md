@@ -1,5 +1,4 @@
-Developers Guide
-================
+# Developers Guide
 
 TrenchBoot is a framework that provides for users the ability to select the
 kernel and security engine components appropriate for their target environment.

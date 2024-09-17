@@ -1,5 +1,4 @@
-Introduction to Late Launch
-===========================
+# Introduction to Late Launch
 
 This is an introduction of the "Late Launch" process on x86-based systems to
 establish a Dynamic Root of Trust for Measurement (DRTM). Late Launch is
@@ -27,7 +26,7 @@ result each will be addressed separately.
 
 ## Intel Trusted eXecution Technology (TXT)
 
-For TXT, Intel set about a holistic approach<sup>\[[1](#1)\]</sup> that
+For TXT, Intel set about a holistic approach[^1] that
 introduced the Safer Mode Extensions (SMX) instruction set. As a result TXT
 provides for advanced security capabilities such as measuring System Management
 Mode (SMM) when an SMI Transfer Monitor (STM) is in place. The TXT process is
@@ -35,7 +34,7 @@ built around the SINIT Authenticated Code Module (ACM) and a Measured Launch
 Environment (MLE). The ACM is a binary provided by Intel and the MLE is a
 software solution typically provided by the OS provider. Details about the ACM
 and the MLE are explained in the "Intel TXT Measured Launch Environment
-Developer's Guide". <sup>\[[2](#2)\]</sup>
+Developer's Guide"[^2].
 
 ### SENTER Procedure
 
@@ -44,8 +43,8 @@ is handed to the MLE, a series of computations are completed by the CPU and
 then by the ACM to generate integrity assertions in the form of measurements
 about the platform environment as well as the MLE that will be given control.
 Details about the CPU's role in the launch can be found in the Intel Software
-Developer's Manual (SDM) under Vol. 2D 6.2.3 para 3 and 6.3 GETSEC[SENTER].
-<sup>\[[3](#3)\]</sup> The primary role for the CPU is to establish an
+Developer's Manual (SDM) under Vol. 2D 6.2.3 para 3 and 6.3 GETSEC[SENTER][^3].
+The primary role for the CPU is to establish an
 environment that minimizes the ability of external tampering and taking the
 CRTM used for the DRTM. Below is an outline of the internal steps that the CPU
 takes when the SENTER instruction is initial invoked,
@@ -78,7 +77,7 @@ Management Mode (SMM) memory (SMRAM), this is needed to allow the measurement
 of the STI. As a result it is highly important that only authorized code is
 allowed to execute in this mode. This is handled in step 8., the authentication
 of the ACM. The details of this process can be found in section A.1.2 of the
-MLE Developers Guide. <sup>\[[2](#2)\]</sup> The ACM is entrusted with a series
+MLE Developers Guide.[^2] The ACM is entrusted with a series
 of responsibilities, ones of particular note are IOMMU protecting the MLE,
 measuring the MLE, and the enforcement of the Launch Control Policy (LCP).
 
@@ -111,7 +110,7 @@ SMRAM at the time of the late launch. Therefore the trust boundary of SKINIT
 still bound to the SRTM. To use the Secure Startup capability, a Secure Loader
 (SL) image must be loaded and passed to SKINIT. Details about building an SL
 and calling the SKINIT instruction can be found in the AMD ARM64 Architecture
-Programmer's Manual, Volume 2 <sup>\[[2](#4)\]</sup>.
+Programmer's Manual, Volume 2[^4].
 
 ### SKINIT Procedure
 
@@ -129,15 +128,15 @@ in the EAX register. The CPU will then execute the following sequence,
     * EFER MSR is cleared,
     * setting DPD, R\_INIT and DIS\_A20M flags in the VM\_CR register
       unconditionally to 1.
-4. Page align EAX and use as the start address for 64KBytes of DEV protection.
-5. Securely initializes AP(s),
+5. Page align EAX and use as the start address for 64KBytes of DEV protection.
+6. Securely initializes AP(s),
     * clears Global Interrupt Flag (GIF),
     * setting DPD, R\_INIT and DIS\_A20M flags in the VM\_CR register.
-6. Transmit SL image to TPM for hash, any failure will trigger SKINIT failure.
-7. Clear the GIF on the BSP which disables all interrupts, including NMI, SMI,
+7. Transmit SL image to TPM for hash, any failure will trigger SKINIT failure.
+8. Clear the GIF on the BSP which disables all interrupts, including NMI, SMI,
    and INIT.
-8. Update ESP to point at SL stack (SLB base + 65536).
-9. Add SL entry offset to SL base and jump to that address.
+9. Update ESP to point at SL stack (SLB base + 65536).
+10. Add SL entry offset to SL base and jump to that address.
 
 ### Secure Loader
 
@@ -163,37 +162,19 @@ need for an intermediate kernel is for solutions that need to do more complex
 security verification and/or hand-off to target runtime kernel that cannot be
 implemented in less than 64Kbytes.
 
-# Foot Notes
+## Foot Notes
 
-#### 1.
+[^1]: Grawrock, D. (2006). The Intel safer computing initiative. Hillsboro, Or.:
+Intel Press. <br/>
+   <https://books.google.com/books?id=WmGjSgAACAAJ>
 
-Grawrock, D. (2006). The Intel safer computing initiative. Hillsboro, Or.:
-Intel Press.
+[^2]: Intel® Trusted Execution Technology (Intel® TXT) Software Development Guide:
+   Measured Launched Environment Developer’s Guide<br/>
+   <https://www.intel.com/content/dam/www/public/us/en/documents/guides/intel-txt-software-development-guide.pdf>
 
-https://books.google.com/books?id=WmGjSgAACAAJ
+[^3]: Intel® 64 and IA-32 Architectures Software Developer’s Manual,
+   Combined Volumes: 1, 2A, 2B, 2C, 2D, 3A, 3B, 3C, 3D and 4<br/>
+   <https://software.intel.com/sites/default/files/managed/39/c5/325462-sdm-vol-1-2abcd-3abcd.pdf>
 
-#### 2.
-
-Intel® Trusted Execution Technology (Intel® TXT)
-Software Development Guide:
-Measured Launched Environment Developer’s Guide
-
-https://www.intel.com/content/dam/www/public/us/en/documents/guides/intel-txt-software-development-guide.pdf
-
-#### 3.
-
-Intel® 64 and IA-32 Architectures
-Software Developer’s Manual,
-Combined Volumes:
-1, 2A, 2B, 2C, 2D, 3A, 3B, 3C, 3D and 4
-
-https://software.intel.com/sites/default/files/managed/39/c5/325462-sdm-vol-1-2abcd-3abcd.pdf
-
-#### 4.
-
-AMD64 Architecture
-Programmer’s Manual
-Volume 2:
-System Programming
-
-https://www.amd.com/system/files/TechDocs/24593.pdf
+[^4]: AMD64 Architecture Programmer’s Manual Volume 2: System Programming<br/>
+   <https://www.amd.com/system/files/TechDocs/24593.pdf>

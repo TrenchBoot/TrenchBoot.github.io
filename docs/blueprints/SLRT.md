@@ -1,5 +1,4 @@
-Secure Launch Resource Table
-============================
+# Secure Launch Resource Table
 
 ## Summary
 
@@ -19,8 +18,8 @@ information to DCE and DLME, SKINIT is a bare mechanism which leaves all the
 details to an implementation.  This leaves an implementation that
 wants to support both DRTM solutions with two main choices:
 
- * handle each kind of DRTM in its own specific way
- * come up with a way to mostly unify different DRTMs and build code around that
+* handle each kind of DRTM in its own specific way
+* come up with a way to mostly unify different DRTMs and build code around that
 
 SLRT is the result of choosing the latter.
 

@@ -1,9 +1,12 @@
 # PoC: coreboot with payload started through DRTM (AMD)
 
-***
-***This document uses an old version of SKL (branch drtm_payload).
-The instructions might not work for the newest versions.***
-***
+---
+
+_This document uses an old version of SKL (branch drtm_payload).
+The instructions might not work for the newest versions._
+
+---
+
 This proof of concept shows how TrenchBoot can be used to start coreboot
 payload. One of use cases may be to root chain of trust in hardware on platforms
 that don't support SRTM, or require proprietary tools and/or documentation that
@@ -20,17 +23,17 @@ PC Engines apu2 platform is used in this PoC. Software stack consists of:
 ### coreboot
 
 - Build system now includes SKL
-  - Added under `payloads` directory, perhaps this is not a proper place for it
-  - Enabled through `Chipset/Launch DRTM payload before the real one` in config,
+    + Added under `payloads` directory, perhaps this is not a proper place for it
+    + Enabled through `Chipset/Launch DRTM payload before the real one` in config,
     available only for enabled platforms (depends on `CPU_AMD_PI`)
 - Enabled SMMSTORE
-  - 256KB of append only storage for UEFI authenticated variables
+    + 256KB of append only storage for UEFI authenticated variables
 - IOMMU is always enabled if DRTM payload is used
-  - Enforced on mainboard level due to specific implementation of runtime
+    + Enforced on mainboard level due to specific implementation of runtime
     configuration options
 - Loading and creating boot information tags for SKL
-  - Code is built only for `CPU_AMD_PI` - CPU family 16h
-  - Probably could be make to work on other AMD platforms with minimal changes
+    + Code is built only for `CPU_AMD_PI` - CPU family 16h
+    + Probably could be make to work on other AMD platforms with minimal changes
 
 ### SKL
 
@@ -49,12 +52,12 @@ struct skl_tag_boot_simple_payload {
 ### Tianocore
 
 - SKINIT driver - discover if SKINIT was used, set GIF in that case
-  - Performed early in DXE because other drivers (including SMMSTORE
+    + Performed early in DXE because other drivers (including SMMSTORE
     initialization) require enabled interrupts
 - IOMMU driver - enable DMA access for devices that require and request it
-  - Heavily used by drivers to access storage (USB, AHCI)
-  - Uses `EDKII_IOMMU_PROTOCOL`
-  - Many simplifications done, e.g. no differentiation between read and write
+    + Heavily used by drivers to access storage (USB, AHCI)
+    + Uses `EDKII_IOMMU_PROTOCOL`
+    + Many simplifications done, e.g. no differentiation between read and write
     permissions, no proper unmapping of device page tables, every invalidation
     uses `INVALIDATE_IOMMU_ALL` when smaller, targeted flushing would suffice
 
