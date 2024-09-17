@@ -11,7 +11,7 @@
 
 ## 1. Why does TrenchBoot use an intermediate launcher?
 
-For Linux systems doing both verified(secure) and measured boot, there is an
+For Linux systems doing both verified (secure) and measured boot, there is an
 intermediary that handles the security enforcement. For verified boot it is the
 UEFI shim loader and for measured boot it is tboot. TrenchBoot replaces these
 intermediary loaders with a common Linux-based loader that provides a rich

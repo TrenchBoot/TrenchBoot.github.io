@@ -56,6 +56,6 @@ post-launch kernel that will run the TSE. Details for each of these are
 documented in their own respective blueprints. Finally, below is the execution
 flow for MSB for comparison with tboot's execution flow above.
 
-```shell
+```text
 grub --SENTER/SKINIT--> Linux/TSE --kexec--> trusted kernel
 ```
