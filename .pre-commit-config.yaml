@@ -3,7 +3,7 @@ default_stages: [pre-commit]
 
 default_install_hook_types: [pre-commit, commit-msg]
 
-exclude: (^vendor/|.*\.pdf|.*\.svg$)
+exclude: (^vendor/|.*\.pdf|.*\.svg|CNAME$)
 
 ci:
   autoupdate_commit_msg: 'pre-commit: autoupdate hooks'
