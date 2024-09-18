@@ -86,7 +86,7 @@ have launched with the correct firmware and the token must be present.
     Networked Applications](https://dl.acm.org/doi/abs/10.1145/3538969.3544433)
 - [Jasmin Marmsoler, Thomas Grechenig, Florian Fankhauser: TPM 2.0 als
     Sicherheitsmaßnahme gegen Rootkits auf Linux-basierten Desktop-Systemen](
-    https://scholar.archive.org/work/kszetgytmjhglic5cngst5dnle)
+    https://scholar.archive.org/work/kszetgytmjhglic5cngst5dnle) (German)
 
 ### Books
 
