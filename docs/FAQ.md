@@ -36,7 +36,7 @@ SRTM has a few problems:
 
 - Large TCB (Trusted Computing Base)
 - Takes place before boot. Reassuring the validity of the chain of trust
-requires a reboot
+requires a reboot.
 - Only provides load-time integrity assurance
 
 ### DRTM
@@ -88,19 +88,17 @@ appropriate for the given hardware. The intermediate phase analyzes the
 information collected in the bootstrap phase to decide if it wants to continue
 booting and pass control to the target OS, or if it wants to stop immediately.
 If desired, additional evidence/measurements can be gathered in this phase. Once
- the integrity of the system is verified the TrenchBoot kernel passes off
- control to the actual desired OS to initiate the runtime phase.
+the integrity of the system is verified the TrenchBoot kernel passes off
+control to the actual desired OS to initiate the runtime phase.
 
 ### Bootstrap Phase - GRUB
 
-Typically, when attempting to establish a DRTM, TBoot is loaded in order to
-carry out TXT on Intel, or SKINIT is used on AMD. TrenchBoot instead utilizes
-its own system, which is a custom version of GRUB that has commands built in to
-carry out a TrenchBoot "Secure Launch". This customized GRUB introduces the
-`slaunch` and `slaunch_module` commands. A working example of the TrenchBoot
-GRUB can be found at
-[https://github.com/3mdeb/meta-trenchboot](
-    https://github.com/3mdeb/meta-trenchboot).
+TrenchBoot utilizes its own system to carry out TXT on Intel, or SKINIT on AMD,
+which is a custom version of GRUB that has commands built in to carry out a
+TrenchBoot "Secure Launch". This customized GRUB introduces the `slaunch` and
+`slaunch_module` commands. A working example of the TrenchBoot GRUB can be found
+at [https://github.com/3mdeb/meta-trenchboot](
+https://github.com/3mdeb/meta-trenchboot).
 The custom GRUB works with Linux and Multiboot2 boot protocols for both Intel
 and AMD devices, but only in case of legacy boot, without support for UEFI
 (although it's available on a separate branch).
