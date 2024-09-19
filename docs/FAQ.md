@@ -39,11 +39,12 @@ measuring the BIOS boot block and then moves on to measure the rest of the BIOS.
 DRTM aims to address shortcomings of SRTM. DRTM creates trusted environment from
 an untrusted state. Essentially what this means is that regardless of weather
 or not computer was booted from trusted software, it uses hardware to ensure
-that no malicious software has been run. For this reason, DRTM takes place
-after boot, as opposed to SRTM, which takes place pre-boot. Intel's solution
-for DRTM is TXT, which utilizes special instructions on the processor (SMX).
-AMD's solution for DRTM is called SKINIT. Trenchboot provides a solution for
-setting up DRTM for an arbitrary platform.
+that no malicious software, which may or may not have been run before the
+dynamic launch, can impact software started after the dynamic launch. For this
+reason, DRTM takes place after boot, as opposed to SRTM, which takes place
+pre-boot. Intel's solution for DRTM is TXT, which utilizes special instructions
+on the processor (SMX). AMD's solution for DRTM is called SKINIT. Trenchboot
+provides a solution for setting up DRTM for an arbitrary platform.
 
 ### Typical Measured Launch Process
 
