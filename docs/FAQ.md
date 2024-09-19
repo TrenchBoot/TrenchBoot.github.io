@@ -1,6 +1,6 @@
 # TrenchBoot FAQ
 
-1. [Why use Trenchboot?](#1-why-use-trenchboot-background-info)
+1. [Why use TrenchBoot?](#1-why-use-trenchboot-background-info)
 2. [How does TrenchBoot work?](
     #2-how-does-trenchboot-work-trenchboot-architecture)
 3. [Why does TrenchBoot use an intermediate launcher?](
@@ -12,7 +12,7 @@
 6. [Where do I start if I want to help with contributions?](
     #7-where-do-i-start-if-i-want-to-help-with-contributions)
 
-## 1. Why use Trenchboot? (background info)
+## 1. Why use TrenchBoot? (background info)
 
 ### What is Trust?
 
@@ -39,7 +39,7 @@ that no malicious software, which may or may not have been run before the
 dynamic launch, can impact software started after the dynamic launch. For this
 reason, DRTM takes place after boot, as opposed to SRTM, which takes place
 pre-boot. Intel's solution for DRTM is TXT, which utilizes special instructions
-on the processor (SMX). AMD's solution for DRTM is called SKINIT. Trenchboot
+on the processor (SMX). AMD's solution for DRTM is called SKINIT. TrenchBoot
 provides a solution for setting up DRTM for an arbitrary platform.
 
 ### Typical Measured Launch Process
@@ -61,7 +61,7 @@ The process for carrying out DTRM depends on your system:
     time DRTM sequence is initiated
 - Most DRTM systems support only one attestation action
 
-## 2. How does TrenchBoot work? (trenchboot architecture)
+## 2. How does TrenchBoot work? (TrenchBoot architecture)
 
 ### Architecture Overview
 
@@ -97,11 +97,11 @@ and AMD devices, but only in case of legacy boot, without support for UEFI
 The intermediate phase processes information collected in the bootstrap phase
 and converts it into normalized data. This data is eventually used to determine
 whether to boot into the target OS. The kernel and u-root initramfs
-together make up Trenchboot's "Security Engine", which is an intermediate
+together make up TrenchBoot's "Security Engine", which is an intermediate
 mini-OS that serves to process data gathered by that bootstrap phase. During the
 intermediate phase, the kernel and initramfs work together to measure block
 devices, individual files, SMBUS/DMI information and provides unseal based,
-external device and network based attestation. Trenchboot calls this
+external device and network based attestation. TrenchBoot calls this
 functionality secure launch (aka slaunch). The table in section 4 lists the
 specific repo and branch to use when building the kernel or u-root.
 
