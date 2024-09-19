@@ -30,13 +30,13 @@ Dynamic Root of Trust Measurements.
 
 ### SRTM
 
-SRTM takes place at system boot from firmware / bios. This process requires
+SRTM takes place at system boot from firmware / BIOS. This process requires
 measurements of the entire boot sequence at once. This is both a good and a
 bad thing, because any changes to any part of the process (including even
-bios settings) would cause the entire system to need to be remeasured. SRTM
-Starts with Core Root of Trust for Measurement (CRTM), and works its way up the chain where
-each link verifies the next. In other words, SRTM starts by measuring the bios
-boot block and then moves on to measure the rest of the bios.
+BIOS settings) would cause the entire system to need to be remeasured. SRTM
+Starts with Core Root of Trust for Measurement (CRTM), and works its way up the
+chain where each link verifies the next. In other words, SRTM starts by
+measuring the BIOS boot block and then moves on to measure the rest of the BIOS.
 
 ### DRTM
 
