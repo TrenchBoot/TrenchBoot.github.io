@@ -4,25 +4,28 @@
 2. [How does TrenchBoot work?](
     #2-how-does-trenchboot-work-trenchboot-architecture)
 3. [Why does TrenchBoot use an intermediate launcher?](
-    #4-why-does-trenchboot-use-an-intermediate-launcher)
+    #3-why-does-trenchboot-use-an-intermediate-launcher)
 4. [What are the benefits of measurement over signature validation?](
-    #5-what-are-the-benefits-of-measurement-over-signature-validation)
+    #4-what-are-the-benefits-of-measurement-over-signature-validation)
 5. [What do I need to incorporate TrenchBoot into my system?](
-    #6-what-do-i-need-to-incorporate-trenchboot-into-my-system)
+    #5-what-do-i-need-to-incorporate-trenchboot-into-my-system)
 6. [Where do I start if I want to help with contributions?](
-    #7-where-do-i-start-if-i-want-to-help-with-contributions)
+    #6-where-do-i-start-if-i-want-to-help-with-contributions)
 
 ## 1. Why use TrenchBoot? (background info)
 
 ### What is Trust?
 
-Trust is when the computer does something on our behalf and we have to trust it
-with our data. A trusted component is that which always behaves in an expected
-manner.  To make a component "trusted", you must establish some root of trust.
-A Root of Trust Measurement is the process of measuring (hashing) components on
-a system to validate their integrity. When establishing a root of trust, there
-are two primary schools of thought: Static Root of Trust Measurements and
-Dynamic Root of Trust Measurements.
+Like our [Glossary](./theory/Glossary.md#trust) says,
+trust is an assured reliance on the properties, ability, strength, or truth of
+an entity. If we assume any information or property is true without measuring
+and proving it, we need to trust it. This might include the belief, that our
+computer will behave in an expected way, that it won't leak our data, that it
+won't do something we didn't intend to do.
+
+When establishing the trust of system components there are two primary schools
+of thought: Static Root of Trust for Measurement (SRTM) and Dynamic Root of Trust
+for Measurement (DRTM).
 
 ### SRTM
 
