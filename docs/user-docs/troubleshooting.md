@@ -9,10 +9,10 @@ diagnose the issue and simple ways to address some situations.
 If problems are encountered, the first thing to check is the firmware setting
 on the system:
 
- - Is the TPM enabled?
- - On Intel: are VTx and VTd enabled?
- - On AMD: is SVM enabled?
- - Is DRTM (TXT/SKINIT) enabled?
+- Is the TPM enabled?
+- On Intel: are VTx and VTd enabled?
+- On AMD: is SVM enabled?
+- Is DRTM (TXT/SKINIT) enabled?
 
 ## Failed start with Intel TXT
 
@@ -22,7 +22,7 @@ contents of TXT error register is printed by `slaunch` GRUB command from within
 GRUB shell after a soft reboot.  Drop into the shell by typing `c` at the GRUB
 menu and run:
 
-```
+```text
 grub> slaunch
 TXT_ERRORCODE reports failure: 0xc0008001
 ```
@@ -30,7 +30,7 @@ TXT_ERRORCODE reports failure: 0xc0008001
 `slaunch_state` dumps more detailed information about the state of TXT.
 However, the command is of any use only after a successful `slaunch`:
 
-```
+```text
 grub> slaunch
 grub> slaunch_state
 Secure launcher: Intel TXT
@@ -86,7 +86,7 @@ By default, GRUB doesn't print any internal errors.  This can be changed by
 setting `debug` variable to a list of interesting components (as a comma- or
 whitespace-separated list):
 
-```
+```text
 set debug=slaunch
 ```
 
