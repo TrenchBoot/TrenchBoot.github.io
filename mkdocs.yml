@@ -11,9 +11,10 @@ copyright: Copyright &copy; 2018 - 2024 TrenchBoot Developers
 
 nav:
     - Home: index.md
-    - Events:
+    - Events and publications:
       - events.md
       - upcoming_events.md
+      - publications.md
     - Specifications:
       - specifications/index.md
       - specifications/Secure_Launch.md
