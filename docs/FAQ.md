@@ -134,22 +134,6 @@ menuentry 'TrenchBoot' {
 }
 ```
 
-### Testing the System
-
-QEMU has been tested to boot fully into u-root while simulating the Trenchboot
-kernel.
-QEMU For external u-root
-
-```bash
-qemu-systemx86_64 -kernel <kernel repo>/arch/x86/boot/bzImage -initrd /tmp/initramfs.linux_amd64.cpio -append console=ttyS0,38400 -serial file:serial.out
-```
-
-QEMU with u-root built-in
-
-```bash
-qemu-systemx86_64 -kernel <kernel location>
-```
-
 ## 4. Why does TrenchBoot use an intermediate launcher?
 
 For Linux systems doing both verified(secure) and measured boot, there is an
