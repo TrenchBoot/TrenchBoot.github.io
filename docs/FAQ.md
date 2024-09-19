@@ -64,6 +64,10 @@ The process for carrying out DTRM depends on your system:
     time DRTM sequence is initiated
 - Most DRTM systems support only one attestation action
 
+Trenchboot is meant to solve these, and many other problems by providing a
+universal framework for building integrity of software components in the
+process of booting a computer system.
+
 ## 2. How does TrenchBoot work? (TrenchBoot architecture)
 
 ### Architecture Overview
