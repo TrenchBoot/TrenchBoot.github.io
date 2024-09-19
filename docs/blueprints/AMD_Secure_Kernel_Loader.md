@@ -20,7 +20,7 @@ execution state and jumps to the entry point also specified in the header. At
 the entry point to the SL the CPU works in flat 32-bit protected mode with
 paging disabled. Most general purpose registers are cleared. Interrupts are
 disabled (held pending until re-enabled), including NMI, SMI and INIT. Refer to
-[AMD APM Vol 2](../references/AMD64-Architecture-Programmers-Manual_Volume-2_Ch15.27.pdf)
+[AMD APM Vol 2](../references/AMD64-Architecture-Programmers-Manual_Volume-2_Ch15.27_rev3.29.pdf)
 for more details.
 
 Secure Kernel Loader (SKL) is an implementation of Secure Loader.
@@ -57,7 +57,7 @@ to a lesser extend also modules (kernel could set the protections for modules,
 it doesn't have to be done by SKL). As of now, it is impossible to do this
 securely.
 
-[AMD APM Vol 2](../references/AMD64-Architecture-Programmers-Manual_Volume-2_Ch15.27.pdf)
+[AMD APM Vol 2](../references/AMD64-Architecture-Programmers-Manual_Volume-2_Ch15.27_rev3.29.pdf)
 states that it should be done with DEV (Device Exclusion Vector), but that is no
 longer implemented on new CPUs, except for initial SLB protection (starting with
 Family 17h, even that protection is handled differently).
