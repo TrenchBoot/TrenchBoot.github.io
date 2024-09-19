@@ -20,6 +20,7 @@ nav:
       - specifications/Secure_Launch.md
     - Documentation:
       - Getting started:
+        - user-docs/QUICKSTART.md
         - user-docs/index.md
         - user-docs/requirements.md
         # - installing - Linux
@@ -47,6 +48,7 @@ nav:
           - blueprints/Linux_Late_Launch.md
           - blueprints/Xen_Late_Launch.md
           - blueprints/Measured_Secure_Boot.md
+          - blueprints/AMD_coreboot_DRTM_payload.md
         - References:
           - references/README.md
           # TODO: make these open in new tab.
@@ -55,7 +57,7 @@ nav:
           # files. Another option is JS that adds target="_blank" attribute to
           # all links to PDF.
           - AMD64 Architecture Programmers Manual Volume 2 Ch15.27:
-              references/AMD64-Architecture-Programmers-Manual_Volume-2_Ch15.27.pdf
+              references/AMD64-Architecture-Programmers-Manual_Volume-2_Ch15.27_rev3.29.pdf
           - Intel TXT Preliminary Architecture Specification:
               references/intel-txt-preliminary-architecture.pdf
           - Intel TXT Software Development Guide:

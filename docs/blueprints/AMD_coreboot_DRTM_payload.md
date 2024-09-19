@@ -1,5 +1,9 @@
 # PoC: coreboot with payload started through DRTM (AMD)
 
+***
+***This document uses an old version of SKL (branch drtm_payload).
+The instructions might not work for the newest versions.***
+***
 This proof of concept shows how TrenchBoot can be used to start coreboot
 payload. One of use cases may be to root chain of trust in hardware on platforms
 that don't support SRTM, or require proprietary tools and/or documentation that

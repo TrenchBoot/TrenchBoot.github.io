@@ -13,7 +13,7 @@ technology more broadly.
 For topics not addressed by this document, please contact TrenchBoot developers
 via the community site:
 
-- [Community](https://trenchboot.org/community)
+- [Community](../community.md)
 
 ## Platforms
 
@@ -33,7 +33,7 @@ does support TXT):
 Also note, the TrenchBoot project has a hardware test matrix though only the
 Intel systems are relevant at present:
 
-- [Test Matrix](https://trenchboot.org/documentation/test_matrix/)
+- [Test Matrix](../user-docs/test_matrix.md)
 
 ## Linux
 
@@ -171,4 +171,4 @@ show TXT being properly disabled and SMX mode being exited.:
 
 ## Troubleshooting
 
-See the [Troubleshooting page](./user-docs/troubleshooting.md).
+See the [Troubleshooting page](troubleshooting.md).
