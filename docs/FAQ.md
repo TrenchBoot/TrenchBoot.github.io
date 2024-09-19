@@ -95,26 +95,28 @@ control to the actual desired OS to initiate the runtime phase.
 
 TrenchBoot utilizes its own system to carry out TXT on Intel, or SKINIT on AMD,
 which is a custom version of GRUB that has commands built in to carry out a
-TrenchBoot "Secure Launch". This customized GRUB introduces the `slaunch` and
-`slaunch_module` commands. A working example of the TrenchBoot GRUB can be found
-at [https://github.com/3mdeb/meta-trenchboot](
-https://github.com/3mdeb/meta-trenchboot).
-The custom GRUB works with Linux and Multiboot2 boot protocols for both Intel
-and AMD devices, but only in case of legacy boot, without support for UEFI
-(although it's available on a separate branch).
+TrenchBoot _Secure Launch_. Those commands are `slaunch` and `slaunch_module`.
+
+The custom GRUB works with:
+
+- Linux boot protocol (Intel only, legacy and UEFI),
+- Multiboot2 boot protocol (both Intel and AMD, but only legacy boot).
+
+Support for [AMD Linux](https://github.com/TrenchBoot/trenchboot-issues/milestone/8)
+and [Multiboot2 UEFI](https://github.com/TrenchBoot/trenchboot-issues/milestone/11)
+will be added later.
 
 ### Intermediate Phase - Linux Kernel / U-ROOT (Initramfs)
 
 The intermediate phase processes information collected in the bootstrap phase
 and converts it into normalized data. This data is eventually used to determine
-whether to boot into the target OS. The kernel and u-root initramfs
-together make up TrenchBoot's "Security Engine", which is an intermediate
-mini-OS that serves to process data gathered by that bootstrap phase. During the
+whether to boot into the target OS. The kernel and u-root initramfs together
+make up TrenchBoot's _Security Engine_, which is an intermediate mini-OS that
+serves to process data gathered by that bootstrap phase. During the
 intermediate phase, the kernel and initramfs work together to measure block
 devices, individual files, SMBUS/DMI information and provides unseal based,
 external device and network based attestation. TrenchBoot calls this
-functionality secure launch (aka slaunch). The table in section 4 lists the
-specific repo and branch to use when building the kernel or u-root.
+functionality secure launch (aka slaunch).
 
 ## 3. Why does TrenchBoot use an intermediate launcher?
 
