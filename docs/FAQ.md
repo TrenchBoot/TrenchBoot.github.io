@@ -32,11 +32,17 @@ for Measurement (DRTM).
 SRTM Starts with Core Root of Trust for Measurement (CRTM), and works its way
 up the chain where each link verifies the next. In other words, SRTM starts by
 measuring the BIOS boot block and then moves on to measure the rest of the BIOS.
+SRTM has a few problems:
+
+- Large TCB (Trusted Computing Base)
+- Takes place before boot. Reassuring the validity of the chain of trust
+requires a reboot
+- Only provides load-time integrity assurance
 
 ### DRTM
 
 DRTM aims to address shortcomings of SRTM. DRTM creates trusted environment from
-an untrusted state. Essentially what this means is that regardless of weather
+an untrusted state. Essentially what this means is that regardless of whether
 or not computer was booted from trusted software, it uses hardware to ensure
 that no malicious software, which may or may not have been run before the
 dynamic launch, can impact software started after the dynamic launch. For this
