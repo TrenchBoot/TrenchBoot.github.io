@@ -3,14 +3,13 @@
 1. [Why use Trenchboot?](#1-why-use-trenchboot-background-info)
 2. [How does TrenchBoot work?](
     #2-how-does-trenchboot-work-trenchboot-architecture)
-3. [How to use Trenchboot?](#3-how-to-use-trenchboot-practical-usage)
-4. [Why does TrenchBoot use an intermediate launcher?](
+3. [Why does TrenchBoot use an intermediate launcher?](
     #4-why-does-trenchboot-use-an-intermediate-launcher)
-5. [What are the benefits of measurement over signature validation?](
+4. [What are the benefits of measurement over signature validation?](
     #5-what-are-the-benefits-of-measurement-over-signature-validation)
-6. [What do I need to incorporate TrenchBoot into my system?](
+5. [What do I need to incorporate TrenchBoot into my system?](
     #6-what-do-i-need-to-incorporate-trenchboot-into-my-system)
-7. [Where do I start if I want to help with contributions?](
+6. [Where do I start if I want to help with contributions?](
     #7-where-do-i-start-if-i-want-to-help-with-contributions)
 
 ## 1. Why use Trenchboot? (background info)
@@ -106,32 +105,7 @@ external device and network based attestation. Trenchboot calls this
 functionality secure launch (aka slaunch). The table in section 4 lists the
 specific repo and branch to use when building the kernel or u-root.
 
-## 3. How to use Trenchboot? (practical usage)
-
-### Trenchboot GRUB TXT Config with Serial Communication
-
-*Note: ACM modules can be downloaded from [Intel's site][acm-download] (look for
-"Production SINIT ACM Download").*
-
-[acm-download]: https://www.intel.com/content/www/us/en/developer/articles/tool/intel-trusted-execution-technology.html
-
-```text
-menuentry 'TrenchBoot' {
-        savedefault
-        load_video
-        set gfxpayload=keep
-        insmod gzio
-        insmod part_msdos
-        insmod ext2
-        set root='hd0,msdos1'
-        multiboot2 /boot/slboot.gz loglvl=all serial=115200,8n1,0x3f8 logging=serial,memory
-        module2 /boot/vmlinuz-trenchboot root=UUID=<your block uuid> ro intel_iommu=on loglevel=7 console=ttyS0,115200 nokaslr
-        slaunch
-        slaunch_module /boot/<your acm>.bin
-}
-```
-
-## 4. Why does TrenchBoot use an intermediate launcher?
+## 3. Why does TrenchBoot use an intermediate launcher?
 
 For Linux systems doing both verified(secure) and measured boot, there is an
 intermediary that handles the security enforcement. For verified boot it is the
@@ -142,7 +116,7 @@ that the UEFI shim also serves as a trust delegation point that transitions
 from Microsoft Authority to Distribution/Installer/No Authority. The response
 why this is not of concern will be addressed in the next question.
 
-## 5. What are the benefits of measurement over signature validation?
+## 4. What are the benefits of measurement over signature validation?
 
 It is important to understand that one solution is not necessarily more
 beneficial over the other. Measurement and Verification each have their merits
@@ -157,7 +131,7 @@ a strong assertion to correctness that can be repeatedly extended and verified.
 It therefore relies on the ability to know what correct is and to securely
 verify measurement with expected correctness.
 
-## 6. What do I need to incorporate TrenchBoot into my system?
+## 5. What do I need to incorporate TrenchBoot into my system?
 
 TrenchBoot is a framework that allows you to build a Linux kernel with a
 tailored, embedded initramfs that functions as an intermediate loader to launch
@@ -166,7 +140,7 @@ engine components you desire, provide any necessary configurations, and build
 an instance of the loader. After that, you configure your system boot to launch
 the loader.
 
-## 7. Where do I start if I want to help with contributions?
+## 6. Where do I start if I want to help with contributions?
 
 The [TrenchBoot Blueprints](./blueprints/index.md)
 are how feature requests are collected for the project. Check if there is a
