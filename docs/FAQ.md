@@ -12,9 +12,6 @@
     #6-what-do-i-need-to-incorporate-trenchboot-into-my-system)
 7. [Where do I start if I want to help with contributions?](
     #7-where-do-i-start-if-i-want-to-help-with-contributions)
-8. [Where to find the sources?](#8-trenchboot-sources)
-9. [Various GitHub and further documentation links](
-    #9-various-github-and-further-documentation-links)
 
 ## 1. Why use Trenchboot? (background info)
 
@@ -175,21 +172,3 @@ The [TrenchBoot Blueprints](./blueprints/index.md)
 are how feature requests are collected for the project. Check if there is a
 blueprint that is of your interest, if not, submit a blueprint via a pull
 request for a feature you would like to see implemented.
-
-## 8. Trenchboot Sources
-
-For trenchboot sources see [Blueprints page](./blueprints/index.md) and
-TrenchBoot's [GitHub page](https://github.com/TrenchBoot).
-
-## 9. Various GitHub and further documentation links
-
-- Yocto recipes for building a bootable image with customized TrenchBoot
-  components (EFI and legacy GRUB2, Linux, ACM/SKL) and tpm2 tools (2024,
-  September 4) &ndash;
-    [github.com/3mdeb/meta-trenchboot](https://github.com/3mdeb/meta-trenchboot)
-
-- TrenchBoot informative talk
-The Linux Foundation. (2019, October 1). *TrenchBoot - How to Nicely Boot System
-with Intel TXT and AMD SVM* &ndash;
-    [youtube.com/watch?v=DbpCU9iSi4g](
-        https://www.youtube.com/watch?v=DbpCU9iSi4g)
