@@ -34,10 +34,12 @@ up the chain where each link verifies the next. In other words, SRTM starts by
 measuring the BIOS boot block and then moves on to measure the rest of the BIOS.
 SRTM has a few problems:
 
-- Large TCB (Trusted Computing Base)
-- Takes place before boot. Reassuring the validity of the chain of trust
+- Large TCB (Trusted Computing Base) - the more software as a part of the chain
+of trust, the more potential vectors of attack.
+- Takes place before boot - reassuring the validity of the chain of trust
 requires a reboot.
-- Only provides load-time integrity assurance
+- Only provides load-time integrity assurance - the integrity was maintained
+during boot, but there is no guarantee it will stay like that.
 
 ### DRTM
 
