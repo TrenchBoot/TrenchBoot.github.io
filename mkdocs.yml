@@ -20,10 +20,9 @@ nav:
       - specifications/Secure_Launch.md
     - Documentation:
       - Getting started:
-        - user-docs/QUICKSTART.md
         - user-docs/index.md
         - user-docs/requirements.md
-        # - installing - Linux
+        - user-docs/QUICKSTART.md
         - user-docs/install_aem.md
         - user-docs/build_grub.md
         - user-docs/troubleshooting.md
