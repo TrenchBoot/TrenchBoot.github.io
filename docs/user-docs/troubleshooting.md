@@ -60,7 +60,8 @@ Secure launcher: Intel TXT
 In the second case the error is `0x0000000` meaning there was no previous error
 because `SENTER` command wasn't used recently.  An error of the form
 `0xc0008XXX` is coming from the Secure Launch kernel code.  The error codes are
-listed in the [main header file][slaunch.h].
+detailed in the Linux documentation and listed in the
+[main header file][slaunch.h].
 
 Errors coming from other sources like the CPU or the SINIT ACM have different
 forms.  Consult the TXT documentation [from Intel][intel-txt] to determine what
@@ -70,7 +71,7 @@ Because the error code can prevent the use of Secure Launch and is only
 preserved by soft reboots, a hard reboot or a power off followed by a power on
 can sometimes be necessary.
 
-[slaunch.h]: https://github.com/TrenchBoot/linux/blob/linux-sl-master-5-16-24-v9/include/linux/slaunch.h#L114
+[slaunch.h]: https://github.com/TrenchBoot/linux/blob/linux-sl-master-9-12-24-v11/include/linux/slaunch.h#L108
 [intel-txt]: https://software.intel.com/en-us/articles/intel-trusted-execution-technology
 
 ## TPM operations suddenly start to fail
