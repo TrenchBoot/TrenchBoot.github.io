@@ -1,5 +1,7 @@
 # Conferences
 
+<!-- markdownlint-disable line-length -->
+
 Events that TrenchBoot appeared on.
 
 ## Worldwide conferences

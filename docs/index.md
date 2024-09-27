@@ -4,7 +4,7 @@ hide:
   - toc
 ---
 
-# Home
+<!-- markdownlint-disable first-line-heading -->
 
 ![](img/logo.svg){ class="center" }
 
