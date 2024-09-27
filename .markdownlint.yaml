@@ -194,3 +194,7 @@ MD049:
 MD050:
   # Strong style should be consistent
   style: "asterisk"
+
+# MD053/link-image-reference-definitions Link and image reference definitions
+# should be needed
+MD053: true
