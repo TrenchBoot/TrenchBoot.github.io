@@ -13,7 +13,7 @@ technology more broadly.
 For topics not addressed by this document, please contact TrenchBoot developers
 via the community site:
 
- - [Community](https://trenchboot.org/community)
+- [Community](https://trenchboot.org/community)
 
 ## Platforms
 
@@ -33,7 +33,7 @@ does support TXT):
 Also note, the TrenchBoot project has a hardware test matrix though only the
 Intel systems are relevant at present:
 
- - [Test Matrix](https://trenchboot.org/documentation/test_matrix/)
+- [Test Matrix](https://trenchboot.org/documentation/test_matrix/)
 
 ## Linux
 
@@ -45,7 +45,7 @@ Launch feature. This is a vanilla Linux kernel based off a torvalds/master branc
 snapshot at the time time patch set was assembled. The patches could be
 applied to different distros of Linux, probably requiring some rebasing:
 
- - [Latest Linux Patch Set Version 11](https://github.com/TrenchBoot/linux/tree/linux-sl-master-9-12-24-v11)
+- [Latest Linux Patch Set Version 11](https://github.com/TrenchBoot/linux/tree/linux-sl-master-9-12-24-v11)
 
 The Secure Launch feature is enabled through a Kconfig setting and can
 be found here using e.g. `make menuconfig`:
@@ -61,13 +61,13 @@ Each recent release of the Linux patches is accompanied by a GRUB branch
 in TrenchBoot that works with the specified version. The branch for version
 9 can be found here:
 
- - [GRUB for Version 11](https://github.com/TrenchBoot/grub/tree/grub-sl-2.12-v11)
+- [GRUB for Version 11](https://github.com/TrenchBoot/grub/tree/grub-sl-2.12-v11)
 
 This version of GRUB is based off of upstream GRUB 2.12 with the patches to
-support the Secure Launch feature. The folloing is a basic set of instructions
-for bulding a standalone version of UEFI GRUB on this branch:
+support the Secure Launch feature. The following is a basic set of instructions
+for building a standalone version of UEFI GRUB on this branch:
 
-```
+```shell
 $ cd <grub-branch-checkout-location>
 $ ./bootstrap
 $ mkdir build
@@ -85,7 +85,7 @@ There is a new GRUB command that instructs GRUB to initiate a Secure Launch call
 `slaunch`. This is an example of a GRUB menuentry that would be used to do a Secure
 Launch of the Linux kernel:
 
-```
+```text
 menuentry 'Linux with Secure Launch 6.11.0-rc7-master-v11' --unrestricted {
         load_video
         insmod gzio
@@ -103,29 +103,30 @@ menuentry 'Linux with Secure Launch 6.11.0-rc7-master-v11' --unrestricted {
 }
 ```
 
-Note this example contains the optional `slaunch_module` command that tells GRUB to load an
-external SINIT ACM for this configuration. In general, server platforms contain an existing
-SINIT ACM in the firmware and this line is not needed. For client platforms, an external one
-is required to be supplied. The SINIT ACM for a given platform can be acquired from Intel:
+Note this example contains the optional `slaunch_module` command that tells GRUB
+to load an external SINIT ACM for this configuration. In general, server
+platforms contain an existing SINIT ACM in the firmware and this line is not
+needed. For client platforms, an external one is required to be supplied. The
+SINIT ACM for a given platform can be acquired from Intel:
 
- - [Intel SINIT ACM information](https://www.intel.com/content/www/us/en/developer/articles/tool/intel-trusted-execution-technology.html)
+- [Intel SINIT ACM information](https://www.intel.com/content/www/us/en/developer/articles/tool/intel-trusted-execution-technology.html)
 
 ## Validation
 
-There are a number of ways to validate that a successful Secure Launch was done. Using serial
-logging or `dmesg`, search for the string "TXT" after booting:
+There are a number of ways to validate that a successful Secure Launch was done.
+Using serial logging or `dmesg`, search for the string "TXT" after booting:
 
-```
+```shell
 [root@my-system ~]# dmesg | grep TXT
 [    0.000094] slaunch: Intel TXT setup complete
 [    2.617782] slaunch: TXT AP startup vector address updated
 ```
 
-That indicates a successful Secure Launch boot. Another way is to display the Secure Launch
-TPM event log. This can be done as follows after booting (note only the tail end of the log
-is shown here for brevity, the rest is snippped):
+That indicates a successful Secure Launch boot. Another way is to display the
+Secure Launch TPM event log. This can be done as follows after booting (note
+only the tail end of the log is shown here for brevity, the rest is snippped):
 
-```
+```shell
 [root@my-system ~]# cat /sys/kernel/security/slaunch/eventlog | hexdump -C
 ...
 [snip]
@@ -157,12 +158,13 @@ is shown here for brevity, the rest is snippped):
 *
 00008000
 ```
+
 The final measurements starting with the description "Measured..." are put in the
 log by the Secure Launch kernel code after successfully running. During a poweroff,
 restart or a kexec of another kernel, the following log lines will show TXT being
 properly disabled and SMX mode being exited.:
 
-```
+```text
 [  696.907094] slaunch: TXT clear secrets bit and unlock memory complete.
 [  696.914827] slaunch: TXT SEXIT complete.
 ```

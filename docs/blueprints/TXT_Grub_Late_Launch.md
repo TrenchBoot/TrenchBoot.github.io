@@ -1,5 +1,4 @@
-TXT Grub Late Launcher
-======================
+# TXT Grub Late Launcher
 
 ## Purpose
 
