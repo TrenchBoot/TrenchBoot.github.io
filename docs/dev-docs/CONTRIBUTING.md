@@ -124,12 +124,14 @@ project's coding style rules.
 ## License
 
 [![License: CC BY 4.0](https://i.creativecommons.org/l/by/4.0/88x31.png)
-](https://creativecommons.org/licenses/by/4.0/) This work is licensed under a
-[Creative Commons Attribution 4.0 International
-License](http://creativecommons.org/licenses/by/4.0/).  By contributing you
-agree that your contributions will be licensed under the Creative Commons
-Attribution 4.0 International License. Feel free to contact the maintainers if
-that's a concern.
+](https://creativecommons.org/licenses/by/4.0/)
+
+This work is licensed under a [Creative Commons Attribution 4.0 International
+License](http://creativecommons.org/licenses/by/4.0/).
+
+By contributing you agree that your contributions will be licensed under the
+Creative Commons Attribution 4.0 International License. Feel free to contact
+the maintainers if that's a concern.
 
 ## Contacting Maintainers
 
