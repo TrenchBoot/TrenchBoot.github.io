@@ -1,0 +1,61 @@
+---
+default_stages: [pre-commit]
+
+default_install_hook_types: [pre-commit, commit-msg]
+
+exclude: (^vendor/|.*\.pdf|.*\.svg|CNAME$)
+
+ci:
+  autoupdate_commit_msg: 'pre-commit: autoupdate hooks'
+  autofix_prs: false
+  # docker is not supported on pre-commit.ci
+  skip: [lychee-docker]
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+        exclude: ^.*\.patch$
+      - id: mixed-line-ending
+        exclude: ^.*\.patch$
+
+  - repo: https://github.com/talos-systems/conform
+    rev: v0.1.0-alpha.30
+    hooks:
+      - id: conform
+        stages:
+          - commit-msg
+
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.3.0
+    hooks:
+      - id: codespell
+
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.35.1
+    hooks:
+      - id: yamllint
+        args: [-c=.yamllint]
+
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.41.0
+    hooks:
+      - id: markdownlint
+      - id: markdownlint-fix
+
+  - repo: https://github.com/lycheeverse/lychee
+    rev: v0.15.1
+    hooks:
+      - id: lychee-docker
+        # Optionally include additional CLI arguments
+        args: [
+          "--no-progress", "--exclude", "file://", "--exclude", "0.0.0.0",
+          "--exclude", ".git", "--include-verbatim", "--timeout", "10",
+          "--exclude-all-private", "-m", "10"
+        ]
