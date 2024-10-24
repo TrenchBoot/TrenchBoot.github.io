@@ -3,10 +3,10 @@
 1. [Why use TrenchBoot?](#1-why-use-trenchboot-background-info)
 2. [How does TrenchBoot work?](
     #2-how-does-trenchboot-work-trenchboot-architecture)
-3. [Why does TrenchBoot use an intermediate launcher?](
-    #3-why-does-trenchboot-use-an-intermediate-launcher)
-4. [What are the benefits of measurement over signature validation?](
-    #4-what-are-the-benefits-of-measurement-over-signature-validation)
+3. [What is the TrenchBoot intermediate loader?](
+    #3-what-is-the-trenchboot-intermediate-loader)
+4. [How do measurement trust chains contrast with verification trust chains?](
+    #4-how-do-measurement-trust-chains-contrast-with-verification-trust-chains)
 5. [What do I need to incorporate TrenchBoot into my system?](
     #5-what-do-i-need-to-incorporate-trenchboot-into-my-system)
 6. [Where do I start if I want to help with contributions?](
@@ -95,7 +95,7 @@ passes off control to the actual desired OS to initiate the runtime phase.
 
 ### Bootstrap Phase - GRUB
 
-GRUB has commands built in to carry-out a TrenchBoot _Secure Launch_ (currently
+GRUB has commands built in to carry out a TrenchBoot _Secure Launch_ (currently
 supporting Intel TXT and AMD SKINIT). This is typically called the pre-launch or
 preamble phase of the launch. These commands are `slaunch` and `slaunch_module`.
 
@@ -116,21 +116,25 @@ whether to boot into the target OS. Together the kernel and u-root initramfs
 make up TrenchBoot's _Security Engine_, an intermediate mini-OS that processes
 data gathered by that bootstrap phase. During the intermediate phase, the kernel
 and initramfs work together to measure block devices, individual files,
-SMBUS/DMI information etc. The kernel and initramfs also provide unseal based,
+SMBUS/DMI information, etc. The kernel and initramfs also provide unseal based,
 external device and network based attestation. TrenchBoot calls this
 functionality _Secure Launch_ (aka slaunch).
 
-## 3. Why does TrenchBoot use an intermediate launcher?
+## 3. What is the TrenchBoot intermediate loader?
 
 For Linux systems doing both verified (secure) and measured boot, there is an
 intermediary that handles the security enforcement. For verified boot, the
-intermediary is the UEFI shim loader and for measured boot it is tboot.
-TrenchBoot replaces these intermediary loaders with a common Linux-based loader
-that provides a rich security processing framework. One role that TrenchBoot
-does not fulfill is that the UEFI shim also serves as a trust delegation point
-that transitions from Microsoft Authority to Distribution/Installer/No
-Authority. The response why this is not of concern will be addressed in the
-next question.
+intermediary is the UEFI shim loader and for measured boot, it is tboot. One of
+the use cases for TrenchBoot is a drop-in replacement of tboot, hence a common
+Linux-based loader that provides a rich security processing framework is used as
+an intermediate stage. This allows for easy modifications to the framework in an
+environment that most developers are familiar with. Other use cases may choose
+to modify this stage, or drop it altogether if the security processing is done
+in the final payload.
+
+Intermediate loader tends to be the most common DRTM use case, it's how tboot
+works and how Microsoft's Secure Core DRTM works. It allows for starting
+existing operating systems with minimal or no changes.
 
 ## 4. How do measurement trust chains contrast with verification trust chains?
 
@@ -153,12 +157,12 @@ TrenchBoot is a framework that allows you to build a Linux kernel with a
 tailored, embedded initramfs that functions as an intermediate loader to launch
 your system. You will need to use the build system to select the security
 engine components you desire, provide any necessary configurations, and build
-an instance of the loader. Next configure your system boot to launch
+an instance of the loader. Next, configure your system boot to launch
 the loader.
 
 ## 6. Where do I start if I want to help with contributions?
 
-The [TrenchBoot Blueprints](./blueprints/index.md) collect product feature
+[TrenchBoot Blueprints](./blueprints/index.md) collect product feature
 requests. Check to see if there is an existing blueprint that addresses your
 feature request. You may also submit a blueprint via pull request to suggest
 features for implementation.
