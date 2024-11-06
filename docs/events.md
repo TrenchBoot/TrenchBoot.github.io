@@ -10,9 +10,9 @@ Events that TrenchBoot appeared on.
     - Video: [Challenges and Status of Enabling TrenchBoot in Xen Hypervisor](https://www.youtube.com/watch?v=RVK52BCM-ZM)
     - [Slides](slides/trenchboot_in_xen_2024.pdf)
 * FOSDEM 2024
-    - Video: [Trenchboot - project status update](https://video.fosdem.org/2024/aw1126/fosdem-2024-3724-trenchboot-project-status-update.av1.webm)
+    - Video: [TrenchBoot - project status update](https://video.fosdem.org/2024/aw1126/fosdem-2024-3724-trenchboot-project-status-update.av1.webm)
     - [Slides (DRTM Status)](slides/DRTM-presentation-FOSDEM_2024.pdf)
-    - [Slides (Trenchboot AEM Status)](slides/TrenchBoot_AEM_Project_Status_fosdem_2024.pdf)
+    - [Slides (TrenchBoot AEM Status)](slides/TrenchBoot_AEM_Project_Status_fosdem_2024.pdf)
 * Xen Developer & Design Summit 2023
     - Video: [Paving the Path for TrenchBoot DRTM in Xen Hypervisor](https://www.youtube.com/watch?v=p3Gb6C6K0To)
     - [Slides](slides/Paving_the_Path_for_TrenchBoot_DRTM_in_Xen_Hypervisor.pdf)
