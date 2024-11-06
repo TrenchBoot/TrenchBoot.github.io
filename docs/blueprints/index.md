@@ -71,7 +71,7 @@ Components to which upstreaming doesn't apply were left out from the table.
 | Component | Upstream                        | Qubes OS
 | :-------: | :------:                        | :------:
 | GRUB2     | [Sent][grub-up]                 | [Yes][grub-qos]
-| SKL       | Part of Trenchboot              | No
+| SKL       | Part of TrenchBoot              | No
 | Linux     | [In Progress][linux-up]         | N/A
 | Xen       | [Partially In Progress][xen-ap] | [In Progress][xen-qos]
 

@@ -1,7 +1,7 @@
 # Installing TrenchBoot AEM in Qubes OS
 
 This document shows how to install Anti Evil Maid from packages produced by
-3mdeb as part of [Trenchboot as Anti Evil Maid project](https://docs.dasharo.com/projects/trenchboot-aem-v2/).
+3mdeb as part of [TrenchBoot as Anti Evil Maid project](https://docs.dasharo.com/projects/trenchboot-aem-v2/).
 If you wish to build the components yourself, please refer to documentation for
 developers instead.
 
