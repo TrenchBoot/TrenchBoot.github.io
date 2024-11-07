@@ -1,4 +1,4 @@
-cryptography==43.0.0
+cryptography==43.0.1
 mkdocs-awesome-pages-plugin==2.9.3
 mkdocs-bootstrap4==0.1.5
 mkdocs-git-revision-date-localized-plugin==1.2.7
