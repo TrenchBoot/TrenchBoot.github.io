@@ -27,6 +27,10 @@ years can be approximate; automatic tests don't override manual tests):
 | Asus KGPE-D16<br>(AMD Opteron family 15h models 00h-0fh server)<br>(v0.4 by [@SergiiDmytruk]) |  TPM 1.2   | 2005-2015  | stock BIOS |
 | Dell OptiPlex 9010<br>(v0.3 by openQA)                                                        |  TPM 1.2   | 2012-2017  | coreboot SeaBIOS firmware, bad 1st entry in event log |
 | HP Thin Client t630<br>(v0.4 by [@krystian-hebel])                                            |  TPM 2.0   | 2016-2020  | CSM legacy boot<br>BIOS updates in 2024 |
+| HP Thin Client t630<br>(v0.4 by openQA)                                                       |  TPM 1.2   | 2016-2020  | legacy boot and UEFI boot |
+| HP Thin Client t630<br>(v0.4 by openQA)                                                       |  TPM 2.0   | 2016-2020  | legacy boot and UEFI boot |
+| Dell OptiPlex 7010<br>(v0.4 by openQA)                                                        |  TPM 1.2   | 2012-2017  | legacy boot and UEFI boot |
+| Protectli VP46xx #TODO exact model#<br>(v0.4 by openQA)                                       |  TPM 2.0   | 2022-today | legacy boot and UEFI boot |
 
 Devices and configurations on which TrenchBoot is known to not work:
 
