@@ -89,7 +89,7 @@ smooth.
 | Dell OptiPlex 9010                                                          | 1. Installer has issues rebooting without `reboot=pci` kernel option. |
 | (continued)                                                                 | 2. Xen sometimes has issues rebooting, boot cycle is the workaround. |
 | (continued)                                                                 | 3. First entry in DRTM TPM event log contains the result of PCR extend operation instead of its input due to ACM bug. |
-| HP Thin Client t630                                                         | Starting Qubes OS installation in legacy mode requires extra steps ([see][qubesos-t630-install]). |
+| HP Thin Client t630                                                         | Starting Qubes OS installation in legacy mode requires extra steps ([see][qubesos-t630-install]). (Not required since Qubes R4.2.3)|
 | Supermicro M11SDV-8CT<br>(AMD EPYC 3000 Snowy Owl server)                   | Problematic USB controller for Qubes OS ([resets the system][qubesos-m11-reset]). |
 | (continued)                                                                 | Works without `sys-usb` VM or if USB controller is disabled. |
 
