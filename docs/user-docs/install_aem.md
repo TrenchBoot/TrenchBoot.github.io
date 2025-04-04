@@ -5,11 +5,6 @@ This document shows how to install Anti Evil Maid from packages produced by
 If you wish to build the components yourself, please refer to documentation for
 developers instead.
 
-## Disclaimer
-
-As of now, only legacy boot is supported. These instructions
-<span style="color: red;">WON'T WORK under UEFI</span>. You have been warned.
-
 ## Installation
 
 To install, you have to first add a new repository and import a public part of
