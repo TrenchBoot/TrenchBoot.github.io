@@ -1,6 +1,6 @@
 # Hardware test matrix
 
-## Modern (as of 2024) test results
+## Modern (as of 2025) test results
 
 These results are based on the use of TrenchBoot in combination with [AEM][aem]
 on the specified hardware running [Qubes OS][qubesos].  The tests were carried
@@ -29,7 +29,7 @@ years can be approximate; automatic tests don't override manual tests):
 | HP Thin Client t630<br>(v0.4 by [@krystian-hebel])                                            |  TPM 2.0   | 2016-2020  | CSM legacy boot<br>BIOS updates in 2024 |
 | HP Thin Client t630<br>(v0.5 by openQA)                                                       |  TPM 1.2   | 2016-2020 | legacy boot and UEFI boot |
 | HP Thin Client t630<br>(v0.5 by openQA)                                                       |  TPM 2.0   | 2016-2020 | legacy boot and UEFI boot |
-| Dell OptiPlex 7010<br>(v0.5 by openQA)                                                        |  TPM 1.2   | 2012-2017 | legacy boot and UEFI boot |
+| Dell OptiPlex 7010<br>(v0.5 by openQA)                                                        |  TPM 1.2   | 2012-2017 | legacy boot with coreboot SeaBIOS firmware |
 | Protectli VP4670<br>(v0.5 by openQA)                                                          |  TPM 2.0   | 2022-today | legacy boot and UEFI boot |
 
 Devices and configurations on which TrenchBoot is known to not work:
@@ -37,6 +37,7 @@ Devices and configurations on which TrenchBoot is known to not work:
 | Tested device                                                                                 | TPM family | Available  | Notes |
 |:---------------------------------------------------------------------------------------------:|:----------:|:----------:|:-----:|
 | Supermicro M11SDV-8CT<br>(AMD EPYC 3000 Snowy Owl server)<br>(v0.4 by openQA)                 |  TPM 2.0   | 2019-today | CSM legacy boot,<br>unexpected PCR values |
+| Dell OptiPlex 7010<br>(v0.5 by openQA)                                                        |  TPM 1.2   | 2012-2017 | UEFI boot with coreboot edk2 firmware,<br>[platform reboots with no error code](https://github.com/TrenchBoot/trenchboot-issues/issues/58) |
 
 [aem]: https://github.com/TrenchBoot/qubes-antievilmaid
 [qubesos]: https://www.qubes-os.org/
