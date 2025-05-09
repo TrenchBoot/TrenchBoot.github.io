@@ -36,7 +36,7 @@ Devices and configurations on which TrenchBoot is known to not work:
 
 [aem]: https://github.com/TrenchBoot/qubes-antievilmaid
 [qubesos]: https://www.qubes-os.org/
-[openqa]: https://open.qa/
+[openqa]: ./openqa.md
 [aem-test]: https://github.com/TrenchBoot/openqa-tests-qubesos/blob/3mdeb-lab/tests/aem_hw.pm
 [aem-install]: https://blog.3mdeb.com/2023/2023-09-27-aem_phase2/#installation-procedure
 [aem-verify]: https://blog.3mdeb.com/2024/2024-01-12-aem_phase3/#testing
