@@ -113,11 +113,62 @@ Booting on legacy systems requires manual installation of GRUB2 to the MBR
 of disk where Qubes OS is stored. In the example below it is `/dev/sda`,
 yours may be different.
 
-To check on which partition is your OS installed run:
+To check on which partition is your OS installed, if the disk is not encrypted,
+run:
 
 ```bash
 df --output=source /
 ```
+
+If your disk is encrypted, then the command above will print a filename
+like `/dev/mapper/...`. This is an LVM Logical Volume and finding out the
+physical disk on which the root partition resides takes a couple steps.
+If you are sure where the root partition is located, you can skip the steps to
+find it out.
+
+1. Get the Logical Volume (LV) file:
+
+    ```bash
+    df --output=source /
+    ```
+
+    Example LV file: `/dev/mapper/qubes_dom0-root`
+
+1. Map the Logical Volume (LV) to a Volume Group (VG):
+
+    ```bash
+    sudo lvs /dev/mapper/qubes_dom0-root --noheadings -o vg_name
+    ```
+
+    Example VG name: `qubes_dom0`
+
+1. Map the Volume Group to a Physical Volume (PV):
+
+    ```bash
+    sudo vgs --noheadings -o pv_name qubes_dom0
+    ```
+
+    Example PV file: `/dev/mapper/luks-12345678-1234-1234-1234-123456789abc` (GUID)
+
+1. Find the PV name in `lsblk` output and check on which device it is
+located.
+
+    ```bash
+    lsblk -o NAME
+    ```
+
+    Example output:
+
+    ```text
+    sda
+    ├─sda1
+    ├─sda2
+    └─sda3
+      └─luks-12345678-1234-1234-1234-123456789abc
+    ```
+
+    The drive on which the root partition is located in this example is
+    therefore `/dev/sda`.
 
 Remember that GRUB2 must be installed on disk and
 not on partition, so don’t use `sda1`, `nvme0n1p1` etc. This step should be
