@@ -36,7 +36,9 @@ Each _Product_ consists of multiple _Test Suites_. On the main page
 every distinct _Product_ has a progress bar showing how many _Test Suites_
 have passed, are running, are finished and were skipped.
 
-![Image of the main page, show job groups, products and test suite progress]()
+|![Image of the main page](../img/openqa/main-page.png)
+|:-:|
+|Image of the main page, show job groups, products and test suite progress|
 
 From this page there is a couple of options for further navigation to access
 more precise data.
@@ -51,7 +53,9 @@ of the historical _Products_ that were published as a part of the _Job Group_.
 In addition to that, authorized users can leave comments about the _Job Group_
 there.
 
-![Image of the Job Group view]()
+|![Image of the Job Group view](../img/openqa/job-group-view.png)
+|:-:|
+|Image of the Job Group view|
 
 ### Product
 
@@ -72,13 +76,17 @@ determine:
 - on which hardware platform the tests were performed
 - whether it was installed on a Legacy or an UEFI BIOS
 
-![Show different sections in product name]()
+|![Product name made of four sections](../img/openqa/medium-string.png)|
+|:-:|
+|Product name made of four sections|
 
 Clicking on a _Product_ from the main page, or the _Job Group_ details page
 shows the summary of the _Product_ and a list of the _Tests_ associated
 with it.
 
-![Image of a product view with list of tests]()
+|![Image of a product view with a list of associated tests](../img/openqa/product-view.png)|
+|:-:|
+|Image of a product view with list of tests|
 
 ### Test Suite
 
@@ -86,7 +94,9 @@ _Test Suites_ are the essence of the OpenQA web panel.
 By clicking on the circle icon informing on the status of the _Test Suite_
 the details of the selected _Test Suite_ can be accessed.
 
-![Image of the circle to press, which is very small and unintuitive]()
+|![Image of the circle to press, which is very small and a bit unintuitive, marked with a red rectangle](../img/openqa/test-details-button.png)|
+|:-:|
+|Image of the circle to press, which is very small and a bit unintuitive, marked with a red rectangle|
 
 Upon doing so the page of the selected _Test Suite_ run as
 a part of a _Product_ will be shown. It contains a short
@@ -107,26 +117,37 @@ a test. The proofs are:
   by comparing selected parts of the screen to the expected outcomes
 - text logs, compared to expected outputs
 
-![Image of tests summary with asserts]()
+|![Details tab](../img/openqa/test-summary.png)|
+|:-:|
+|_The details tab_|
 
 The details of any assert and the reason for pass or fail can be viewed by
 clicking on the corresponding box in any _Test_.
 
-![Image of a screenshot needle assert selected]()
-![Image of a text needle assert selected]()
+|![Image of a screenshot needle assert selected](../img/openqa/image-needle.png)|
+|:-:|
+|_Image of a screenshot needle assert selected_|
+
+|![Image of a text needle assert selected](../img/openqa/text-needle.png)|
+|:-:|
+|Image of a text needle assert selected|
 
 #### Logs & Assets Tab
 
 The _Logs & Assets_ tab contains all of the downloadable
 content created during the _Test Suite_. This includes:
-- A video recording of the screen for the whole duration of the _Test Suite_
-- Logs created by the OpenQA worker process running on the tested device
-- The `vars.json` file containing all of the configuration variables
+- `Video` - A video recording of the screen for the whole duration of the _Test Suite_
+- `autoinst-log.txt` - Logs from the test
+- `worker-log.txt` - Logs created by the OpenQA worker process running
+  on the tested device
+- `vars.json` - A JSON file containing all of the configuration variables
 used to control the execution of the _Test Suite_
-- The serial port output from the tested device
-- The terminal output from text-based tests in the terminal
+- `serial0.txt` - The serial port output from the tested device
+- `serial_terminal.txt` - The terminal output from text-based tests in the terminal
 
-![screenshot]()
+|![Logs & Assets tab](../img/openqa/logs-assets-tab.png)|
+|:-:|
+|The Logs & Assets tab|
 
 #### Settings Tab
 
@@ -134,7 +155,9 @@ The Settings tab visually shows the most important configuration
 variables that affected the _Test Suite_. It is a subset of what's available
 in the `vars.json` file from the _Logs & Assets Tab_
 
-![screenshot]()
+|![Settings tab](../img/openqa/settings-tab.png)|
+|:-:|
+|The Settings tab|
 
 #### Dependencies Tab
 
@@ -145,7 +168,9 @@ The suites, upon which the _Test Suite_ depends
 must be finished before it can be run. The order of execution follows the
 direction of the arrows
 
-![screenshot]()
+|![Dependencies tab](../img/openqa/dependencies-tab.png)|
+|:-:|
+|The Dependencies tab|
 
 #### Comments Tab
 
@@ -153,7 +178,14 @@ The comments tab gives the authorized users a place to discuss
 the results of a test suite. Depending on whether a discussion has arisen
 in the exact suite it might not contain any useful information.
 
-![screenshot]()
+|![Comments tab](../img/openqa/test-comments.png)|
+|:-:|
+|The Comments tab|
+
+A test containing comments is marked with a blue speech bubble
+|![Test with comment](../img/openqa/test-with-comment.png)|
+|:-:|
+|A test containing comments|
 
 #### Next & Previous Results Tab
 
@@ -163,7 +195,9 @@ It shows how the selected _Test Suite_ worked on other
 _Products_ - historical, and future ones if the _Product_ in which the
 selected _Test Suite_ was run is not the newest one released.
 
-![screenshot, best if shows some fails too]()
+|![Next & Previous results tab](../img/openqa/previous-results.png)|
+|:-:|
+|The Next & Previous results tab|
 
 ### All Tests Tab
 
@@ -176,7 +210,9 @@ the name of the suite and its status. Pressing the colorful status circle
 enters the test suite page exactly like when doing so from the product details
 page.
 
-![screenshot, mark the status circle]()
+![The All Tests tab, status circles marked with red rectangles](../img/openqa/all-tests-page.png)|
+|:-:|
+|The All Tests tab, status circles marked with red rectangles|
 
 ### Job Groups Tab
 
@@ -185,6 +221,8 @@ list of all the _Job Groups_ existing on this OpenQA instance.
 The _Job Groups_ which don't contain any _Products_ are not visible on the
 OpenQA homepage, but can be accessed using this tab.
 
-![screenshot of the tab opened]()
+![Job Groups drop down](../img/openqa/job-groups-dropdown.png)|
+|:-:|
+|The Job Groups drop down menu|
 
 [openqa-instance]: https://openqa.3mdeb.com
