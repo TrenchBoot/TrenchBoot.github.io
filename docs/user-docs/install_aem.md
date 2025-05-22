@@ -107,6 +107,29 @@ sudo qubes-dom0-update --disablerepo="*" --enablerepo=aem --action=reinstall \
     grub2-tools-minimal
 ```
 
+Depending on the set of currently installed packages and their versions
+the commands required to install the dependencies vary.
+
+`--action=reinstall` will make sure that the existing packages will be replaced
+with the custom versions provided by the AEM repo. That will only happen if
+the version number of the installed package matches exactly the version in the
+repository.
+
+If any package returns `No match for argument`, then it might need to be
+installed, not reinstalled. To make sure that missing packages are installed
+re-run the exact command with `--action=install` instead.
+`--action=install` won't install packages if the are already installed, even
+if the repository contains packages with higher version number.
+
+If a package was skipped during both `--action=reinstall` and `--action=install`
+it might need to be updated instead using `--action=update`. This will happen
+if the version number in the repository is higher than the currently installed
+one. `reinstall` won't work because the versions don't match and `install` won't
+work because the package is already installed.
+
+Make sure that all of the packages listed above are installed int the system
+and come from the AEM repository.
+
 ###### Updating GRUB on legacy systems
 
 Booting on legacy systems requires manual installation of GRUB2 to the MBR
@@ -196,6 +219,29 @@ sudo qubes-dom0-update --disablerepo="*" --enablerepo=aem --action=reinstall \
     grub2-tools \
     grub2-tools-minimal
 ```
+
+Depending on the set of currently installed packages and their versions
+the commands required to install the dependencies vary.
+
+`--action=reinstall` will make sure that the existing packages will be replaced
+with the custom versions provided by the AEM repo. That will only happen if
+the version number of the installed package matches exactly the version in the
+repository.
+
+If any package returns `No match for argument`, then it might need to be
+installed, not reinstalled. To make sure that missing packages are installed
+re-run the exact command with `--action=install` instead.
+`--action=install` won't install packages if the are already installed, even
+if the repository contains packages with higher version number.
+
+If a package was skipped during both `--action=reinstall` and `--action=install`
+it might need to be updated instead using `--action=update`. This will happen
+if the version number in the repository is higher than the currently installed
+one. `reinstall` won't work because the versions don't match and `install` won't
+work because the package is already installed.
+
+Make sure that all of the packages listed above are installed int the system
+and come from the AEM repository.
 
 ### Installing main AEM package
 
