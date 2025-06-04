@@ -29,6 +29,7 @@ nav:
           - user-docs/build_linux.md
           - user-docs/troubleshooting.md
           - user-docs/test_matrix.md
+          - user-docs/openqa.md
       - For developers:
           - dev-docs/index.md
           - dev-docs/CONTRIBUTING.md
