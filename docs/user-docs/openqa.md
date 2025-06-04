@@ -62,8 +62,7 @@ there.
 ### Product
 
 A _Product_ represents one run of a set of test suites with given parameters.
-The name of the products consists of a couple parts
-It consists of:
+The name of each product consists of the following parts:
 
 - The name of the tested OS distribution - to run tests on every maintained
   distribution
@@ -98,9 +97,10 @@ _Test Suites_ are the essence of the OpenQA web panel. Next to every test suite
 you can see a small colorful circle informing about the status of the
 _Test Suite_. The most common statuses are:
 
-- Gray - Skipped
+- Gray - Skipped or Canceled (can be disambiguated via a tooltip text)
     + The test was decided to not be performed based on the results of
     other tests, like its dependencies failing
+    + The test was canceled by the user before finishing
 - Green - Pass
     + The test passed without any issues
 - Red - Fail
@@ -126,7 +126,7 @@ a couple tabs with more details.
 
 #### Details Tab
 
-The default tab shown when selecting a _Test Suite_ is its
+The default tab shown when selecting a finished _Test Suite_ is its
 _Details_ tab. It contains a summary of all of the _Tests_ being a part of
 the _Test Suite_ and their statuses.
 
@@ -161,8 +161,8 @@ content created during the _Test Suite_. This includes:
 
 - `Video` - A video recording of the screen for the whole duration of the _Test Suite_
 - `autoinst-log.txt` - Logs from the test
-- `worker-log.txt` - Logs created by the OpenQA worker process running
-  on the tested device
+- `worker-log.txt` - Logs created by the OpenQA worker process managing
+  the tested device
 - `vars.json` - A JSON file containing all of the configuration variables
 used to control the execution of the _Test Suite_
 - `serial0.txt` - The serial port output from the tested device
