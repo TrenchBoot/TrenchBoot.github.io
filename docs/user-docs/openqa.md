@@ -90,9 +90,21 @@ with it.
 
 ### Test Suite
 
-_Test Suites_ are the essence of the OpenQA web panel.
-By clicking on the circle icon informing on the status of the _Test Suite_
-the details of the selected _Test Suite_ can be accessed.
+_Test Suites_ are the essence of the OpenQA web panel. Next to every test suite
+you can see a small colorful circle informing about the status of the
+_Test Suite_. The most common statuses are:
+- Gray - Skipped
+    + The test was decided to not be performed based on the results of
+    other tests, like its dependencies failing
+- Green - Pass
+    + The test passed without any issues
+- Red - Fail
+    + The test encountered a critical issue, the testing is stopped
+- Yellow - Soft Fail
+    + The test encountered a non-critical issue, the testing may continue
+
+By clicking on the status circle icon informing on the status of the
+_Test Suite_, the details of the selected _Test Suite_ can be accessed.
 
 |![Image of the circle to press, which is very small and a bit unintuitive, marked with a red rectangle](../img/openqa/test-details-button.png)|
 |:-:|
