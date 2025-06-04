@@ -81,7 +81,7 @@ determine:
 |Product name made of four sections|
 
 Clicking on a _Product_ from the main page, or the _Job Group_ details page
-shows the summary of the _Product_ and a list of the _Tests_ associated
+shows the summary of the _Product_ and a list of the _Test Suites_ associated
 with it.
 
 |![Image of a product view with a list of associated tests](../img/openqa/product-view.png)|
@@ -122,7 +122,7 @@ a test. The proofs are:
 |_The details tab_|
 
 The details of any assert and the reason for pass or fail can be viewed by
-clicking on the corresponding box in any _Test_.
+clicking on the corresponding box in any _Test Suite_.
 
 |![Image of a screenshot needle assert selected](../img/openqa/image-needle.png)|
 |:-:|
