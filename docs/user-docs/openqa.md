@@ -203,7 +203,7 @@ selected _Test Suite_ was run is not the newest one released.
 
 The _All Tests_ tab visible on the topmost part of every page gives access
 to a view of the most recent test suites running and the historical runs
-in order.
+in order, as well as tests that are currently in progress.
 
 Every test suite entry lists the _Product_ for which the suite is run,
 the name of the suite and its status. Pressing the colorful status circle
