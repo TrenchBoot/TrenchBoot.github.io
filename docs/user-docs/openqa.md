@@ -13,6 +13,7 @@ The results of TrenchBoot automated tests can be viewed on
 
 The website allows anyone to freely monitor all the details about the tests run,
 including:
+
 - configuration variables
 - collected logs
 - screenshots and a video recording of the screen for the duration of a test
@@ -20,6 +21,7 @@ including:
 
 Anyone can login to the website via GitHub, but only the authorized
 accounts are able to:
+
 - run the tests
 - create new tests
 - modify any settings
@@ -62,6 +64,7 @@ there.
 A _Product_ represents one run of a set of test suites with given parameters.
 The name of the products consists of a couple parts
 It consists of:
+
 - The name of the tested OS distribution - to run tests on every maintained
   distribution
 - The version - to allow running the tests on every new release
@@ -73,6 +76,7 @@ not only run a single test per hardware architecture. For this reason the
 _Flavor_ field of a _Product_ is used a bit unconventionally. At this moment
 TrenchBoot does not consist of multiple _Flavors_ and the field is used to
 determine:
+
 - on which hardware platform the tests were performed
 - whether it was installed on a Legacy or an UEFI BIOS
 
@@ -93,6 +97,7 @@ with it.
 _Test Suites_ are the essence of the OpenQA web panel. Next to every test suite
 you can see a small colorful circle informing about the status of the
 _Test Suite_. The most common statuses are:
+
 - Gray - Skipped
     + The test was decided to not be performed based on the results of
     other tests, like its dependencies failing
@@ -129,6 +134,7 @@ Every single test consists of one or more _Asserts_, which
 are used to determine whether the test _Passes_ or _Fails_.
 The _Details_ page shows the proofs for every _Assert_ during
 a test. The proofs are:
+
 - screenshots, which are being asserted
   by comparing selected parts of the screen to the expected outcomes
 - text logs, compared to expected outputs
@@ -152,6 +158,7 @@ clicking on the corresponding box in any _Test Suite_.
 
 The _Logs & Assets_ tab contains all of the downloadable
 content created during the _Test Suite_. This includes:
+
 - `Video` - A video recording of the screen for the whole duration of the _Test Suite_
 - `autoinst-log.txt` - Logs from the test
 - `worker-log.txt` - Logs created by the OpenQA worker process running
@@ -198,7 +205,8 @@ in the exact suite it might not contain any useful information.
 |:-:|
 |The Comments tab|
 
-A test containing comments is marked with a blue speech bubble
+A test containing comments is marked with a blue speech bubble:
+
 |![Test with comment](../img/openqa/test-with-comment.png)|
 |:-:|
 |A test containing comments|
