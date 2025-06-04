@@ -110,6 +110,10 @@ _Test Suite_, the details of the selected _Test Suite_ can be accessed.
 |:-:|
 |Image of the circle to press, which is very small and a bit unintuitive, marked with a red rectangle|
 
+When accessing the _Test Suites_ from the _All Tests_ view shown above, you
+can also click on the blue _Test Suite_ name to access the details. On most
+other pages pressing the circle is the only way to do so.
+
 Upon doing so the page of the selected _Test Suite_ run as
 a part of a _Product_ will be shown. It contains a short
 summary of the _Test Suite_ and a tab bar containing
