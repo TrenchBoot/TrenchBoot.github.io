@@ -3,11 +3,11 @@
 ## OpenQA
 
 OpenQA is a tool for performing automated testing of operating systems developed
-by SUSE. It is used by multiple linux distributions like OpenSUSE, Fedora and
+by SUSE. It is used by multiple Linux distributions like OpenSUSE, Fedora and
 QubesOS.
 
 The results of TrenchBoot automated tests can be viewed on
-[the project's openqa instance][openqa-instance].
+[the project's OpenQA instance][openqa-instance].
 
 ## Usage
 
@@ -166,7 +166,7 @@ how the _Test Suite_ depends on
 other suites using a schematic.
 The suites, upon which the _Test Suite_ depends
 must be finished before it can be run. The order of execution follows the
-direction of the arrows
+direction of the arrows.
 
 |![Dependencies tab](../img/openqa/dependencies-tab.png)|
 |:-:|
