@@ -15,7 +15,7 @@ a key that was used to sign RPM packages.
 To add a new repository, create in dom0 as root `/etc/yum.repos.d/aem.repo`
 with the following content:
 
-```text
+```ini
 [aem]
 name = Anti Evil Maid based on TrenchBoot
 baseurl = https://dl.3mdeb.com/rpm/QubesOS/r4.2/current/dom0/fc37
@@ -35,17 +35,12 @@ sudo rpm --import RPM-GPG-KEY-tb-aem
 
 Now it should be possible to download and install packages from AEM repository.
 
-### Installing prerequisite packages
+### Intel systems dependencies
 
-As some of the packages are also available in standard QubesOS repositories,
-potentially in newer versions, those must be temporarily disabled during
-invocation of `qubes-dom0-update`, as shown in the following commands. If any
-of the packages that are part of AEM are updated in standard repos, you will
-have to choose between using new versions or having working AEM, at least until
-new AEM release is published, or the code gets merged upstream. If you decide to
-restore AEM after an update broke it, you will have to repeat the installation
-of overwritten package with `--action=reinstall` added to `qubes-dom0-update`,
-if it wasn’t present before.
+If your device has an Intel CPU, download [official package from Intel](https://cdrdv2.intel.com/v1/dl/getContent/630744)
+and extract ACM appropriate for your platform to `/boot/`.
+
+### Installing prerequisite packages
 
 #### Qubes repository dependencies
 
@@ -62,56 +57,77 @@ sudo qubes-dom0-update --enablerepo=qubes-dom0-current-testing \
     tpm-tools
 ```
 
-#### AEM repository dependencies
+#### Prepare a list of AEM packages
 
-Next set of new packages comes from AEM repository, to avoid conflicts other
-repositories are disabled for this call:
+For convenience, the packages can be saved to an environment variable:
 
-```bash
-sudo qubes-dom0-update --disablerepo="*" --enablerepo=aem \
-    grub2-tools-extra
+```shell
+packages=(
+    "anti-evil-maid-4.2.1-1.fc37.x86_64"
+    "grub2-common-2.13-1.fc37.noarch"
+    "grub2-tools-2.13-1.fc37.x86_64"
+    "grub2-tools-extra-2.13-1.fc37.x86_64"
+    "grub2-tools-minimal-2.13-1.fc37.x86_64"
+    "python3-xen-4.17.5-7.fc37.x86_64"
+    "xen-4.17.5-7.fc37.x86_64"
+    "xen-hypervisor-4.17.5-7.fc37.x86_64"
+    "xen-libs-4.17.5-7.fc37.x86_64"
+    "xen-licenses-4.17.5-7.fc37.x86_64"
+    "xen-runtime-4.17.5-7.fc37.x86_64"
+)
 ```
-
-##### AMD systems dependencies
-
-This package is only needed on AMD systems:
-
-```bash
-sudo qubes-dom0-update --disablerepo="*" --enablerepo=aem \
-    secure-kernel-loader
-```
-
-#### AEM repository dependencies to reinstall
-
-This is followed by reinstalling additional packages. A reinstallation is required
-because currently installed version is equal (or it may be higher in the future)
-than those provided by AEM. A couple of GRUB packages differ slightly
-depending on whether you use a legacy or UEFI BIOS:
 
 ##### Legacy Systems
 
-If your system has a legacy BIOS, reinstall these packages:
+If your system has a legacy BIOS, run:
 
-```bash
-sudo qubes-dom0-update --disablerepo="*" --enablerepo=aem --action=reinstall \
-    python3-xen \
-    xen \
-    xen-hypervisor \
-    xen-libs \
-    xen-licenses \
-    xen-runtime \
-    grub2-common \
-    grub2-pc \
-    grub2-pc-modules \
-    grub2-tools \
-    grub2-tools-minimal
+```shell
+packages+=(
+    "grub2-pc-2.13-1.fc37.x86_64"
+    "grub2-pc-modules-2.13-1.fc37.noarch"
+)
 ```
 
-###### Updating GRUB on legacy systems
+##### UEFI Systems
+
+If your system has a UEFI BIOS, run:
+
+```shell
+packages+=(
+    "grub2-efi-x64-2.13-1.fc37.x86_64"
+    "grub2-efi-x64-modules-2.13-1.fc37.noarch"
+)
+```
+
+##### AMD systems
+
+If your systems has an AMD CPU, run:
+
+```shell
+packages+=(
+    "secure-kernel-loader-0+224af56470eff64f2cc1f74c1e1099d3f170636f-1.fc37.x86_64"
+)
+```
+
+#### Installing
+
+Install the packages (first command reinstalls existing packages in case the
+same version numbers exist on official Qubes repositories, second one only
+adds new packages):
+
+```shell
+qubes-dom0-update --disablerepo="*" --enablerepo=aem --action=reinstall -y ${packages[@]}
+qubes-dom0-update --disablerepo="*" --enablerepo=aem --action=install -y ${packages[@]}
+```
+
+#### Updating GRUB on legacy systems
 
 Booting on legacy systems requires manual installation of GRUB2 to the MBR
-of disk where Qubes OS is stored. If you are sure where the root partition
-is located, you can skip the following steps explaining how to find it out.
+of disk where Qubes OS is stored. If your systems has a Legacy BIOS, follow
+these instructions.
+
+If you are sure where the root partition is located, you can skip the
+following steps explaining how to find it out.
 
 To check on which drive is your OS installed, run:
 
@@ -167,31 +183,13 @@ skipped on UEFI systems.
 sudo grub2-install /dev/sda
 ```
 
-##### UEFI Systems
-
-If your system has an UEFI BIOS, install these packages instead:
-
-```bash
-sudo qubes-dom0-update --disablerepo="*" --enablerepo=aem --action=reinstall \
-    python3-xen \
-    xen \
-    xen-hypervisor \
-    xen-libs \
-    xen-licenses \
-    xen-runtime \
-    grub2-common \
-    grub2-efi-x64 \
-    grub2-efi-x64-modules \
-    grub2-tools \
-    grub2-tools-minimal
-```
-
 ### Installing main AEM package
 
 Finally, `anti-evil-maid` package may be installed:
 
 ```bash
-sudo qubes-dom0-update --disablerepo="*" --enablerepo=aem anti-evil-maid
+sudo qubes-dom0-update --disablerepo="*" --enablerepo=aem \
+    anti-evil-maid-4.2.1-1.fc37.x86_64
 ```
 
 ## Provisioning
@@ -214,8 +212,7 @@ clear the TPM, you will be shown a message like this:
 
 ![](../img/qubes_aem_setup_fail.png)
 
-In that case, try clearing the TPM and run `sudo anti-evil-maid-tpm-setup`
-again.
+In that case, try clearing the TPM in your BIOS and run the command again.
 
 Now all that's left is proper installation of AEM. There are different options,
 refer to `anti-evil-maid-install -h` for examples. In the simplest case, AEM is
@@ -235,7 +232,7 @@ sudo anti-evil-maid-install /dev/sda1
 
 ![](../img/qubes_aem_install.png)
 
-After that, reboot the platform. On first boot you will be asked for SRK
+After that, reboot the platform. On first boot you will be asked for the SRK
 password, followed by another question for disk encryption password, after which
 a screen mentioning absent secret file will be shown:
 
@@ -243,3 +240,5 @@ a screen mentioning absent secret file will be shown:
 
 This is expected on the first boot after installation or an update to one or
 more of measured components (GRUB, Xen, dom0 kernel and initramfs).
+After rebooting for the second time, the Anti Evil Maid should be up
+and running.
