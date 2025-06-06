@@ -1,0 +1,2317 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="TrenchBoot Developers">
+      
+      
+        <link rel="canonical" href="https://trenchboot.org/user-docs/install_aem/">
+      
+      
+        <link rel="prev" href="../QUICKSTART/">
+      
+      
+        <link rel="next" href="../build_grub/">
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.32">
+    
+    
+      
+        <title>Installing TrenchBoot AEM in Qubes OS - TrenchBoot</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.3cba04c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Source Sans Pro";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/style.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#installing-trenchboot-aem-in-qubes-os" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="TrenchBoot" class="md-header__button md-logo" aria-label="TrenchBoot" data-md-component="logo">
+      
+  <img src="../../img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TrenchBoot
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Installing TrenchBoot AEM in Qubes OS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/TrenchBoot/trenchboot-issues" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TrenchBoot Issues
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../events/" class="md-tabs__link">
+          
+  
+    
+  
+  Events and publications
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../specifications/" class="md-tabs__link">
+          
+  
+    
+  
+  Specifications
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+    
+  
+  Documentation
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../steering-committee/" class="md-tabs__link">
+          
+  
+    
+  
+  Steering Committee
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../FAQ/" class="md-tabs__link">
+        
+  
+    
+  
+  TrenchBoot FAQ
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../community/" class="md-tabs__link">
+        
+  
+    
+  
+  Community
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="TrenchBoot" class="md-nav__button md-logo" aria-label="TrenchBoot" data-md-component="logo">
+      
+  <img src="../../img/logo.svg" alt="logo">
+
+    </a>
+    TrenchBoot
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/TrenchBoot/trenchboot-issues" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TrenchBoot Issues
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Events and publications
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Events and publications
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../events/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Conferences
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upcoming_events/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upcoming Events
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../publications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Publications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../specifications/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Specifications
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Specifications
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../specifications/Secure_Launch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Secure Launch Specification
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Documentation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Documentation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Getting started
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Getting started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requirements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TrenchBoot hardware requirements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../QUICKSTART/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux Quick Start Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Installing TrenchBoot AEM in Qubes OS
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Installing TrenchBoot AEM in Qubes OS
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-aem-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding AEM repository
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intel-systems-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intel systems dependencies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-prerequisite-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installing prerequisite packages
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing prerequisite packages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#qubes-repository-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qubes repository dependencies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prepare-a-list-of-aem-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prepare a list of AEM packages
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prepare a list of AEM packages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#legacy-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Legacy Systems
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uefi-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      UEFI Systems
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amd-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      AMD systems
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updating-grub-on-legacy-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Updating GRUB on legacy systems
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-main-aem-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installing main AEM package
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#provisioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Provisioning
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../build_grub/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Building and installing GRUB
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../build_linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Building and installing Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../test_matrix/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hardware test matrix
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openqa/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TrenchBoot OpenQA user guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../dev-docs/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    For developers
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            For developers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev-docs/CONTRIBUTING/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contributing to TrenchBoot
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev-docs/code/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Code Repositories
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev-docs/Late_Launch_Overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction to Late Launch
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev-docs/DevelopersGuide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Developers Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../theory/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Theory
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Theory
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../theory/UseCases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TrenchBoot Use Cases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../theory/Architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    General Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../theory/Glossary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Glossary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../blueprints/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Blueprints
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            Blueprints
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blueprints/SLRT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Secure Launch Resource Table
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blueprints/TXT_Grub_Late_Launch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TXT Grub Late Launcher
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blueprints/AMD_Grub_Late_Launch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AMD Grub Late Launcher
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blueprints/AMD_Secure_Kernel_Loader/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AMD Secure Kernel Loader
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blueprints/Linux_Late_Launch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux Late Launch Kernel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blueprints/Xen_Late_Launch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Xen Late Launch Hypervisor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blueprints/Measured_Secure_Boot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Measured Secure Boot
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blueprints/AMD_coreboot_DRTM_payload/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PoC: coreboot with payload started through DRTM (AMD)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../references/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    References
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            References
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/AMD64-Architecture-Programmers-Manual_Volume-2_Ch15.27_rev3.29.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AMD64 Architecture Programmers Manual Volume 2 Ch15.27
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/intel-txt-preliminary-architecture.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Intel TXT Preliminary Architecture Specification
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/intel-txt-software-development-guide.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Intel TXT Software Development Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../steering-committee/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Steering Committee
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Steering Committee
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../steering-committee/Community-Meeting-June17-2021/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Community Meeting June 17 2021
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FAQ/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TrenchBoot FAQ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../community/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Community
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-aem-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding AEM repository
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intel-systems-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intel systems dependencies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-prerequisite-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installing prerequisite packages
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing prerequisite packages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#qubes-repository-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qubes repository dependencies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prepare-a-list-of-aem-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prepare a list of AEM packages
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prepare a list of AEM packages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#legacy-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Legacy Systems
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uefi-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      UEFI Systems
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amd-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      AMD systems
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updating-grub-on-legacy-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Updating GRUB on legacy systems
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-main-aem-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installing main AEM package
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#provisioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Provisioning
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="installing-trenchboot-aem-in-qubes-os">Installing TrenchBoot AEM in Qubes OS<a class="headerlink" href="#installing-trenchboot-aem-in-qubes-os" title="Permanent link">&para;</a></h1>
+<p>This document shows how to install Anti Evil Maid from packages produced by
+3mdeb as part of <a href="https://docs.dasharo.com/projects/trenchboot-aem-v2/">TrenchBoot as Anti Evil Maid project</a>.
+If you wish to build the components yourself, please refer to documentation for
+developers instead.</p>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
+<p>To install, you have to first add a new repository and import a public part of
+a key that was used to sign RPM packages.</p>
+<h3 id="adding-aem-repository">Adding AEM repository<a class="headerlink" href="#adding-aem-repository" title="Permanent link">&para;</a></h3>
+<p>To add a new repository, create in dom0 as root <code>/etc/yum.repos.d/aem.repo</code>
+with the following content:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[aem]</span>
+<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">Anti Evil Maid based on TrenchBoot</span>
+<span class="na">baseurl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">https://dl.3mdeb.com/rpm/QubesOS/r4.2/current/dom0/fc37</span>
+<span class="na">gpgcheck</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span>
+<span class="na">gpgkey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">https://dl.3mdeb.com/rpm/QubesOS/r4.2/current/dom0/fc37/RPM-GPG-KEY-tb-aem</span>
+<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span>
+</code></pre></div>
+<p>The key specified in the file must be downloaded and imported to RPM:</p>
+<div class="highlight"><pre><span></span><code>qvm-run<span class="w"> </span>--pass-io<span class="w"> </span>sys-net<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="s1">&#39;curl -L https://dl.3mdeb.com/rpm/QubesOS/r4.2/current/dom0/fc37/RPM-GPG-KEY-tb-aem&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>&gt;<span class="w"> </span>RPM-GPG-KEY-tb-aem
+sudo<span class="w"> </span>rpm<span class="w"> </span>--import<span class="w"> </span>RPM-GPG-KEY-tb-aem
+</code></pre></div>
+<p>Now it should be possible to download and install packages from AEM repository.</p>
+<h3 id="intel-systems-dependencies">Intel systems dependencies<a class="headerlink" href="#intel-systems-dependencies" title="Permanent link">&para;</a></h3>
+<p>If your device has an Intel CPU, download <a href="https://cdrdv2.intel.com/v1/dl/getContent/630744">official package from Intel</a>
+and extract ACM appropriate for your platform to <code>/boot/</code>.</p>
+<h3 id="installing-prerequisite-packages">Installing prerequisite packages<a class="headerlink" href="#installing-prerequisite-packages" title="Permanent link">&para;</a></h3>
+<h4 id="qubes-repository-dependencies">Qubes repository dependencies<a class="headerlink" href="#qubes-repository-dependencies" title="Permanent link">&para;</a></h4>
+<p>Start by installing prerequisite packages. Those are not part of newly added
+repository, but <code>qubes-dom0-current-testing</code>:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>qubes-dom0-update<span class="w"> </span>--enablerepo<span class="o">=</span>qubes-dom0-current-testing<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>oathtool<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>openssl<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>qrencode<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>tpm-extra<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>trousers-changer<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>tpm-tools
+</code></pre></div>
+<h4 id="prepare-a-list-of-aem-packages">Prepare a list of AEM packages<a class="headerlink" href="#prepare-a-list-of-aem-packages" title="Permanent link">&para;</a></h4>
+<p>For convenience, the packages can be saved to an environment variable:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">packages</span><span class="o">=(</span>
+<span class="w">    </span><span class="s2">&quot;anti-evil-maid-4.2.1-1.fc37.x86_64&quot;</span>
+<span class="w">    </span><span class="s2">&quot;grub2-common-2.13-1.fc37.noarch&quot;</span>
+<span class="w">    </span><span class="s2">&quot;grub2-tools-2.13-1.fc37.x86_64&quot;</span>
+<span class="w">    </span><span class="s2">&quot;grub2-tools-extra-2.13-1.fc37.x86_64&quot;</span>
+<span class="w">    </span><span class="s2">&quot;grub2-tools-minimal-2.13-1.fc37.x86_64&quot;</span>
+<span class="w">    </span><span class="s2">&quot;python3-xen-4.17.5-7.fc37.x86_64&quot;</span>
+<span class="w">    </span><span class="s2">&quot;xen-4.17.5-7.fc37.x86_64&quot;</span>
+<span class="w">    </span><span class="s2">&quot;xen-hypervisor-4.17.5-7.fc37.x86_64&quot;</span>
+<span class="w">    </span><span class="s2">&quot;xen-libs-4.17.5-7.fc37.x86_64&quot;</span>
+<span class="w">    </span><span class="s2">&quot;xen-licenses-4.17.5-7.fc37.x86_64&quot;</span>
+<span class="w">    </span><span class="s2">&quot;xen-runtime-4.17.5-7.fc37.x86_64&quot;</span>
+<span class="o">)</span>
+</code></pre></div>
+<h5 id="legacy-systems">Legacy Systems<a class="headerlink" href="#legacy-systems" title="Permanent link">&para;</a></h5>
+<p>If your system has a legacy BIOS, run:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">packages</span><span class="o">+=(</span>
+<span class="w">    </span><span class="s2">&quot;grub2-pc-2.13-1.fc37.x86_64&quot;</span>
+<span class="w">    </span><span class="s2">&quot;grub2-pc-modules-2.13-1.fc37.noarch&quot;</span>
+<span class="o">)</span>
+</code></pre></div>
+<h5 id="uefi-systems">UEFI Systems<a class="headerlink" href="#uefi-systems" title="Permanent link">&para;</a></h5>
+<p>If your system has a UEFI BIOS, run:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">packages</span><span class="o">+=(</span>
+<span class="w">    </span><span class="s2">&quot;grub2-efi-x64-2.13-1.fc37.x86_64&quot;</span>
+<span class="w">    </span><span class="s2">&quot;grub2-efi-x64-modules-2.13-1.fc37.noarch&quot;</span>
+<span class="o">)</span>
+</code></pre></div>
+<h5 id="amd-systems">AMD systems<a class="headerlink" href="#amd-systems" title="Permanent link">&para;</a></h5>
+<p>If your systems has an AMD CPU, run:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">packages</span><span class="o">+=(</span>
+<span class="w">    </span><span class="s2">&quot;secure-kernel-loader-0+224af56470eff64f2cc1f74c1e1099d3f170636f-1.fc37.x86_64&quot;</span>
+<span class="o">)</span>
+</code></pre></div>
+<h4 id="installing">Installing<a class="headerlink" href="#installing" title="Permanent link">&para;</a></h4>
+<p>Install the packages (first command reinstalls existing packages in case the
+same version numbers exist on official Qubes repositories, second one only
+adds new packages):</p>
+<div class="highlight"><pre><span></span><code>qubes-dom0-update<span class="w"> </span>--disablerepo<span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="w"> </span>--enablerepo<span class="o">=</span>aem<span class="w"> </span>--action<span class="o">=</span>reinstall<span class="w"> </span>-y<span class="w"> </span><span class="si">${</span><span class="nv">packages</span><span class="p">[@]</span><span class="si">}</span>
+qubes-dom0-update<span class="w"> </span>--disablerepo<span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="w"> </span>--enablerepo<span class="o">=</span>aem<span class="w"> </span>--action<span class="o">=</span>install<span class="w"> </span>-y<span class="w"> </span><span class="si">${</span><span class="nv">packages</span><span class="p">[@]</span><span class="si">}</span>
+</code></pre></div>
+<h4 id="updating-grub-on-legacy-systems">Updating GRUB on legacy systems<a class="headerlink" href="#updating-grub-on-legacy-systems" title="Permanent link">&para;</a></h4>
+<p>Booting on legacy systems requires manual installation of GRUB2 to the MBR
+of disk where Qubes OS is stored. If your systems has a Legacy BIOS, follow
+these instructions.</p>
+<p>If you are sure where the root partition is located, you can skip the
+following steps explaining how to find it out.</p>
+<p>To check on which drive is your OS installed, run:</p>
+<ol>
+<li>
+<p>Get the Logical Volume (LV) file:</p>
+<div class="highlight"><pre><span></span><code>df<span class="w"> </span>--output<span class="o">=</span><span class="nb">source</span><span class="w"> </span>/
+</code></pre></div>
+<p>Example LV file: <code>/dev/mapper/qubes_dom0-root</code></p>
+</li>
+<li>
+<p>Map the Logical Volume (LV) to a Volume Group (VG):</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>lvs<span class="w"> </span>/dev/mapper/qubes_dom0-root<span class="w"> </span>--noheadings<span class="w"> </span>-o<span class="w"> </span>vg_name
+</code></pre></div>
+<p>Example VG name: <code>qubes_dom0</code></p>
+</li>
+<li>
+<p>Map the Volume Group to a Physical Volume (PV):</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>vgs<span class="w"> </span>--noheadings<span class="w"> </span>-o<span class="w"> </span>pv_name<span class="w"> </span>qubes_dom0
+</code></pre></div>
+<p>Example PV file: <code>/dev/mapper/luks-12345678-1234-1234-1234-123456789abc</code> (GUID)</p>
+</li>
+<li>
+<p>Find the PV name in <code>lsblk</code> output and check on which device it is
+located.</p>
+<div class="highlight"><pre><span></span><code>lsblk<span class="w"> </span>-o<span class="w"> </span>NAME
+</code></pre></div>
+<p>Example output:</p>
+<div class="highlight"><pre><span></span><code>sda
+├─sda1
+├─sda2
+└─sda3
+  └─luks-12345678-1234-1234-1234-123456789abc
+</code></pre></div>
+<p>The drive on which the root partition is located in this example is
+therefore <code>/dev/sda</code>.</p>
+</li>
+</ol>
+<p>Remember that GRUB2 must be installed on disk and
+not on partition, so don’t use <code>sda1</code>, <code>nvme0n1p1</code> etc. This step should be
+skipped on UEFI systems.</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>grub2-install<span class="w"> </span>/dev/sda
+</code></pre></div>
+<h3 id="installing-main-aem-package">Installing main AEM package<a class="headerlink" href="#installing-main-aem-package" title="Permanent link">&para;</a></h3>
+<p>Finally, <code>anti-evil-maid</code> package may be installed:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>qubes-dom0-update<span class="w"> </span>--disablerepo<span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="w"> </span>--enablerepo<span class="o">=</span>aem<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>anti-evil-maid-4.2.1-1.fc37.x86_64
+</code></pre></div>
+<h2 id="provisioning">Provisioning<a class="headerlink" href="#provisioning" title="Permanent link">&para;</a></h2>
+<p>All packages are in place. Before we can proceed with provisioning AEM, the TPM
+must be cleared in the BIOS. Some platforms may require disabling Intel Trusted
+Execution Technology (TXT) in order to clear TPM. After you clear the TPM,
+remember to enable Intel TXT back, otherwise AEM will not work. Once TPM is
+cleared, perform the TPM setup:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>anti-evil-maid-tpm-setup
+</code></pre></div>
+<p><img alt="" src="../../img/qubes_aem_setup.png" /></p>
+<p>You will be prompted to set the SRK password, it is a password to access TPM’s
+nonvolatile storage where the AEM secrets will be sealed. If you failed to
+clear the TPM, you will be shown a message like this:</p>
+<p><img alt="" src="../../img/qubes_aem_setup_fail.png" /></p>
+<p>In that case, try clearing the TPM in your BIOS and run the command again.</p>
+<p>Now all that's left is proper installation of AEM. There are different options,
+refer to <code>anti-evil-maid-install -h</code> for examples. In the simplest case, AEM is
+installed on boot partition (not disk, i.e. <code>sda1</code> instead of <code>sda</code> etc.) of
+Qubes OS. Run this command to find out where your boot partition is installed:</p>
+<div class="highlight"><pre><span></span><code>df<span class="w"> </span>--output<span class="o">=</span><span class="nb">source</span><span class="w"> </span>/boot
+</code></pre></div>
+<p>Assuming that your boot partition is installed on <code>/dev/sda1</code>, the
+installation can be done with a simple command:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>anti-evil-maid-install<span class="w"> </span>/dev/sda1
+</code></pre></div>
+<p><img alt="" src="../../img/qubes_aem_install.png" /></p>
+<p>After that, reboot the platform. On first boot you will be asked for the SRK
+password, followed by another question for disk encryption password, after which
+a screen mentioning absent secret file will be shown:</p>
+<p><img alt="" src="../../img/qubes_aem_1st_boot.png" /></p>
+<p>This is expected on the first boot after installation or an update to one or
+more of measured components (GRUB, Xen, dom0 kernel and initramfs).
+After rebooting for the second time, the Anti Evil Maid should be up
+and running.</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 6, 2025</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2018 - 2024 TrenchBoot Developers
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/TrenchBoot" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://trenchboot.org" target="_blank" rel="noopener" title="trenchboot.org" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8h5Z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "header.autohide"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.471ce7a9.min.js"></script>
+      
+    
+  </body>
+</html>

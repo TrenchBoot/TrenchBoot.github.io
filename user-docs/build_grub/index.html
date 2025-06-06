@@ -1,0 +1,2221 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="TrenchBoot Developers">
+      
+      
+        <link rel="canonical" href="https://trenchboot.org/user-docs/build_grub/">
+      
+      
+        <link rel="prev" href="../install_aem/">
+      
+      
+        <link rel="next" href="../build_linux/">
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.32">
+    
+    
+      
+        <title>Building and installing GRUB - TrenchBoot</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.3cba04c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Source Sans Pro";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/style.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#building-and-installing-grub" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="TrenchBoot" class="md-header__button md-logo" aria-label="TrenchBoot" data-md-component="logo">
+      
+  <img src="../../img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TrenchBoot
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Building and installing GRUB
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/TrenchBoot/trenchboot-issues" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TrenchBoot Issues
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../events/" class="md-tabs__link">
+          
+  
+    
+  
+  Events and publications
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../specifications/" class="md-tabs__link">
+          
+  
+    
+  
+  Specifications
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+    
+  
+  Documentation
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../steering-committee/" class="md-tabs__link">
+          
+  
+    
+  
+  Steering Committee
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../FAQ/" class="md-tabs__link">
+        
+  
+    
+  
+  TrenchBoot FAQ
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../community/" class="md-tabs__link">
+        
+  
+    
+  
+  Community
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="TrenchBoot" class="md-nav__button md-logo" aria-label="TrenchBoot" data-md-component="logo">
+      
+  <img src="../../img/logo.svg" alt="logo">
+
+    </a>
+    TrenchBoot
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/TrenchBoot/trenchboot-issues" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TrenchBoot Issues
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Events and publications
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Events and publications
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../events/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Conferences
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upcoming_events/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upcoming Events
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../publications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Publications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../specifications/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Specifications
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Specifications
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../specifications/Secure_Launch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Secure Launch Specification
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Documentation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Documentation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Getting started
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Getting started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requirements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TrenchBoot hardware requirements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../QUICKSTART/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux Quick Start Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install_aem/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installing TrenchBoot AEM in Qubes OS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Building and installing GRUB
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Building and installing GRUB
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#efi-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      EFI version
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EFI version">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#legacy-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      Legacy version
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Legacy version">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validation
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../build_linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Building and installing Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../test_matrix/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hardware test matrix
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openqa/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TrenchBoot OpenQA user guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../dev-docs/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    For developers
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            For developers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev-docs/CONTRIBUTING/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contributing to TrenchBoot
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev-docs/code/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Code Repositories
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev-docs/Late_Launch_Overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction to Late Launch
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev-docs/DevelopersGuide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Developers Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../theory/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Theory
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Theory
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../theory/UseCases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TrenchBoot Use Cases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../theory/Architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    General Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../theory/Glossary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Glossary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../blueprints/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Blueprints
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            Blueprints
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blueprints/SLRT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Secure Launch Resource Table
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blueprints/TXT_Grub_Late_Launch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TXT Grub Late Launcher
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blueprints/AMD_Grub_Late_Launch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AMD Grub Late Launcher
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blueprints/AMD_Secure_Kernel_Loader/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AMD Secure Kernel Loader
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blueprints/Linux_Late_Launch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux Late Launch Kernel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blueprints/Xen_Late_Launch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Xen Late Launch Hypervisor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blueprints/Measured_Secure_Boot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Measured Secure Boot
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blueprints/AMD_coreboot_DRTM_payload/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PoC: coreboot with payload started through DRTM (AMD)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../references/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    References
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            References
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/AMD64-Architecture-Programmers-Manual_Volume-2_Ch15.27_rev3.29.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AMD64 Architecture Programmers Manual Volume 2 Ch15.27
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/intel-txt-preliminary-architecture.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Intel TXT Preliminary Architecture Specification
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/intel-txt-software-development-guide.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Intel TXT Software Development Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../steering-committee/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Steering Committee
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Steering Committee
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../steering-committee/Community-Meeting-June17-2021/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Community Meeting June 17 2021
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FAQ/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TrenchBoot FAQ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../community/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Community
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#efi-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      EFI version
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EFI version">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#legacy-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      Legacy version
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Legacy version">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validation
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="building-and-installing-grub">Building and installing GRUB<a class="headerlink" href="#building-and-installing-grub" title="Permanent link">&para;</a></h1>
+<p>At the time of writing (August 2024) EFI and legacy changes are on different
+branches in the same repository and neither builds on top of the other in
+terms of commit history.  Either clone the repository in full and switch
+between branches to build both versions or use shallow clones as shown below.</p>
+<p>If your system isn't setup for development, you might want to use
+<a href="https://github.com/TrenchBoot/trenchboot-sdk">trenchboot-sdk</a> Docker container.  It can be run like this to perform a build:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">:</span><span class="nv">$PWD</span><span class="s2">&quot;</span><span class="w"> </span>-w<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">           </span>-e<span class="w"> </span><span class="nv">HOME</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">/home&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">           </span>--user<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>id<span class="w"> </span>-u<span class="k">)</span><span class="s2">:</span><span class="k">$(</span>id<span class="w"> </span>-g<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">           </span>ghcr.io/trenchboot/trenchboot-sdk:master<span class="w"> </span>/bin/bash
+</code></pre></div>
+<p>Setting <code>$HOME</code> is necessary because GRUB will try to use <code>ccache</code> which fails
+if there is no <code>$HOME</code>.</p>
+<h2 id="efi-version">EFI version<a class="headerlink" href="#efi-version" title="Permanent link">&para;</a></h2>
+<h3 id="build">Build<a class="headerlink" href="#build" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># check out the sources</span>
+git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span>grub-sl-2.12-v9<span class="w"> </span>--depth<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">          </span>https://github.com/TrenchBoot/grub.git
+<span class="nb">cd</span><span class="w"> </span>grub
+
+<span class="c1"># make the checkout buildable</span>
+./bootstrap
+
+<span class="c1"># configure</span>
+mkdir<span class="w"> </span>build
+<span class="nb">cd</span><span class="w"> </span>build
+../configure<span class="w"> </span>--with-platform<span class="o">=</span>efi<span class="w"> </span>--target<span class="o">=</span>x86_64
+
+<span class="c1"># build</span>
+make<span class="w"> </span>-j<span class="k">$(</span>nproc<span class="k">)</span>
+</code></pre></div>
+<h3 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># also from inside build/ directory</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;configfile ${cmdpath}/grub.cfg&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>embedded.cfg
+./grub-mkimage<span class="w"> </span>-O<span class="w"> </span>x86_64-efi<span class="w"> </span>-o<span class="w"> </span>grubx64.efi<span class="w"> </span>-p<span class="w"> </span>/<span class="w"> </span>-c<span class="w"> </span>embedded.cfg<span class="w"> </span>-d<span class="w"> </span>grub-core<span class="w"> </span><span class="se">\</span>
+<span class="w">               </span>all_video<span class="w"> </span>boot<span class="w"> </span>btrfs<span class="w"> </span>cat<span class="w"> </span>chain<span class="w"> </span>configfile<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>efifwsetup<span class="w"> </span><span class="se">\</span>
+<span class="w">               </span>efinet<span class="w"> </span>ext2<span class="w"> </span>fat<span class="w"> </span>font<span class="w"> </span>gfxmenu<span class="w"> </span>gfxterm<span class="w"> </span>gzio<span class="w"> </span>halt<span class="w"> </span>hfsplus<span class="w"> </span>iso9660<span class="w"> </span><span class="se">\</span>
+<span class="w">               </span>jpeg<span class="w"> </span>loadenv<span class="w"> </span>loopback<span class="w"> </span>lvm<span class="w"> </span>mdraid09<span class="w"> </span>mdraid1x<span class="w"> </span>minicmd<span class="w"> </span>normal<span class="w"> </span><span class="se">\</span>
+<span class="w">               </span>part_apple<span class="w"> </span>part_msdos<span class="w"> </span>part_gpt<span class="w"> </span>password_pbkdf2<span class="w"> </span>png<span class="w"> </span>reboot<span class="w"> </span><span class="se">\</span>
+<span class="w">               </span>regexp<span class="w"> </span>search<span class="w"> </span>search_fs_uuid<span class="w"> </span>search_fs_file<span class="w"> </span>search_label<span class="w"> </span>serial<span class="w"> </span><span class="se">\</span>
+<span class="w">               </span>sleep<span class="w"> </span>syslinuxcfg<span class="w"> </span><span class="nb">test</span><span class="w"> </span>tftp<span class="w"> </span>video<span class="w"> </span>xfs<span class="w"> </span>backtrace<span class="w"> </span>http<span class="w"> </span>linux<span class="w"> </span>usb<span class="w"> </span><span class="se">\</span>
+<span class="w">               </span>usbserial_common<span class="w"> </span>usbserial_pl2303<span class="w"> </span>usbserial_ftdi<span class="w"> </span><span class="se">\</span>
+<span class="w">               </span>usbserial_usbdebug<span class="w"> </span>keylayouts<span class="w"> </span>at_keyboard<span class="w"> </span>multiboot2
+</code></pre></div>
+<p>The first command creates an embedded config which sources grub.cfg in the
+directory in which GRUB image is located.</p>
+<p>The second command produces the UEFI GRUB image named <code>grubx64.efi</code>.  The image
+along with a suitable <code>grub.cfg</code> needs to be installed on a EFI System
+Partition (ESP) and pointed at so firmware can find it (via Setup UI or a tool
+like <code>efibootmgr</code>).  It can also be started manually from a UEFI shell for a
+test.</p>
+<h2 id="legacy-version">Legacy version<a class="headerlink" href="#legacy-version" title="Permanent link">&para;</a></h2>
+<h3 id="build_1">Build<a class="headerlink" href="#build_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># check out the sources</span>
+git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span>tb-2.12-57-v1<span class="w"> </span>--depth<span class="w"> </span><span class="m">1</span><span class="w"> </span>https://github.com/TrenchBoot/grub.git
+<span class="nb">cd</span><span class="w"> </span>grub
+
+<span class="c1"># make the checkout buildable</span>
+./bootstrap
+
+<span class="c1"># configure</span>
+mkdir<span class="w"> </span>build
+<span class="nb">cd</span><span class="w"> </span>build
+../configure<span class="w"> </span>--prefix<span class="o">=</span><span class="nv">$PWD</span>/local-install<span class="w"> </span>--target<span class="o">=</span>i386
+
+<span class="c1"># build</span>
+make<span class="w"> </span>-j<span class="k">$(</span>nproc<span class="k">)</span>
+</code></pre></div>
+<h3 id="setup_1">Setup<a class="headerlink" href="#setup_1" title="Permanent link">&para;</a></h3>
+<p>Installation for legacy boot from inside of a container requires access to
+device files and mounting of boot directory.  For this reason the container
+needs to be started as <code>root</code> (inside of the container, don't prepend <code>sudo</code> to
+the command) and be a privileged one:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">:</span><span class="nv">$PWD</span><span class="s2">&quot;</span><span class="w"> </span>-w<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">           </span>--user<span class="w"> </span>root:root<span class="w"> </span>--privileged<span class="w"> </span><span class="se">\</span>
+<span class="w">           </span>ghcr.io/trenchboot/trenchboot-sdk:master<span class="w"> </span>/bin/bash
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># if done in a container</span>
+<span class="nb">cd</span><span class="w"> </span>build
+mount<span class="w"> </span>BOOT-PARTITION<span class="w"> </span>PATH-TO-BOOT
+
+<span class="c1"># also from inside build/ directory</span>
+make<span class="w"> </span>install
+local-install/sbin/grub-install<span class="w"> </span>--target<span class="o">=</span>i386-pc<span class="w"> </span><span class="se">\</span>
+<span class="w">                                </span>--boot-directory<span class="w"> </span>PATH-TO-BOOT<span class="w"> </span><span class="se">\</span>
+<span class="w">                                </span>DISK-DEVICE
+</code></pre></div>
+<p>In the second command above replace:</p>
+<ul>
+<li><code>BOOT-PARTITION</code> with the <code>/dev/...</code> file corresponding to the boot partition</li>
+<li><code>PATH-TO-BOOT</code> with the path to where the boot partition is mounted (<code>grub/</code>
+  directory will be created there)</li>
+<li><code>DISK-DEVICE</code> with the <code>/dev/...</code> file corresponding to the drive (not a
+  partition) on which GRUB is to be installed (double check before running the
+  command to avoid accidentally overwriting some working GRUB setup)</li>
+</ul>
+<p>If you get a weird error like <code>error: disk `hostdisk//dev/sda1' not found.</code>,
+it means that GRUB doesn't have write permissions for device files.</p>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<p>There is a new GRUB command, which instructs GRUB to initiate a Secure Launch
+when booting an OS, called <code>slaunch</code>.  This is an example of a GRUB menuentry
+that would be used to do a Secure Launch of the Linux kernel:</p>
+<div class="highlight"><pre><span></span><code>menuentry &#39;Linux with Secure Launch 6.8.0-rc3-master-v8&#39; --unrestricted {
+        load_video
+        insmod gzio
+        insmod part_gpt
+        insmod xfs
+        search --no-floppy --fs-uuid --set=root bba24662-776e-4396-9b1e-9ee5606d79b8
+        slaunch
+        slaunch_module /dce-for-a-given-platform
+        linux /vmlinuz-6.8.0-rc3-master-v8 root=/dev/mapper/root ro crashkernel=auto resume=/dev/mapper/swap rd.lvm.lv=my/root rd.lvm.lv=my/swap rhgb console=ttyS0,115200n8 console=tty0 LANG=en_US.UTF-8
+        initrd /initrd-6.8.0-rc3-master-v8.img
+}
+</code></pre></div>
+<p>Note also the optional <code>slaunch_module</code> command which tells GRUB to load an
+external SINIT ACM for this configuration.  In general, server
+platforms contain an existing SINIT ACM in the firmware and this line can be
+omitted.  For client platforms, an external ACM is required to be supplied.  The
+SINIT ACM for a given platform can be acquired <a href="https://www.intel.com/content/www/us/en/developer/articles/tool/intel-trusted-execution-technology.html">from Intel</a>.</p>
+<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
+<p>There are a number of ways to validate that a successful Secure Launch was
+done.  Using serial logging or <code>dmesg</code>, search for the string "TXT" after
+booting:</p>
+<div class="highlight"><pre><span></span><code><span class="o">[</span>root@my-system<span class="w"> </span>~<span class="o">]</span><span class="c1"># dmesg | grep TXT</span>
+<span class="o">[</span><span class="w">    </span><span class="m">0</span>.000094<span class="o">]</span><span class="w"> </span>slaunch:<span class="w"> </span>Intel<span class="w"> </span>TXT<span class="w"> </span>setup<span class="w"> </span><span class="nb">complete</span>
+<span class="o">[</span><span class="w">    </span><span class="m">2</span>.617782<span class="o">]</span><span class="w"> </span>slaunch:<span class="w"> </span>TXT<span class="w"> </span>AP<span class="w"> </span>startup<span class="w"> </span>vector<span class="w"> </span>address<span class="w"> </span>updated
+</code></pre></div>
+<p>That indicates a successful Secure Launch boot.  Another way is to display the
+Secure Launch TPM event log.  This can be done as follows after booting (note
+only the tail end of the log is shown here for brevity, the rest is snippped):</p>
+<div class="highlight"><pre><span></span><code><span class="o">[</span>root@my-system<span class="w"> </span>~<span class="o">]</span><span class="c1"># cat /sys/kernel/security/slaunch/eventlog | hexdump -C</span>
+...
+<span class="o">[</span>snip<span class="o">]</span>
+...
+<span class="m">00000490</span><span class="w">  </span>a3<span class="w"> </span>e2<span class="w"> </span>de<span class="w"> </span>6b<span class="w"> </span>fb<span class="w"> </span>1f<span class="w"> </span><span class="m">79</span><span class="w"> </span>ef<span class="w">  </span>c9<span class="w"> </span>5e<span class="w"> </span>de<span class="w"> </span>bf<span class="w"> </span>ef<span class="w"> </span>bf<span class="w"> </span><span class="m">92</span><span class="w"> </span>fb<span class="w">  </span><span class="p">|</span>...k..y..^......<span class="p">|</span>
+000004a0<span class="w">  </span><span class="nb">fc</span><span class="w"> </span>b2<span class="w"> </span><span class="m">89</span><span class="w"> </span>ea<span class="w"> </span><span class="m">64</span><span class="w"> </span>c1<span class="w"> </span>d7<span class="w"> </span>d2<span class="w">  </span><span class="m">99</span><span class="w"> </span>fb<span class="w"> </span><span class="m">49</span><span class="w"> </span>e6<span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">  </span><span class="p">|</span>....d.....I.....<span class="p">|</span>
+000004b0<span class="w">  </span>4d<span class="w"> </span><span class="m">65</span><span class="w"> </span><span class="m">61</span><span class="w"> </span><span class="m">73</span><span class="w"> </span><span class="m">75</span><span class="w"> </span><span class="m">72</span><span class="w"> </span><span class="m">65</span><span class="w"> </span><span class="m">64</span><span class="w">  </span><span class="m">20</span><span class="w"> </span><span class="m">53</span><span class="w"> </span>4c<span class="w"> </span><span class="m">52</span><span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="m">54</span><span class="w"> </span><span class="m">61</span><span class="w"> </span><span class="m">62</span><span class="w">  </span><span class="p">|</span>Measured<span class="w"> </span>SLR<span class="w"> </span>Tab<span class="p">|</span>
+000004c0<span class="w">  </span>6c<span class="w"> </span><span class="m">65</span><span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">02</span><span class="w"> </span><span class="m">05</span><span class="w">  </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">01</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span>0b<span class="w"> </span><span class="m">00</span><span class="w">  </span><span class="p">|</span>le..............<span class="p">|</span>
+000004d0<span class="w">  </span><span class="nb">cd</span><span class="w"> </span><span class="m">64</span><span class="w"> </span>bf<span class="w"> </span>e1<span class="w"> </span><span class="m">70</span><span class="w"> </span><span class="m">96</span><span class="w"> </span>4c<span class="w"> </span>ce<span class="w">  </span><span class="m">53</span><span class="w"> </span>2f<span class="w"> </span>2f<span class="w"> </span>7a<span class="w"> </span><span class="m">85</span><span class="w"> </span><span class="m">85</span><span class="w"> </span>fe<span class="w"> </span>f0<span class="w">  </span><span class="p">|</span>.d..p.L.S//z....<span class="p">|</span>
+000004e0<span class="w">  </span><span class="m">05</span><span class="w"> </span><span class="m">22</span><span class="w"> </span><span class="m">40</span><span class="w"> </span>f6<span class="w"> </span><span class="m">62</span><span class="w"> </span><span class="m">18</span><span class="w"> </span>bf<span class="w"> </span><span class="m">94</span><span class="w">  </span>2a<span class="w"> </span>2f<span class="w"> </span>3d<span class="w"> </span><span class="m">14</span><span class="w"> </span>b1<span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="m">60</span><span class="w"> </span><span class="m">31</span><span class="w">  </span><span class="p">|</span>.<span class="s2">&quot;@.b...*/=..%`1|</span>
+<span class="s2">000004f0  18 00 00 00 4d 65 61 73  75 72 65 64 20 62 6f 6f  |....Measured boo|</span>
+<span class="s2">00000500  74 20 70 61 72 61 6d 65  74 65 72 73 11 00 00 00  |t parameters....|</span>
+<span class="s2">00000510  02 05 00 00 01 00 00 00  0b 00 18 7d 80 8f 2c ca  |...........}..,.|</span>
+<span class="s2">00000520  03 bf a7 54 ff 1d 16 6d  49 51 25 f6 bc ec 46 dc  |...T...mIQ%...F.|</span>
+<span class="s2">00000530  23 a7 39 a8 db 96 28 8e  d4 1d 16 00 00 00 4d 65  |#.9...(.......Me|</span>
+<span class="s2">00000540  61 73 75 72 65 64 20 4b  65 72 6e 65 6c 20 69 6e  |asured Kernel in|</span>
+<span class="s2">00000550  69 74 72 64 12 00 00 00  02 05 00 00 01 00 00 00  |itrd............|</span>
+<span class="s2">00000560  0b 00 11 02 09 6f c6 1d  78 11 87 1a 93 49 10 2f  |.....o..x....I./|</span>
+<span class="s2">00000570  14 69 dd 45 b8 c3 03 e7  e6 80 6e 21 9b 87 47 90  |.i.E......n!..G.|</span>
+<span class="s2">00000580  d6 27 1c 00 00 00 4d 65  61 73 75 72 65 64 20 4b  |.&#39;....Measured K|</span>
+<span class="s2">00000590  65 72 6e 65 6c 20 63 6f  6d 6d 61 6e 64 20 6c 69  |ernel command li|</span>
+<span class="s2">000005a0  6e 65 12 00 00 00 02 05  00 00 01 00 00 00 0b 00  |ne..............|</span>
+<span class="s2">000005b0  b2 29 3f 3c da 25 4a 78  61 be 76 91 3e 06 f9 5d  |.)?&lt;.%Jxa.v.&gt;..]|</span>
+<span class="s2">000005c0  7d 6b 0d 75 6b 30 74 0c  26 b2 76 96 1e 60 19 a5  |}k.uk0t.&amp;.v..`..|</span>
+<span class="s2">000005d0  18 00 00 00 4d 65 61 73  75 72 65 64 20 55 45 46  |....Measured UEF|</span>
+<span class="s2">000005e0  49 20 6d 65 6d 6f 72 79  20 6d 61 70 11 00 00 00  |I memory map....|</span>
+<span class="s2">000005f0  04 05 00 00 01 00 00 00  0b 00 00 00 00 00 00 00  |................|</span>
+<span class="s2">00000600  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|</span>
+<span class="s2">*</span>
+<span class="s2">00008000</span>
+</code></pre></div>
+<p>The final measurements starting with the description "Measured..." are put in
+the log by the Secure Launch kernel code if everything went fine.  During a
+poweroff, restart or a kexec of another kernel, the following log lines will
+indicate that TXT was properly disabled and SMX mode was left:</p>
+<div class="highlight"><pre><span></span><code>[  696.907094] slaunch: TXT clear secrets bit and unlock memory complete.
+[  696.914827] slaunch: TXT SEXIT complete.
+</code></pre></div>
+<p>If <code>tpm2_eventlog</code> is installed, it can be used parse the log into a readable
+form:</p>
+<div class="highlight"><pre><span></span><code><span class="o">[</span>root@my-system<span class="w"> </span>~<span class="o">]</span><span class="c1"># tpm2_eventlog /sys/kernel/security/slaunch/eventlog</span>
+...
+</code></pre></div>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 6, 2025</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2018 - 2024 TrenchBoot Developers
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/TrenchBoot" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://trenchboot.org" target="_blank" rel="noopener" title="trenchboot.org" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8h5Z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "header.autohide"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.471ce7a9.min.js"></script>
+      
+    
+  </body>
+</html>
