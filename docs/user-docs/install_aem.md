@@ -127,27 +127,16 @@ if the version number in the repository is higher than the currently installed
 one. `reinstall` won't work because the versions don't match and `install` won't
 work because the package is already installed.
 
-Make sure that all of the packages listed above are installed int the system
+Make sure that all of the packages listed above are installed in the system
 and come from the AEM repository.
 
 ###### Updating GRUB on legacy systems
 
 Booting on legacy systems requires manual installation of GRUB2 to the MBR
-of disk where Qubes OS is stored. In the example below it is `/dev/sda`,
-yours may be different.
+of disk where Qubes OS is stored. If you are sure where the root partition
+is located, you can skip the following steps explaining how to find it out.
 
-To check on which partition is your OS installed, if the disk is not encrypted,
-run:
-
-```bash
-df --output=source /
-```
-
-If your disk is encrypted, then the command above will print a filename
-like `/dev/mapper/...`. This is an LVM Logical Volume and finding out the
-physical disk on which the root partition resides takes a couple steps.
-If you are sure where the root partition is located, you can skip the steps to
-find it out.
+To check on which drive is your OS installed, run:
 
 1. Get the Logical Volume (LV) file:
 
@@ -240,7 +229,7 @@ if the version number in the repository is higher than the currently installed
 one. `reinstall` won't work because the versions don't match and `install` won't
 work because the package is already installed.
 
-Make sure that all of the packages listed above are installed int the system
+Make sure that all of the packages listed above are installed in the system
 and come from the AEM repository.
 
 ### Installing main AEM package
