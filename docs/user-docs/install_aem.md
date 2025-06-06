@@ -5,11 +5,6 @@ This document shows how to install Anti Evil Maid from packages produced by
 If you wish to build the components yourself, please refer to documentation for
 developers instead.
 
-## Disclaimer
-
-As of now, only legacy boot is supported. These instructions
-<span style="color: red;">WON'T WORK under UEFI</span>. You have been warned.
-
 ## Installation
 
 To install, you have to first add a new repository and import a public part of
@@ -47,10 +42,12 @@ potentially in newer versions, those must be temporarily disabled during
 invocation of `qubes-dom0-update`, as shown in the following commands. If any
 of the packages that are part of AEM are updated in standard repos, you will
 have to choose between using new versions or having working AEM, at least until
-new AEM release is published or the code gets merged upstream. If you decide to
+new AEM release is published, or the code gets merged upstream. If you decide to
 restore AEM after an update broke it, you will have to repeat the installation
 of overwritten package with `--action=reinstall` added to `qubes-dom0-update`,
 if it wasn’t present before.
+
+#### Qubes repository dependencies
 
 Start by installing prerequisite packages. Those are not part of newly added
 repository, but `qubes-dom0-current-testing`:
@@ -65,18 +62,35 @@ sudo qubes-dom0-update --enablerepo=qubes-dom0-current-testing \
     tpm-tools
 ```
 
+#### AEM repository dependencies
+
 Next set of new packages comes from AEM repository, to avoid conflicts other
 repositories are disabled for this call:
 
 ```bash
 sudo qubes-dom0-update --disablerepo="*" --enablerepo=aem \
-    grub2-tools-extra \
+    grub2-tools-extra
+```
+
+##### AMD systems dependencies
+
+This package is only needed on AMD systems:
+
+```bash
+sudo qubes-dom0-update --disablerepo="*" --enablerepo=aem \
     secure-kernel-loader
 ```
 
-This is followed by reinstalling additional packages. A reinstall is required
+#### AEM repository dependencies to reinstall
+
+This is followed by reinstalling additional packages. A reinstallation is required
 because currently installed version is equal (or it may be higher in the future)
-than those provided by AEM.
+than those provided by AEM. A couple of GRUB packages differ slightly
+depending on whether you use a legacy or UEFI BIOS:
+
+##### Legacy Systems
+
+If your system has a legacy BIOS, reinstall these packages:
 
 ```bash
 sudo qubes-dom0-update --disablerepo="*" --enablerepo=aem --action=reinstall \
@@ -93,17 +107,130 @@ sudo qubes-dom0-update --disablerepo="*" --enablerepo=aem --action=reinstall \
     grub2-tools-minimal
 ```
 
-### Updating GRUB
+Depending on the set of currently installed packages and their versions
+the commands required to install the dependencies vary.
 
-Booting on legacy systems (AEM currently doesn’t support UEFI) requires manual
-installation of GRUB2 to the MBR of disk where Qubes OS is stored. In the
-example below it is `/dev/sda`, yours may be different. Remember that GRUB2
-must be installed on disk and not on partition, so don’t use `sda1`, `nvme0n1p1`
-etc.
+`--action=reinstall` will make sure that the existing packages will be replaced
+with the custom versions provided by the AEM repo. That will only happen if
+the version number of the installed package matches exactly the version in the
+repository.
+
+If any package returns `No match for argument`, then it might need to be
+installed, not reinstalled. To make sure that missing packages are installed
+re-run the exact command with `--action=install` instead.
+`--action=install` won't install packages if the are already installed, even
+if the repository contains packages with higher version number.
+
+If a package was skipped during both `--action=reinstall` and `--action=install`
+it might need to be updated instead using `--action=update`. This will happen
+if the version number in the repository is higher than the currently installed
+one. `reinstall` won't work because the versions don't match and `install` won't
+work because the package is already installed.
+
+Make sure that all of the packages listed above are installed in the system
+and come from the AEM repository.
+
+###### Updating GRUB on legacy systems
+
+Booting on legacy systems requires manual installation of GRUB2 to the MBR
+of disk where Qubes OS is stored. If you are sure where the root partition
+is located, you can skip the following steps explaining how to find it out.
+
+To check on which drive is your OS installed, run:
+
+1. Get the Logical Volume (LV) file:
+
+    ```bash
+    df --output=source /
+    ```
+
+    Example LV file: `/dev/mapper/qubes_dom0-root`
+
+1. Map the Logical Volume (LV) to a Volume Group (VG):
+
+    ```bash
+    sudo lvs /dev/mapper/qubes_dom0-root --noheadings -o vg_name
+    ```
+
+    Example VG name: `qubes_dom0`
+
+1. Map the Volume Group to a Physical Volume (PV):
+
+    ```bash
+    sudo vgs --noheadings -o pv_name qubes_dom0
+    ```
+
+    Example PV file: `/dev/mapper/luks-12345678-1234-1234-1234-123456789abc` (GUID)
+
+1. Find the PV name in `lsblk` output and check on which device it is
+located.
+
+    ```bash
+    lsblk -o NAME
+    ```
+
+    Example output:
+
+    ```text
+    sda
+    ├─sda1
+    ├─sda2
+    └─sda3
+      └─luks-12345678-1234-1234-1234-123456789abc
+    ```
+
+    The drive on which the root partition is located in this example is
+    therefore `/dev/sda`.
+
+Remember that GRUB2 must be installed on disk and
+not on partition, so don’t use `sda1`, `nvme0n1p1` etc. This step should be
+skipped on UEFI systems.
 
 ```bash
 sudo grub2-install /dev/sda
 ```
+
+##### UEFI Systems
+
+If your system has an UEFI BIOS, install these packages instead:
+
+```bash
+sudo qubes-dom0-update --disablerepo="*" --enablerepo=aem --action=reinstall \
+    python3-xen \
+    xen \
+    xen-hypervisor \
+    xen-libs \
+    xen-licenses \
+    xen-runtime \
+    grub2-common \
+    grub2-efi-x64 \
+    grub2-efi-x64-modules \
+    grub2-tools \
+    grub2-tools-minimal
+```
+
+Depending on the set of currently installed packages and their versions
+the commands required to install the dependencies vary.
+
+`--action=reinstall` will make sure that the existing packages will be replaced
+with the custom versions provided by the AEM repo. That will only happen if
+the version number of the installed package matches exactly the version in the
+repository.
+
+If any package returns `No match for argument`, then it might need to be
+installed, not reinstalled. To make sure that missing packages are installed
+re-run the exact command with `--action=install` instead.
+`--action=install` won't install packages if the are already installed, even
+if the repository contains packages with higher version number.
+
+If a package was skipped during both `--action=reinstall` and `--action=install`
+it might need to be updated instead using `--action=update`. This will happen
+if the version number in the repository is higher than the currently installed
+one. `reinstall` won't work because the versions don't match and `install` won't
+work because the package is already installed.
+
+Make sure that all of the packages listed above are installed in the system
+and come from the AEM repository.
 
 ### Installing main AEM package
 
@@ -139,7 +266,14 @@ again.
 Now all that's left is proper installation of AEM. There are different options,
 refer to `anti-evil-maid-install -h` for examples. In the simplest case, AEM is
 installed on boot partition (not disk, i.e. `sda1` instead of `sda` etc.) of
-Qubes OS. This can be done with a simple command:
+Qubes OS. Run this command to find out where your boot partition is installed:
+
+```bash
+df --output=source /boot
+```
+
+Assuming that your boot partition is installed on `/dev/sda1`, the
+installation can be done with a simple command:
 
 ```bash
 sudo anti-evil-maid-install /dev/sda1
