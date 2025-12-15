@@ -45,12 +45,12 @@ Launch feature. This is a vanilla Linux kernel based off a torvalds/master branc
 snapshot at the time time patch set was assembled. The patches could be
 applied to different distros of Linux, probably requiring some rebasing:
 
-- [Latest Linux Patch Set Version 14](https://github.com/TrenchBoot/linux/tree/linux-sl-master-4-18-25-v14)
+- [Latest Linux Patch Set Version 15](https://github.com/TrenchBoot/linux/tree/linux-sl-master-11-30-25-v15)
 
 The Secure Launch feature is enabled through a Kconfig setting and can
 be found here using e.g. `make menuconfig`:
 
-`"Processor type and features" -> "[ ] Secure Launch support"`
+`"Processor type and features" -> "[*] Secure Launch DRTM support"`
 
 The Linux Secure Launch in-tree documentation mentioned in the first section
 contains other instructions on properly configuring a Secure Launch kernel.
@@ -61,7 +61,7 @@ Each recent release of the Linux patches is accompanied by a GRUB branch
 in TrenchBoot that works with the specified version. The branch for version
 9 can be found here:
 
-- [GRUB for Version 14](https://github.com/TrenchBoot/grub/tree/grub-sl-2.12-v14)
+- [GRUB for Version 15](https://github.com/TrenchBoot/grub/tree/grub-sl-2.12-v15)
 
 This version of GRUB is based off of upstream GRUB 2.12 with the patches to
 support the Secure Launch feature. The following is a basic set of instructions
@@ -86,7 +86,7 @@ There is a new GRUB command that instructs GRUB to initiate a Secure Launch call
 Launch of the Linux kernel:
 
 ```text
-menuentry 'Linux with Secure Launch 6.15.0-rc2-master-v14' --unrestricted {
+menuentry 'Linux with Secure Launch' --unrestricted {
         load_video
         insmod gzio
         insmod part_gpt
@@ -97,8 +97,8 @@ menuentry 'Linux with Secure Launch 6.15.0-rc2-master-v14' --unrestricted {
                 search --no-floppy --fs-uuid --set=root bba24662-776e-4396-9b1e-9ee5606d79b8
         fi
         slaunch
-        linux /vmlinuz-6.15.0-rc2-master-v14 root=/dev/mapper/root ro crashkernel=auto resume=/dev/mapper/swap rd.lvm.lv=my/root rd.lvm.lv=my/swap rhgb console=ttyS0,115200n8 console=tty0 LANG=en_US.UTF-8
-        initrd /initrd-6.15.0-rc2-master-v14.img
+        linux /vmlinuz-securelaunch root=/dev/mapper/root ro crashkernel=auto resume=/dev/mapper/swap rd.lvm.lv=my/root rd.lvm.lv=my/swap rhgb console=ttyS0,115200n8 console=tty0 LANG=en_US.UTF-8
+        initrd /initrd-securelaunch.img
         slaunch_module /txt-sinit-for-given-platform
 }
 ```
