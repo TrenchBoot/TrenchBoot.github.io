@@ -36,6 +36,7 @@ nav:
           - dev-docs/code.md
           - dev-docs/Late_Launch_Overview.md
           - dev-docs/DevelopersGuide.md
+          - dev-docs/qubesos-packages-infra.md
       - Theory:
           - theory/index.md
           - theory/UseCases.md
