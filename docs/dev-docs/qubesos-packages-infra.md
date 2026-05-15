@@ -3,10 +3,12 @@
 The TrenchBoot project builds QubesOS packages for the following QubesOS
 components:
 
-* [Xen](https://github.com/TrenchBoot/xen)
-* [GRUB](https://github.com/TrenchBoot/grub)
-* [qubes-antievilmaid](https://github.com/TrenchBoot/qubes-antievilmaid)
-* [Secure Kernel Loader](https://github.com/TrenchBoot/secure-kernel-loader)
+* `vmm-xen` from repository [Xen](https://github.com/TrenchBoot/xen)
+* `grub2` from repository [GRUB](https://github.com/TrenchBoot/grub)
+* `antievilmaid` from repository
+  [qubes-antievilmaid](https://github.com/TrenchBoot/qubes-antievilmaid)
+* `secure-kernel-loader` from repository [Secure Kernel
+  Loader](https://github.com/TrenchBoot/secure-kernel-loader)
 
 The general workflow for the release candidate (i.e., RC) packages is the
 following:
