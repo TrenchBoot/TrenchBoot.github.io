@@ -17,7 +17,7 @@ via the community site:
 
 ## Platforms
 
-The current patchset (version 11) only supports Intel TXT. AMD SKINIT support
+The current patchset (version 16) only supports Intel TXT. AMD SKINIT support
 is in the works and coming soon.
 
 An Intel system (desktop, server, laptop) needs to be a vPro SKU in order to
@@ -45,7 +45,7 @@ Launch feature. This is a vanilla Linux kernel based off a torvalds/master branc
 snapshot at the time time patch set was assembled. The patches could be
 applied to different distros of Linux, probably requiring some rebasing:
 
-- [Latest Linux Patch Set Version 15](https://github.com/TrenchBoot/linux/tree/linux-sl-master-11-30-25-v15)
+- [Latest Linux Patch Set Version 16](https://github.com/TrenchBoot/linux/tree/linux-sl-master-7-0-rel-v16)
 
 The Secure Launch feature is enabled through a Kconfig setting and can
 be found here using e.g. `make menuconfig`:
@@ -59,9 +59,9 @@ contains other instructions on properly configuring a Secure Launch kernel.
 
 Each recent release of the Linux patches is accompanied by a GRUB branch
 in TrenchBoot that works with the specified version. The branch for version
-9 can be found here:
+16 can be found here:
 
-- [GRUB for Version 15](https://github.com/TrenchBoot/grub/tree/grub-sl-2.12-v15)
+- [GRUB for Version 16](https://github.com/TrenchBoot/grub/tree/grub-sl-2.12-v16)
 
 This version of GRUB is based off of upstream GRUB 2.12 with the patches to
 support the Secure Launch feature. The following is a basic set of instructions
