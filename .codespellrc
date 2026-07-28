@@ -1,4 +1,4 @@
 [codespell]
 exclude-file = .codespellx
-ignore-words-list = FPT,FTP,fpt,ftp,HSI
+ignore-words-list = FPT,FTP,fpt,ftp,hsi
 skip=*.svg,*.json

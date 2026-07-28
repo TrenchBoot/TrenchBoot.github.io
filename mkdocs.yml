@@ -53,6 +53,7 @@ nav:
           - blueprints/Xen_Late_Launch.md
           - blueprints/Measured_Secure_Boot.md
           - blueprints/AMD_coreboot_DRTM_payload.md
+          - blueprints/DRTM_On_ARM.md
       - References:
           - references/README.md
           # TODO: make these open in new tab.
