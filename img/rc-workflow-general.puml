@@ -1,0 +1,78 @@
+@startuml
+skinparam backgroundColor #FAFAFA
+skinparam componentStyle rectangle
+skinparam defaultFontName Monospace
+skinparam defaultFontSize 12
+
+skinparam package {
+  BackgroundColor #EEF2FF
+  BorderColor #4455AA
+  FontStyle bold
+}
+
+skinparam component {
+  BackgroundColor #DDEEFF
+  BorderColor #2255AA
+}
+
+skinparam database {
+  BackgroundColor #FFF3CD
+  BorderColor #BB8800
+}
+
+skinparam cloud {
+  BackgroundColor #E8F5E9
+  BorderColor #2E7D32
+}
+
+title Build, sign and publish TrenchBoot RC packages for QubesOS
+
+package "TrenchBoot/.github (shared reusable workflows)" as shared {
+  component "qubes-dom0-package.yml\n[workflow_call]" as pkg_wf
+  component "qubes-dom0-packagev2.yml\n[workflow_call]" as pkg_wf2
+}
+
+package "TrenchBoot repository workflow" as repo {
+  component "TrenchBoot repository workflow\n[trigger: RC tag push]"
+  component "1. Build and package component" as j1
+}
+
+package "Woodpecker CI workflow" as wp_repo {
+  component "sign-and-publish-test-rpms.yml\n[trigger: manual via API]\nInputs: GITHUB_REPO,\nGITHUB_SHA, GITHUB_RUN_ID,\nQUBES_COMPONENT,\nWORKFLOW=sign-and-publish-test-rpms" as wp_pipeline
+
+  component "1. Download RPMs\n(from GitHub Actions artifacts)" as wp_s1
+  component "2. Sign RPMs\n(GPG sign)" as wp_s2
+  component "3. Update local RPM repodata" as wp_s3
+  component "4. Deploy RPMs\n(upload to FTP)" as wp_s4
+
+  wp_s1 --> wp_s2
+  wp_s2 --> wp_s3
+  wp_s3 --> wp_s4
+}
+
+cloud "GitHub Actions\nArtifact Storage" as gh_artifacts
+cloud "GitHub Release\nPage" as gh_release
+database "FTP Server\nhttp://dl.3mdeb.com/\nQubesOS/r4.2/current-testing/dom0/fc37" as ftp_server
+actor "A maintainer with\naccess to Woodpecker CI\n(ci.3mdeb.com)" as woodpecker_ci
+
+j1 ..> pkg_wf : uses (workflow_call)
+j1 ..> pkg_wf2 : uses (workflow_call)
+
+pkg_wf ..> gh_artifacts : uploads RPM artifacts
+pkg_wf2 ..> gh_artifacts : uploads RPM artifacts
+pkg_wf ..> gh_release : "uploads RPM artifacts,\ncreates release page"
+pkg_wf2 ..> gh_release : "uploads RPM artifacts,\ncreates release page"
+woodpecker_ci ..> wp_pipeline : dispatches\nsign-and-publish-test-rpms
+
+wp_s1 ..> gh_artifacts : downloads RPMs\n(GitHub API)
+wp_s4 ..> ftp_server : deploys signed RPMs\n+ updates repo metadata
+
+legend right
+  |= Symbol |= Meaning |
+  | A <b>⇾</b> B | Sequential job dependency (needs:) |
+  | A ⇢ B | Cross-repo workflow call / API call |
+  | [workflow_call] | Reusable workflow invoked by caller |
+  | inputs | Reusable workflow inputs |
+  | [trigger] | Workflow run condition |
+endlegend
+@enduml

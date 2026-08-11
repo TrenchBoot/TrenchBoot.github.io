@@ -1,0 +1,75 @@
+@startuml
+skinparam backgroundColor #FAFAFA
+skinparam componentStyle rectangle
+skinparam defaultFontName Monospace
+skinparam defaultFontSize 12
+
+skinparam package {
+  BackgroundColor #EEF2FF
+  BorderColor #4455AA
+  FontStyle bold
+}
+
+skinparam component {
+  BackgroundColor #DDEEFF
+  BorderColor #2255AA
+}
+
+skinparam database {
+  BackgroundColor #FFF3CD
+  BorderColor #BB8800
+}
+
+skinparam cloud {
+  BackgroundColor #E8F5E9
+  BorderColor #2E7D32
+}
+
+title Automatic rebase CI/CD Workflows for QubesOS packages - TrenchBoot/qubes-antievilmaid
+
+' ─────────────────────────────────────
+' SHARED WORKFLOWS (.github repository)
+' ─────────────────────────────────────
+package "TrenchBoot/.github  (shared reusable workflows)" as shared {
+  component "rebase.yml\n[workflow_call]\n@master" as rebase_wf
+  component "qubes-dom0-packagev2.yml\n[workflow_call]\n@master" as pkg_wf
+}
+
+' ─────────────────────────────────────
+' QUBES-ANTIEVILMAID repository
+' ─────────────────────────────────────
+package "qubes-antievilmaid" as aem_repo {
+
+    component "rebase-build-and-publish-rebased.yml\n[triggers: workflow_dispatch after\nrebase conflict resolution,\nschedule: Sat 00:00 UTC]" as aem_rebase
+
+  component "try-rebase\n(tries to rebase\nTrenchBoot/qubes-antievilmaid@main>,\nfails in case of a conflict)" as aem_j1
+  component "antievilmaid\n(builds QubesOS package from\nthe successfully rebased branch)" as aem_j2
+
+  aem_rebase --> aem_j1
+  aem_j1 --> aem_j2 : needs
+}
+
+' ─────────────────────────────────────
+' EXTERNAL SYSTEMS
+' ─────────────────────────────────────
+cloud "GitHub Actions\nArtifact Storage" as gh_artifacts
+cloud "QubesOS/qubes-antievilmaid\nGitHub repository" as qubes_repo
+
+' ─────────────────────────────────────
+' CROSS-REPO CALLS: qubes-antievilmaid → shared
+' ─────────────────────────────────────
+aem_j1 ..> rebase_wf : uses (workflow_call)
+aem_j2 ..> pkg_wf : uses (workflow_call)
+rebase_wf ..> qubes_repo : use as upstream\nfor rebase
+pkg_wf ..> gh_artifacts : uploads RPM artifacts
+
+' ─────────────────────────────────────
+' LEGEND
+' ─────────────────────────────────────
+legend right
+  |= Symbol |= Meaning |
+  | A <b>⇾</b> B | Sequential job dependency (needs:) |
+  | A ⇢ B | Cross-repo workflow call / API call |
+  | [workflow_call] | Reusable workflow invoked by caller |
+endlegend
+@enduml
