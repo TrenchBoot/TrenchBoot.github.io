@@ -1,0 +1,2327 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="TrenchBoot Developers">
+      
+      
+        <link rel="canonical" href="https://trenchboot.org/blueprints/Qualcomm_DRTM/">
+      
+      
+        <link rel="prev" href="../DRTM_On_ARM/">
+      
+      
+        <link rel="next" href="../../references/">
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.32">
+    
+    
+      
+        <title>Qualcomm DRTM - TrenchBoot</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.3cba04c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Source Sans Pro";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/style.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#qualcomm-drtm" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="TrenchBoot" class="md-header__button md-logo" aria-label="TrenchBoot" data-md-component="logo">
+      
+  <img src="../../img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TrenchBoot
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Qualcomm DRTM
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/TrenchBoot/trenchboot-issues" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TrenchBoot Issues
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../events/" class="md-tabs__link">
+          
+  
+    
+  
+  Events and publications
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../specifications/" class="md-tabs__link">
+          
+  
+    
+  
+  Specifications
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../user-docs/" class="md-tabs__link">
+          
+  
+    
+  
+  Documentation
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../steering-committee/" class="md-tabs__link">
+          
+  
+    
+  
+  Steering Committee
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../FAQ/" class="md-tabs__link">
+        
+  
+    
+  
+  TrenchBoot FAQ
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../community/" class="md-tabs__link">
+        
+  
+    
+  
+  Community
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="TrenchBoot" class="md-nav__button md-logo" aria-label="TrenchBoot" data-md-component="logo">
+      
+  <img src="../../img/logo.svg" alt="logo">
+
+    </a>
+    TrenchBoot
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/TrenchBoot/trenchboot-issues" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TrenchBoot Issues
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Events and publications
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Events and publications
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../events/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Conferences
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upcoming_events/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upcoming Events
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../publications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Publications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../specifications/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Specifications
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Specifications
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../specifications/Secure_Launch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Secure Launch Specification
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Documentation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Documentation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../user-docs/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Getting started
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Getting started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-docs/requirements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TrenchBoot hardware requirements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-docs/QUICKSTART/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux Quick Start Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-docs/install_aem/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installing TrenchBoot AEM in Qubes OS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-docs/build_grub/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Building and installing GRUB
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-docs/build_linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Building and installing Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-docs/troubleshooting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-docs/test_matrix/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hardware test matrix
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-docs/openqa/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TrenchBoot OpenQA user guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../dev-docs/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    For developers
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            For developers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev-docs/CONTRIBUTING/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contributing to TrenchBoot
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev-docs/code/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Code Repositories
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev-docs/Late_Launch_Overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction to Late Launch
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev-docs/DevelopersGuide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Developers Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev-docs/qubesos-packages-infra/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    QubesOS packages infrastructure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev-docs/qubesos-packages-sync/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Syncing with QubesOS patches
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../theory/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Theory
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Theory
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../theory/UseCases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TrenchBoot Use Cases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../theory/Architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    General Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../theory/Glossary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Glossary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Blueprints
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            Blueprints
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SLRT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Secure Launch Resource Table
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TXT_Grub_Late_Launch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TXT Grub Late Launcher
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AMD_Grub_Late_Launch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AMD Grub Late Launcher
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AMD_Secure_Kernel_Loader/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AMD Secure Kernel Loader
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linux_Late_Launch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux Late Launch Kernel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Xen_Late_Launch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Xen Late Launch Hypervisor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Measured_Secure_Boot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Measured Secure Boot
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AMD_coreboot_DRTM_payload/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PoC: coreboot with payload started through DRTM (AMD)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DRTM_On_ARM/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DRTM on ARM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Qualcomm DRTM
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Qualcomm DRTM
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slbounce" class="md-nav__link">
+    <span class="md-ellipsis">
+      slbounce
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="slbounce">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-know-slbounce-has-worked" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to know slbounce has worked
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#considerations-of-using-slbounce-in-trenchboot-grub-or-other-bootloaders" class="md-nav__link">
+    <span class="md-ellipsis">
+      Considerations of using slbounce in TrenchBoot GRUB (or other bootloaders)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Considerations of using slbounce in TrenchBoot GRUB (or other bootloaders)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#considerations-of-emulating-den-0113-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Considerations of emulating DEN 0113 API
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-search-continues" class="md-nav__link">
+    <span class="md-ellipsis">
+      The search continues
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../references/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    References
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            References
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/AMD64-Architecture-Programmers-Manual_Volume-2_Ch15.27_rev3.29.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AMD64 Architecture Programmers Manual Volume 2 Ch15.27
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/intel-txt-preliminary-architecture.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Intel TXT Preliminary Architecture Specification
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/intel-txt-software-development-guide.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Intel TXT Software Development Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../steering-committee/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Steering Committee
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Steering Committee
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../steering-committee/Community-Meeting-June17-2021/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Community Meeting June 17 2021
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FAQ/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TrenchBoot FAQ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../community/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Community
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slbounce" class="md-nav__link">
+    <span class="md-ellipsis">
+      slbounce
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="slbounce">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-know-slbounce-has-worked" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to know slbounce has worked
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#considerations-of-using-slbounce-in-trenchboot-grub-or-other-bootloaders" class="md-nav__link">
+    <span class="md-ellipsis">
+      Considerations of using slbounce in TrenchBoot GRUB (or other bootloaders)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Considerations of using slbounce in TrenchBoot GRUB (or other bootloaders)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#considerations-of-emulating-den-0113-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Considerations of emulating DEN 0113 API
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-search-continues" class="md-nav__link">
+    <span class="md-ellipsis">
+      The search continues
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="qualcomm-drtm">Qualcomm DRTM<a class="headerlink" href="#qualcomm-drtm" title="Permanent link">&para;</a></h1>
+<p>Following <a href="../DRTM_On_ARM/">assessment of DRTM on ARM</a>, this report covers an
+examination of an ARM device featuring DRTM, a <a href="https://psref.lenovo.com/product/ThinkPad/ThinkPad_X13s_Gen_1">ThinkPad X13s Gen 1</a>
+laptop.  This device was released before ARM produced a DRTM
+specification, but there isn't much public information about its DRTM
+implementation, making it an interesting case to explore.</p>
+<p>As will be made obvious below, the similarity with <a href="https://support.arm.com/documentation/den0113/latest/">DEN 0113</a> is
+rather superficial, making this device unsuitable for porting TrenchBoot.
+Still, tinkering with it provided some experience with AArch64, and
+demonstrates the difficulties one might expect to face on other, more suitable,
+devices.</p>
+<h2 id="implementation-overview">Implementation overview<a class="headerlink" href="#implementation-overview" title="Permanent link">&para;</a></h2>
+<p>The laptop in question is one of <a href="https://learn.microsoft.com/en-us/windows/security/book/hardware-security-silicon-assisted-security#secured-core-pc-and-edge-secured-core">"Secured Core"</a> Windows devices,
+that rely on DRTM for their security features.  One may guess that this DRTM
+implementation has been developed specifically for Windows-on-Arm, which has
+important consequences:</p>
+<ul>
+<li>This DRTM implementation is unlikely to exist anywhere beyond this line-up of
+  laptops.</li>
+<li>All such laptops should work about the same, unless the implementation has
+  seen significant updates, which is not very likely.</li>
+<li>Another security feature of the laptops is that they come with firmware Secure
+  Boot (not to be confused with UEFI Secure Boot) that doesn't allow running
+  firmware unless the device's vendor has signed it.  This excludes the option
+  of customizing firmware for implementing DRTM per DEN 0113 specification.</li>
+</ul>
+<p>One of the first things to try was running <a href="https://github.com/ARM-software/sysarch-acs#drtm-architecture-compliance-suite">ACS DRTM</a> tests, which
+exercise the DRTM API from DEN 0113.  There is a somewhat outdated EFI binary
+that can be easily executed from a UEFI Shell (although starting a shell
+required a USB stick due to the BIOS lacking a "Boot from file" option).  While
+the binary is from March 2025 and targets DRTM specification v1.1, the
+results were unambiguous: the API per specification is not available.  This
+could have been determined from the production date alone, but it's nice to be
+able to confirm it directly.</p>
+<p>Qualcomm's DRTM doesn't rely on hardware support beyond verifying BIOS at boot,
+and in this sense is similar to a firmware-backed DRTM of DEN 0113.  In other
+words, that firmware Secure Boot provides SRTM, which is used as the root of
+trust in DRTM implementation (i.e., that the implementation itself can be
+trusted).  In this sense, the implementation and everything else that runs at
+EL3 is included in the TCB.</p>
+<p>One good thing is that UEFI Secure Boot can be disabled, which is what allows
+booting systems that aren't signed with Microsoft keys.</p>
+<p>The overall structure of the implementation is broadly similar to DEN 0113:</p>
+<ul>
+<li>DRTM implementation runs at EL3</li>
+<li>the use of SMC calls for communication (a common thing on ARM)</li>
+<li>stateful API</li>
+<li>a parameter structure which is filled before the DRTM launch command is
+  issued; it is used to specify the location of the TPM event log and what to
+  execute after DRTM launch</li>
+</ul>
+<p>If those similarities to the specification are counted as pros, here are the
+cons:</p>
+<ul>
+<li>a vendor-locked implementation (only Microsoft-signed code is meant to be able
+  to use the API)</li>
+<li>it's proprietary (no documentation, thus no easy way to reuse)</li>
+<li>more of an implementation detail than a generic solution (to be fair, it
+  wasn't meant to be generic)</li>
+<li>not possible to replace (firmware Secure Boot prevents writing open-source
+  firmware with a different DRTM implementation)</li>
+</ul>
+<h2 id="slbounce">slbounce<a class="headerlink" href="#slbounce" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/TravMurav/slbounce">slbounce</a> is a project that exploits an error handling path of
+<code>tcblaunch.exe</code>, which is a Microsoft-provided component of DRTM setup on these
+laptops.  This project provides a way to utilize DRTM for something other than
+Windows (e.g., Linux), mainly for the purpose of supporting virtualization,
+which is not available until DRTM launch is performed.  How it works is
+explained in some detail in a separate <a href="https://github.com/TravMurav/Qcom-Secure-Launch">Qcom-Secure-Launch
+repository</a> as well as in the <a href="https://github.com/TravMurav/slbounce/blob/main/theory_of_operation.md">theory_of_operation.md
+file</a> of the main one.  There is no need to repeat all that information
+here, but take a look at a picture (taken from Qcom-Secure-Launch) before a few
+crucial points are explained:</p>
+<p><img alt="Qualcomm DRTM flow" src="/img/qualcomm-drtm.svg" /></p>
+<p>These devices boot at EL1 privilege level, which is weird, as normally ARM
+systems boot at EL2.  Reaching EL2 makes hardware-assisted virtualization
+like KVM possible, which is what slbounce is really meant to address.</p>
+<p>slbounce works by running <code>tcblaunch.exe</code> at the moment a bootloader (or Linux
+with an EFI stub) invokes <code>ExitBootServices()</code> before booting into an operating
+system (OS).  <code>tcblaunch.exe</code> is allowed to run at EL2 because it's signed by
+Microsoft and is responsible for initiating DRTM.  If it encounters an error
+while processing its input data, <code>tcblaunch.exe</code> switches back to EL1 and
+invokes an error handler.  Despite going back to EL1, EL2 remains reachable, and
+because the handler isn't signed and can execute arbitrary code, it is able to
+switch back to EL2.  slbounce does exactly that right before returning from its
+version of <code>ExitBootServices()</code>, after which an OS boots at EL2.</p>
+<h3 id="how-to-know-slbounce-has-worked">How to know slbounce has worked<a class="headerlink" href="#how-to-know-slbounce-has-worked" title="Permanent link">&para;</a></h3>
+<p>slbounce provides a self-contained binary to verify that it works properly on a
+particular hardware called <code>sltest.efi</code>.  It essentially reports reaching EL2,
+demonstrating that this approach works on this laptop.  Booting a minimal Linux
+directly (without GRUB) using <code>slbounce.efi</code> also works, with the kernel
+reporting that cores run at EL2.  In both cases, that's by itself an indication
+of a successful DRTM launch, given that it's a prerequisite for running at EL2
+for anything other than <code>tcblaunch.exe</code>.</p>
+<p>The most direct way of checking for DRTM is looking at the contents of PCRs and
+TPM event log.  This part has proven to be unexpectedly difficult.  The device
+is not well supported by Linux (or at least not without extra configuration),
+so running live distributions or even building a <a href="https://github.com/jglathe/linux_ms_dev_kit">dedicated Linux
+fork</a> didn't produce anything useful.</p>
+<p>However, examining logs on Windows and making Linux dump the start of the TPM
+log filled in by a DRTM launch suggests that DRTM PCRs (17-22) get populated.
+There is no real reason to suspect a significant difference in behavior with
+Linux.</p>
+<p>Because the network or drives didn't work in that minimal Linux, extracting
+information was hard, and the trick was to write a custom <code>init</code> to do the work
+of parsing <code>dmesg</code> or dumping the TPM event log.  This approach doesn't really
+scale, and attempts to get a fully functioning system were abandoned after
+realizing the device isn't a good choice for TrenchBoot.  Online information
+suggests that Linux can be run on this model, so something must have been
+missing.</p>
+<h2 id="considerations-of-using-slbounce-in-trenchboot-grub-or-other-bootloaders">Considerations of using slbounce in TrenchBoot GRUB (or other bootloaders)<a class="headerlink" href="#considerations-of-using-slbounce-in-trenchboot-grub-or-other-bootloaders" title="Permanent link">&para;</a></h2>
+<p>The whole point here was evaluating the possibility of leveraging the approach
+of slbounce in TrenchBoot.  The bottom line is that it can't be done cleanly.
+While some of the limitations can be worked around, the fact of not using an
+interface compliant with DEN 0113 would not be possible to ignore in the
+affected projects.</p>
+<p>Using slbounce requires adopting its requirements and limitations:</p>
+<ul>
+<li>A Windows laptop with a suitable CPU.</li>
+<li><code>tcblaunch.exe</code> that exposes the aforementioned behavior.  Microsoft has
+  apparently changed it at some point in 2024 and some versions no longer work,
+  although there may be multiple things at play as the range of incompatible
+  versions hasn't been established.  The one that did work in tests has
+  version <code>10.0.22621.4317</code>.  Also, this binary likely can't be redistributed
+  as part of TrenchBoot and would have to be copied by users from a Windows
+  installation.</li>
+<li>Firmware and <code>tcblaunch.exe</code> need to match a few assumptions made by
+  slbounce, where it doesn't know details about DRTM launch.  Not everything
+  may load successfully in all cases, even though it seems to be relatively
+  stable.  The biggest downside is that debugging a case when something doesn't
+  work would be rather difficult.</li>
+</ul>
+<p>Here are at least some of the assumptions that slbounce makes:</p>
+<ul>
+<li>The size of <code>tcblaunch.exe</code> in memory is padded to 2 MiB and assumed to be
+  less than that, which apparently (judging by the <code>git</code> history) works around
+  some issue when the size is smaller.</li>
+<li>Last queried memory map is cached and then used at <code>ExitBootServices()</code> under
+  the assumption that the memory map hasn't changed.  Maybe the code can be
+  updated to query the map; it's not clear why it doesn't.</li>
+<li><code>ExitBootServices()</code> flushes all memory, hoping to avoid a memory corruption
+  later on as switching to EL2 discards caches.  This is where the memory map
+  is used, and an issue here can result in a crash after DRTM launch is
+  performed.</li>
+</ul>
+<p>Booting into Linux has been a challenge, and Xen would likely face similar
+challenges, if not worse.  Both projects would have to be modified in ways
+which wouldn't map onto a real DEN 0113 implementation.</p>
+<p>Because slbounce is a driver meant to be used implicitly, there would be no
+need to bring its code into TrenchBoot in any form.  Simply loading it at some
+point before booting an OS would do.  GRUB, apparently, can't load EFI drivers
+now, but it isn't hard to implement, whether loading the driver from a file or
+by embedding its data into GRUB.</p>
+<p>The code changes necessary for integrating with the slbounce approach would be:</p>
+<ul>
+<li>Moving the code from x86 to some common place and abstracting arch-specific
+  behavior.</li>
+<li>Not performing some operations on ARM (or, rather, not adding corresponding
+  code for AArch64 and leaving some comments where changes are known to be
+  necessary).</li>
+<li>Possibly coming up with a workaround to pass SLRT and implementing it.  This
+  could be needed as normally DLMEs get SLRT in a DRTM-specific method, which in
+  this case is handled within <code>tcblaunch.exe</code>.</li>
+</ul>
+<h3 id="considerations-of-emulating-den-0113-api">Considerations of emulating DEN 0113 API<a class="headerlink" href="#considerations-of-emulating-den-0113-api" title="Permanent link">&para;</a></h3>
+<p>Since this device doesn't provide the desired API, one idea was to pretend it's
+there by wrapping slbounce to hide its existence from both GRUB and DLMEs.
+Unfortunately, not running at EL3 puts severe limitations:</p>
+<ul>
+<li>Running at EL1 before DRTM launch means that SMC calls can't be handled at
+  all.</li>
+<li>Because EFI services aren't reliable after DRTM launch, switching to DRTM and
+  then doing nothing on an emulated DRTM launch won't work either.  Otherwise,
+  it would be possible to handle SMC calls at EL2, but an OS would have to run
+  at EL1 to be able to use SMC calls after DRTM launch, which excludes Xen or
+  at least leaves it without hardware-assisted virtualization.</li>
+</ul>
+<p>Because of the above, the emulation could change the interface to something like
+an EFI protocol that works per DEN 0113 but abstracts its SMC calls while
+otherwise matching the API:</p>
+<ol>
+<li>Before a DRTM launch (running at EL1):<ol>
+<li>The protocol replies with something about capabilities, last error, etc.</li>
+</ol>
+</li>
+<li>On a request to perform a DRTM (EL1 -&gt; EL2):<ol>
+<li>Parse input parameters, validate and preserve them.</li>
+<li>Query the memory map; it will be needed after the launch.</li>
+<li>Do what slbounce does and reach EL2.</li>
+<li>Pass control to the DLME, emulating behavior of DEN 0113 where
+   possible (many things won't actually translate to anything, but should
+   be able to extend PCRs and pass control with proper contents of
+   registers; extending PCRs actually depends on the active locality, which
+   isn't known as of now).</li>
+<li>If a runtime driver implements the protocol, it may stay in memory,
+   provided that DRTM doesn't harm it (maybe it does; this is not known).</li>
+</ol>
+</li>
+<li>After a DRTM launch (at EL2):<ol>
+<li>Handle API calls like "unprotect memory", "close locality", "set error",
+   and "enable secure interrupts" (or pretend to handle them).  If the
+   protocol doesn't persist, can mock it inside DLME.</li>
+</ol>
+</li>
+</ol>
+<p>Such an implementation wouldn't be a proper API, but switching to it later would
+be quite trivial.  Many operations would be a no-op, because required control
+over the hardware isn't available.  Still, input and output data would be really
+close to DEN 0113 unless external things like the memory map would cause
+trouble.</p>
+<h2 id="the-search-continues">The search continues<a class="headerlink" href="#the-search-continues" title="Permanent link">&para;</a></h2>
+<p>While this Windows-on-Arm device didn't turn out to be a good porting target, it
+did help understand what should or shouldn't be present in one:</p>
+<ul>
+<li>a decent compatibility with Linux is a requirement, preferably, out of the
+  box: working TPM, storage devices, network</li>
+<li>if DRTM doesn't follow DEN 0113, then access to EL3 is needed to provide a
+  compatible implementation</li>
+<li>if a device requires porting firmware, that's also an option; hardware on
+  which <a href="https://github.com/ARM-software/arm-trusted-firmware/">ARM Trusted Firmware</a> can already run would be the most
+  convenient option</li>
+<li>need an IOMMU providing sufficient DMA protection, but compromises could
+  be made in this area in order to facilitate porting</li>
+</ul>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 13, 2026</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2018 - 2024 TrenchBoot Developers
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/TrenchBoot" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://trenchboot.org" target="_blank" rel="noopener" title="trenchboot.org" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8h5Z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "header.autohide"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.471ce7a9.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,208 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600");
+
+:root {
+  --text-base-size: 1em;
+  --font-primary: sans-serif;
+  --color-contrast-high: grey;
+  --color-contrast-higher: white;
+}
+
+/* use image for color theme */
+body,
+.md-tabs {
+/*  background-image: url("shoe-print.jpg");*/
+/*  background-size: cover;*/
+/*  background-attachment: fixed;*/
+  font-size: var(--text-base-size);
+  font-weight: bold;
+  font-family: source sans pro, sans-serif;
+  font-family: var(--font-primary);
+  color: var(--color-contrast-high);
+}
+
+.md-tabs {
+  color: var(--color-contrast-higher);
+}
+
+.md-header {
+  background-color: var(--md-primary-fg-color--dark);
+}
+
+h1,
+h2,
+h3,
+h4 {
+    color: #ffffff;
+    color: var(--color-contrast-higher, #ffffff);
+    line-height: 1.2;
+    line-height: var(--heading-line-height, 1.2)
+}
+
+.md-container,
+.md-search__inner {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.md-footer-nav,
+.md-footer-meta {
+  background: transparent;
+}
+
+/* General style */
+.md-typeset h1,
+.md-tabs,
+.md-header-nav__topic,
+.md-sidebar {
+  font-family: source sans pro, sans-serif;
+  font-weight: bold;
+}
+.md-tabs a {
+  font-size: 0.9rem;
+}
+.md-sidebar label {
+  font-size: 0.85rem;
+}
+.md-sidebar a {
+  font-size: 0.75rem;
+  margin-top: 0.4em;
+}
+.md-typeset h1 {
+  color: #ffffff;
+  font-weight: bold;
+}
+.md-typeset h2 {
+  color: #ffffff;
+  font-weight: bold;
+}
+.md-typeset h3 {
+  color: #ffffff;
+  font-weight: bold;
+}
+.md-typeset__table th {
+  border-bottom: 2px solid rgb(0, 238, 32);
+  font-weight: bold;
+}
+.md-typeset__table tr:nth-child(even) {
+  background: rgb(61, 61, 76);
+}
+.md-typeset table:not([class]) tr:nth-child(even):hover {
+  background-color: rgba(61, 61, 76, 0.035);
+}
+
+/* change link colors for grey theme */
+.md-header-nav__button:hover {
+  opacity: 1;
+  color: rgb(0, 238, 32);
+  transition: color 0.5s;
+}
+[data-md-color-primary="grey"] .md-typeset a {
+  color: #00ade2;
+}
+[data-md-color-primary="grey"] .md-typeset a:hover {
+  color: rgb(0, 238, 32);
+}
+.md-nav__item .md-nav__link--active {
+  color: white;
+}
+.md-sidebar label,
+.md-nav__item--nested > .md-nav__link,
+.md-sidebar a {
+  color: grey;
+}
+.md-nav__link:hover {
+  color: rgb(0, 238, 32);
+}
+.md-nav__link[data-md-state="blur"] {
+  color: rgb(180, 180, 180);
+}
+.md-nav__item .md-nav__link--active {
+  color: white;
+}
+.md-footer-nav__link {
+  font-weight: bold;
+}
+.md-footer-nav__link:hover {
+  opacity: 1;
+  color: rgb(0, 238, 32);
+  transition: color 0.5s;
+}
+a.headerlink {
+  color: grey;
+}
+
+p {
+  flex-direction: column;
+  justify-content: center;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* display external links with icon */
+div.md-content a[href^="http://"]:not([href*="TrenchBoot.github.io"]):after,
+div.md-content a[href^="https://"]:not([href*="TrenchBoot.github.io"]):after,
+div.md-content a[href^="//"]:not([href*="TrenchBoot.github.io"])
+{
+  content: "↗";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 70%;
+  vertical-align: top;
+  display: inline-block;
+  text-decoration: none;
+}
+
+/* attribute classes to be used via {: .class} */
+.left {
+  /* left align with text float on the right */
+  float: left;
+  padding-right: 20px;
+}
+.right {
+  /* right align with text float on the left */
+  float: right;
+  padding-left: 20px;
+}
+
+.border {
+  /* add drop shadow */
+  border: 1px solid #021a40;
+  -webkit-box-shadow: 0px 0px 18px 5px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 0px 18px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 18px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* special use tags ==...== */
+mark,
+.md-typeset mark {
+  background-color: rgb(255, 253, 130);
+  color: black;
+  font-weight: bold;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.zoom,
+.zoom2 {
+  transition: transform ease-in-out 0.5s;
+  cursor: zoom-in;
+}
+.image-zoom {
+  background: #000;
+  transform: scale(1);
+  cursor: zoom-out;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  z-index: 100;
+  position: absolute;
+}
+.image-zoom2 {
+  background: #000;
+  transform: scale(1.5);
+  cursor: zoom-out;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  z-index: 100;
+  position: absolute;
+}

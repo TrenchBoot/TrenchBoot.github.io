@@ -1,0 +1,82 @@
+@startuml
+
+skinparam backgroundColor #FAFAFA
+skinparam componentStyle rectangle
+skinparam defaultFontName Monospace
+skinparam defaultFontSize 12
+
+skinparam package {
+  BackgroundColor #EEF2FF
+  BorderColor #4455AA
+  FontStyle bold
+}
+
+skinparam component {
+  BackgroundColor #DDEEFF
+  BorderColor #2255AA
+}
+
+skinparam database {
+  BackgroundColor #FFF3CD
+  BorderColor #BB8800
+}
+
+skinparam cloud {
+  BackgroundColor #E8F5E9
+  BorderColor #2E7D32
+}
+
+title Automatic rebase CI/CD workflow for QubesOS packages\n(common shape of TrenchBoot/grub and TrenchBoot/xen)
+
+' ─────────────────────────────────────
+' SHARED WORKFLOWS (TrenchBoot/.github)
+' ─────────────────────────────────────
+package "TrenchBoot/.github (shared reusable workflows)" as shared {
+  component "rebase.yml\n[workflow_call]" as rebase_wf
+  component "qubes-dom0-packagev2.yml\n[workflow_call]" as pkg_wf
+}
+
+' ─────────────────────────────────────
+' COMPONENT workflow
+' ─────────────────────────────────────
+package "TrenchBoot/<repo>\n.github/workflows/rebase-build-and-publish-rebased.yml\n[triggers: workflow_dispatch (dry_run input),\nschedule: Sat 00:00 UTC]" as repo {
+  component "prep-rebase\n(prepares a temp branch\nwith QubesOS patches as\na commit on top of\nupstream)" as j1
+  component "count-skip-commits\n(Skips previously-applied\nQubesOS patches from rebase in\nTrenchBoot/<repo>@<downstream-branch>)" as j2
+  component "try-rebase\n(tries to rebase\nTrenchBoot/<repo>@<downstream-branch>,\nfails in case of a conflict)" as j3
+  component "cleanup-after-rebase-attempt\n(deletes the temp branch created\nin the 'prep-rebase' job)" as j4
+  component "get-version\n(finds the version of the QubesOS\n component that should be built\nin the next job)" as j5
+  component "qubes-dom0-package\n(builds QubesOS package from\nthe successfully rebased branch)" as j6
+
+  j1 --> j2 : needs
+  j2 --> j3 : needs
+  j3 --> j4 : needs
+  j3 --> j5 : needs
+  j5 --> j6 : needs
+}
+
+' ─────────────────────────────────────
+' EXTERNAL SOURCES
+' ─────────────────────────────────────
+cloud "QubesOS/qubes-<component>\nGitHub repository" as qubes_pkg
+cloud "<upstream-source>" as upstream_src
+cloud "GitHub Actions\nArtifact Storage" as gh_artifacts
+cloud "<upstream-source>" as upstream_src
+
+' ─────────────────────────────────────
+' CROSS-REPO / EXTERNAL EDGES
+' ─────────────────────────────────────
+j1 ..> qubes_pkg
+j1 ..> upstream_src : fetch upstream code
+j3 ..> rebase_wf : uses (workflow_call)
+j6 ..> pkg_wf : uses (workflow_call)
+pkg_wf ..> gh_artifacts : uploads RPM artifacts
+
+legend right
+  |= Symbol |= Meaning |
+  | A <b>⇾</b> B | Sequential job dependency (needs:) |
+  | A ⇢ B | Cross-repo workflow call / external fetch |
+  | [workflow_call] | Reusable workflow invoked by caller |
+  | <name> | Per-component placeholder (see table in the document) |
+endlegend
+
+@enduml

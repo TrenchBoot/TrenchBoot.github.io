@@ -1,0 +1,52 @@
+@startuml
+skinparam backgroundColor #FAFAFA
+skinparam componentStyle rectangle
+skinparam defaultFontName Monospace
+skinparam defaultFontSize 12
+
+skinparam package {
+  BackgroundColor #EEF2FF
+  BorderColor #4455AA
+  FontStyle bold
+}
+
+skinparam component {
+  BackgroundColor #DDEEFF
+  BorderColor #2255AA
+}
+
+skinparam database {
+  BackgroundColor #FFF3CD
+  BorderColor #BB8800
+}
+
+skinparam cloud {
+  BackgroundColor #E8F5E9
+  BorderColor #2E7D32
+}
+
+title Automatic rebase CI/CD workflow for QubesOS packages - overview
+
+package "TrenchBoot component repository" as repo {
+  component "1. Get upstream QubesOS patches" as s1
+  component "2. Rebase TrenchBoot patches\non top of QubesOS patches" as s2
+  component "3. Build QubesOS RPMs with\nTrenchBoot + QubesOS patches" as s3
+  component "4. Upload RPM artifacts" as s4
+
+  s1 --> s2
+  s2 --> s3
+  s3 --> s4
+}
+
+cloud "QubesOS upstream\n(qubes-*)" as upstream
+cloud "GitHub Actions\nArtifact Storage" as gh_artifacts
+
+s1 ..> upstream : fetches patches from
+s4 ..> gh_artifacts : uploads RPM artifacts
+
+legend right
+  |= Symbol |= Meaning |
+  | A <b>⇾</b> B | Sequential job dependency (needs:) |
+  | A ⇢ B | Cross-repo workflow call / API call |
+endlegend
+@enduml
