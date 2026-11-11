@@ -1,14 +1,22 @@
 # Installing TrenchBoot AEM in Qubes OS
 
-This document shows how to install Anti Evil Maid from packages produced by
-3mdeb as part of [TrenchBoot as Anti Evil Maid project](https://docs.dasharo.com/projects/trenchboot-aem-v2/).
-If you wish to build the components yourself, please refer to documentation for
-developers instead.
+This document shows how to install Anti Evil Maid from packages produced by 3mdeb
+as part of [TrenchBoot as Anti Evil Maid project](https://docs.dasharo.com/projects/trenchboot-aem-v2/).
+If you wish to build the components yourself, please refer instead to developer documentation.
 
-## Installation
+## Preparing the installation
 
-To install, you have to first add a new repository and import a public part of
-a key that was used to sign RPM packages.
+Before you begin, it would save installation time by clearing the TPM of your device
+before proceeding, otherwise you will need to reboot your computer
+at [the provisioning](##Provisioning) step below.
+Remember: enable Intel TXT after resetting your TPM.
+
+To install TrenchBoot AME you will need to add a new repository, import a public
+part of a key that was used to sign RPM packages, download and install
+the appropriate packages, configure a new `.bin` file in the `/boot/`
+directory and then configure AEM.
+
+The entire process should take roughly 20 minutes to complete.
 
 ### Adding AEM repository
 
@@ -24,7 +32,7 @@ gpgkey = https://dl.3mdeb.com/rpm/QubesOS/r4.2/current/dom0/fc37/RPM-GPG-KEY-tb-
 enabled = 1
 ```
 
-The key specified in the file must be downloaded and imported to RPM:
+The specified key must be downloaded and imported to RPM:
 
 ```bash
 qvm-run --pass-io sys-net \
@@ -33,16 +41,17 @@ qvm-run --pass-io sys-net \
 sudo rpm --import RPM-GPG-KEY-tb-aem
 ```
 
-Now it should be possible to download and install packages from AEM repository.
-
 ### Intel systems dependencies
 
-If your device has an Intel CPU, download [official package from Intel](https://cdrdv2.intel.com/v1/dl/getContent/630744)
-and extract ACM appropriate for your platform to `/boot/`.
+If your device has an Intel CPU, download [the official package from Intel](https://cdrdv2.intel.com/v1/dl/getContent/630744).
+Select the correct ACM .bin corresponding to your CPU (using the .PDF
+included in the zip as a guide) and move the `.bin` into the dom0 `/boot/` directory.
+
+Helpful commands:
+`unzip <zip.acrhive.name>`- to unzip the Intel .zip archive.
+`mv <ACM.bin> /boot/` - to move the correct ACM to `/boot`.
 
 ### Installing prerequisite packages
-
-#### Qubes repository dependencies
 
 Start by installing prerequisite packages. Those are not part of newly added
 repository, but `qubes-dom0-current-testing`:
@@ -59,7 +68,9 @@ sudo qubes-dom0-update --enablerepo=qubes-dom0-current-testing \
 
 #### Prepare a list of AEM packages
 
-For convenience, the packages can be saved to an environment variable:
+For convenience, the packages can be saved to an environment variable,
+by simply typing into the dom0 terminal, or copying a text file
+from a disposable qube:
 
 ```shell
 packages=(
@@ -112,13 +123,17 @@ packages+=(
 #### Installing
 
 Install the packages (first command reinstalls existing packages in case the
-same version numbers exist on official Qubes repositories, second one only
-adds new packages):
+same version numbers exist in official Qubes repositories, second one only
+adds new packages). If the first command fails, it means that there are no
+conflicting packages with the same version number in official Qubes repositories:
 
 ```shell
-qubes-dom0-update --disablerepo="*" --enablerepo=aem --action=reinstall -y ${packages[@]}
-qubes-dom0-update --disablerepo="*" --enablerepo=aem --action=install -y ${packages[@]}
+sudo qubes-dom0-update --disablerepo="*" --enablerepo=aem --action=reinstall -y ${packages[@]}
+sudo qubes-dom0-update --disablerepo="*" --enablerepo=aem --action=install -y ${packages[@]}
 ```
+
+At this point, if you are installing on an UEFI system,
+you may skip to [Installing main AEM package](###Installing-main-AEM-package)
 
 #### Updating GRUB on legacy systems
 
@@ -194,11 +209,22 @@ sudo qubes-dom0-update --disablerepo="*" --enablerepo=aem \
 
 ## Provisioning
 
-All packages are in place. Before we can proceed with provisioning AEM, the TPM
-must be cleared in the BIOS. Some platforms may require disabling Intel Trusted
-Execution Technology (TXT) in order to clear TPM. After you clear the TPM,
-remember to enable Intel TXT back, otherwise AEM will not work. Once TPM is
-cleared, perform the TPM setup:
+All packages are now installed.
+
+Before we can proceed with provisioning AEM, the TPM must be cleared in the BIOS
+(i.e. TPM Authentication Reset).Some platforms may require disabling Intel's
+Trusted Execution Technology (TXT) in order to clear the TPM.
+
+If you failed to clear the TPM as noted at the beginning of the guide,
+you will be shown a message like this:
+
+![](../img/qubes_aem_setup_fail.png)
+
+In that case, try clearing the TPM in your BIOS and run the command again.
+After you clear the TPM, remember to enable Intel TXT back,
+otherwise AEM will not work.
+
+Once the TPM is cleared, perform the TPM setup:
 
 ```bash
 sudo anti-evil-maid-tpm-setup
@@ -206,16 +232,11 @@ sudo anti-evil-maid-tpm-setup
 
 ![](../img/qubes_aem_setup.png)
 
-You will be prompted to set the SRK password, it is a password to access TPM’s
-nonvolatile storage where the AEM secrets will be sealed. If you failed to
-clear the TPM, you will be shown a message like this:
+You will be prompted to set the SRK password. The SRK password enables access
+the TPM’s nonvolatile storage where the AEM secrets will be sealed.
 
-![](../img/qubes_aem_setup_fail.png)
-
-In that case, try clearing the TPM in your BIOS and run the command again.
-
-Now all that's left is proper installation of AEM. There are different options,
-refer to `anti-evil-maid-install -h` for examples. In the simplest case, AEM is
+Now all that's left is proper installation of AEM. (Note: There are different options,
+refer to `anti-evil-maid-install -h` for examples.) In the simplest case, AEM is
 installed on boot partition (not disk, i.e. `sda1` instead of `sda` etc.) of
 Qubes OS. Run this command to find out where your boot partition is installed:
 
@@ -234,11 +255,12 @@ sudo anti-evil-maid-install /dev/sda1
 
 After that, reboot the platform. On first boot you will be asked for the SRK
 password, followed by another question for disk encryption password, after which
-a screen mentioning absent secret file will be shown:
+a screen mentioning an absent secret file will be shown:
 
 ![](../img/qubes_aem_1st_boot.png)
 
 This is expected on the first boot after installation or an update to one or
 more of measured components (GRUB, Xen, dom0 kernel and initramfs).
+
 After rebooting for the second time, the Anti Evil Maid should be up
 and running.
